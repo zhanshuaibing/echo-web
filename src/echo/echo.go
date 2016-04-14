@@ -10,8 +10,8 @@ import (
 
 	"assets"
 	"conf"
-	"middleware/bind"
-	"middleware/staticbin"
+	"github.com/hobo-go/echo-mw/bind"
+	"github.com/hobo-go/echo-mw/staticbin"
 	"models"
 	"modules/auth"
 	"modules/cache"

@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 
 	"conf"
-	echo_sessions "middleware/session" //"github.com/syntaqx/echo-middleware/session"
+	echo_sessions "github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
 )
 
 func Sessions() echo.MiddlewareFunc {

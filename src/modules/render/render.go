@@ -16,8 +16,8 @@ import (
 	"conf"
 	"templates"
 
-	"middleware/multitemplate"
-	"middleware/pongo2echo"
+	"github.com/hobo-go/echo-mw/multitemplate"
+	"github.com/hobo-go/echo-mw/pongo2echo"
 
 	"modules/auth"
 	"modules/log"

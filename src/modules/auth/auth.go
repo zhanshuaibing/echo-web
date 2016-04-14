@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
-	"middleware/session" //"github.com/syntaqx/echo-middleware/session"
 )
 
 const (
