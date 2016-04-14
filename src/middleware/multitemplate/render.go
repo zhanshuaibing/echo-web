@@ -4,6 +4,8 @@ package multitemplate
 import (
 	"html/template"
 	"io"
+
+	"github.com/labstack/echo"
 )
 
 /**
@@ -43,7 +45,7 @@ func (r *Render) AddFromString(name, templateString string) *template.Template {
 	return tmpl
 }
 
-func (r Render) Render(w io.Writer, name string, data interface{}) error {
+func (r Render) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	var t *template.Template
 	t = r[name]
 	return t.Execute(w, data)

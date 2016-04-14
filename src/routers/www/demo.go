@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func DemoHandler(c *echo.Context) error {
+func DemoHandler(c echo.Context) error {
 	c.Set("tmpl", "www/demo")
 	c.Set("data", map[string]interface{}{
 		"title": "Demo",

@@ -15,7 +15,7 @@ const (
 	DefaultKey = "modules/cache"
 )
 
-func Cache() echo.HandlerFunc {
+func Cache() echo.MiddlewareFunc {
 	var store gin_cache.CacheStore
 
 	switch conf.CACHE_STORE {
@@ -25,15 +25,17 @@ func Cache() echo.HandlerFunc {
 		store = gin_cache.NewInMemoryStore(time.Hour)
 	}
 
-	return func(c *echo.Context) error {
-		c.Set(DefaultKey, store)
-		// c.Next();
-		return nil
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			c.Set(DefaultKey, store)
+
+			return next(c)
+		}
 	}
 }
 
 // shortcut to get Cache
-func Default(c *echo.Context) gin_cache.CacheStore {
+func Default(c echo.Context) gin_cache.CacheStore {
 	// return c.MustGet(DefaultKey).(gin_cache.CacheStore)
 	return c.Get(DefaultKey).(gin_cache.CacheStore)
 }

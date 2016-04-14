@@ -11,7 +11,7 @@ import (
 	"models"
 )
 
-func PostHandler(c *echo.Context) error {
+func PostHandler(c echo.Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 	if err != nil {
@@ -29,7 +29,7 @@ func PostHandler(c *echo.Context) error {
 	return nil
 }
 
-func PostsHandler(c *echo.Context) error {
+func PostsHandler(c echo.Context) error {
 
 	userIdStr := c.Param("userId")
 	userId, err := strconv.ParseUint(userIdStr, 10, 64)
@@ -57,7 +57,7 @@ func PostsHandler(c *echo.Context) error {
 	return nil
 }
 
-func PostSaveHandler(c *echo.Context) error {
+func PostSaveHandler(c echo.Context) error {
 	model := models.Default(c)
 	model.PostSave()
 

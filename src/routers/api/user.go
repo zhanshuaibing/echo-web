@@ -6,13 +6,14 @@ import (
 	. "time"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/engine/standard"
 	// "github.com/jinzhu/gorm"
 
 	"models"
 	"modules/cache"
 )
 
-func UserHandler(c *echo.Context) error {
+func UserHandler(c echo.Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 	if err != nil {
@@ -31,33 +32,34 @@ func UserHandler(c *echo.Context) error {
 		cacheStore.Get("userId", &value)
 	}
 
+	request := c.Request().(*standard.Request).Request
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title":      "User",
 		"user":       u,
 		"value":      value,
-		"host":       c.Request().Host,
-		"referer":    c.Request().Referer(),
-		"method":     c.Request().Method,
-		"RequestURI": c.Request().RequestURI,
-		"RemoteAddr": c.Request().RemoteAddr,
-		"url":        c.Request().URL.String(),
-		"path":       c.Request().URL.Path,
-		"query":      c.Request().URL.Query().Encode(),
-		"uri":        c.Request().URL.RequestURI(),
-		"rawquery":   c.Request().URL.RawQuery,
+		"host":       request.Host,
+		"referer":    request.Referer(),
+		"method":     request.Method,
+		"RequestURI": request.RequestURI,
+		"RemoteAddr": request.RemoteAddr,
+		"url":        request.URL.String(),
+		"path":       request.URL.Path,
+		"query":      request.URL.Query().Encode(),
+		"uri":        request.URL.RequestURI(),
+		"rawquery":   request.URL.RawQuery,
 	})
 
 	return nil
 }
 
-func UserLoginHandler(c *echo.Context) error {
+func UserLoginHandler(c echo.Context) error {
 
 	c.JSON(200, map[string]interface{}{"URI": "api user login"})
 
 	return nil
 }
 
-func UserRegisterHandler(c *echo.Context) error {
+func UserRegisterHandler(c echo.Context) error {
 
 	c.JSON(200, map[string]interface{}{"URI": "api user regist"})
 

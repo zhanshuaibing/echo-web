@@ -6,7 +6,8 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/syntaqx/echo-middleware/session"
+	"github.com/labstack/echo/engine/standard"
+	"middleware/session" //"github.com/syntaqx/echo-middleware/session"
 )
 
 const (
@@ -48,33 +49,34 @@ type auth struct {
 	User
 }
 
-func Auth(newUser func() User) echo.HandlerFunc {
-	return func(c *echo.Context) error {
-		s := session.Default(c)
-		userId := s.Get(SessionKey)
-		user := newUser()
+func Auth(newUser func() User) echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			s := session.Default(c)
+			userId := s.Get(SessionKey)
+			user := newUser()
 
-		if userId != nil {
-			err := user.GetById(userId)
-			if err != nil {
-				log.Printf("Login Error: %v\n", err)
+			if userId != nil {
+				err := user.GetById(userId)
+				if err != nil {
+					log.Printf("Login Error: %v\n", err)
+				} else {
+					user.Login()
+				}
 			} else {
-				user.Login()
+				log.Printf("Login Error: No UserId")
 			}
-		} else {
-			log.Printf("Login Error: No UserId")
+
+			auth := auth{user}
+			c.Set(DefaultKey, auth)
+
+			return next(c)
 		}
-
-		auth := auth{user}
-		c.Set(DefaultKey, auth)
-		// c.Next()
-
-		return nil
 	}
 }
 
 // shortcut to get Auth
-func Default(c *echo.Context) auth {
+func Default(c echo.Context) auth {
 	// return c.MustGet(DefaultKey).(auth)
 	return c.Get(DefaultKey).(auth)
 }
@@ -104,16 +106,21 @@ func Logout(s session.Session, user User) {
 // require a login should have this handler placed in the flow. If the user is not
 // authenticated, they will be redirected to /login with the "next" get parameter
 // set to the attempted URL.
-func LoginRequired() echo.HandlerFunc {
-	return func(c *echo.Context) error {
-		a := Default(c)
-		if a.User.IsAuthenticated() == false {
-			path := fmt.Sprintf("%s?%s=%s", RedirectUrl, RedirectParam, c.Request().URL.Path)
-			c.Redirect(http.StatusMovedPermanently, path)
-			return echo.NewHTTPError(http.StatusUnauthorized)
-		}
+func LoginRequired() echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			a := Default(c)
+			if a.User.IsAuthenticated() == false {
+				request := c.Request().(*standard.Request).Request
+				url := request.URL
 
-		return nil
+				path := fmt.Sprintf("%s?%s=%s", RedirectUrl, RedirectParam, url.Path)
+				c.Redirect(http.StatusMovedPermanently, path)
+				return echo.NewHTTPError(http.StatusUnauthorized)
+			}
+
+			return next(c)
+		}
 	}
 }
 

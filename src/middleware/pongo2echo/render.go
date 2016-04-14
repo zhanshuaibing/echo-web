@@ -7,6 +7,7 @@ import (
 	"path"
 
 	"github.com/flosch/pongo2"
+	"github.com/labstack/echo"
 )
 
 // RenderOptions is used to configure the renderer.
@@ -24,14 +25,14 @@ type Pongo2Render struct {
 }
 
 // New creates a new Pongo2Render instance with custom Options.
-func New(options RenderOptions) *Pongo2Render {
-	return &Pongo2Render{
+func New(options RenderOptions) Pongo2Render {
+	return Pongo2Render{
 		Options: &options,
 	}
 }
 
 // Default creates a Pongo2Render instance with default options.
-func Default() *Pongo2Render {
+func Default() Pongo2Render {
 	return New(RenderOptions{
 		TemplateDir: "templates",
 		ContentType: "text/html; charset=utf-8",
@@ -39,7 +40,7 @@ func Default() *Pongo2Render {
 	})
 }
 
-func (p Pongo2Render) Render(w io.Writer, name string, data interface{}) error {
+func (p Pongo2Render) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	var template *pongo2.Template
 	filename := path.Join(p.Options.TemplateDir, name)
 

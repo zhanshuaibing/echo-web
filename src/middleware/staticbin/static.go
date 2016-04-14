@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/engine/standard"
 )
 
 type Options struct {
@@ -28,7 +29,7 @@ func (o *Options) init() {
 }
 
 // Static returns a middleware handler that serves static files in the given directory.
-func Static(asset func(string) ([]byte, error), options ...Options) echo.HandlerFunc {
+func Static(asset func(string) ([]byte, error), options ...Options) echo.MiddlewareFunc {
 	if asset == nil {
 		panic("asset is nil")
 	}
@@ -42,43 +43,48 @@ func Static(asset func(string) ([]byte, error), options ...Options) echo.Handler
 
 	modtime := time.Now()
 
-	return func(c *echo.Context) error {
-		if c.Request().Method != "GET" && c.Request().Method != "HEAD" {
-			// Request is not correct. Go farther.
-			// return echo.NewHTTPError(http.StatusMethodNotAllowed)
-			return nil
-		}
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			request := c.Request().(*standard.Request).Request
+			if request.Method != "GET" && request.Method != "HEAD" {
+				// Request is not correct. Go farther.
+				// return echo.NewHTTPError(http.StatusMethodNotAllowed)
+				return next(c)
+			}
 
-		url := c.Request().URL.Path
-		if !strings.HasPrefix(url, opt.Dir) {
-			// return echo.NewHTTPError(http.StatusUnsupportedMediaType)
-			return nil
-		}
-		file := strings.TrimPrefix(
-			strings.TrimPrefix(url, opt.Dir),
-			"/",
-		)
-		b, err := asset(file)
-
-		if err != nil {
-			// Try to serve the index file.
-			b, err = asset(path.Join(file, opt.IndexFile))
+			u := request.URL
+			url := u.Path
+			if !strings.HasPrefix(url, opt.Dir) {
+				// return echo.NewHTTPError(http.StatusUnsupportedMediaType)
+				return next(c)
+			}
+			file := strings.TrimPrefix(
+				strings.TrimPrefix(url, opt.Dir),
+				"/",
+			)
+			b, err := asset(file)
 
 			if err != nil {
-				// Go farther if the asset could not be found.
-				return nil
+				// Try to serve the index file.
+				b, err = asset(path.Join(file, opt.IndexFile))
+
+				if err != nil {
+					// Go farther if the asset could not be found.
+					return next(c)
+				}
 			}
+
+			if !opt.SkipLogging {
+				log.Println("[Static] Serving " + url)
+			}
+
+			// http.ServeContent(c.Writer, c.Request(), url, modtime, bytes.NewReader(b))
+			// c.Abort()
+
+			response := c.Response().(*standard.Response).ResponseWriter
+			http.ServeContent(response, request, url, modtime, bytes.NewReader(b))
+
+			return nil
 		}
-
-		if !opt.SkipLogging {
-			log.Println("[Static] Serving " + url)
-		}
-
-		// http.ServeContent(c.Writer, c.Request(), url, modtime, bytes.NewReader(b))
-		// c.Abort()
-
-		http.ServeContent(c.Response(), c.Request(), url, modtime, bytes.NewReader(b))
-
-		return nil
 	}
 }

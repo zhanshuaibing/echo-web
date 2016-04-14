@@ -10,6 +10,7 @@ import (
 
 	// "github.com/gin-gonic/contrib/renders/multitemplate"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/engine/standard"
 	// "github.com/robvdl/pongo2gin"
 
 	"conf"
@@ -31,9 +32,9 @@ func Render() echo.MiddlewareFunc {
 }
 
 func render() echo.MiddlewareFunc {
-	return func(h echo.HandlerFunc) echo.HandlerFunc {
-		return func(c *echo.Context) error {
-			if err := h(c); err != nil {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			if err := next(c); err != nil {
 				c.Error(err)
 			}
 
@@ -41,7 +42,7 @@ func render() echo.MiddlewareFunc {
 			if err == nil {
 				c.Render(http.StatusOK, tmpl, context)
 			} else {
-				log.DebugPrint("Render Error: %v", err)
+				log.DebugPrint("Render Error: %v, tmpl %v, content %v", err, tmpl, context)
 			}
 
 			return nil
@@ -49,7 +50,7 @@ func render() echo.MiddlewareFunc {
 	}
 }
 
-func getContext(c *echo.Context) (tmpl string, context map[string]interface{}, err error) {
+func getContext(c echo.Context) (tmpl string, context map[string]interface{}, err error) {
 	tmplName := c.Get("tmpl")
 	tmplNameValue, isString := tmplName.(string)
 	tmplData := c.Get("data")
@@ -79,7 +80,7 @@ func getContext(c *echo.Context) (tmpl string, context map[string]interface{}, e
 
 }
 
-func getCommonContext(c *echo.Context) map[string]interface{} {
+func getCommonContext(c echo.Context) map[string]interface{} {
 	a := auth.Default(c)
 	userId := a.User.UniqueId().(uint64)
 
@@ -87,13 +88,15 @@ func getCommonContext(c *echo.Context) map[string]interface{} {
 	commonDatas := make(map[string]interface{})
 	commonDatas["UserId"] = userId
 	commonDatas["UserName"] = "用户名"
-	commonDatas["requestUrl"] = c.Request().URL.String()
+
+	request := c.Request().(*standard.Request).Request
+	commonDatas["requestUrl"] = request.URL.String()
 
 	return commonDatas
 }
 
 /**
- * Gin模板加载
+ * 模板加载
  * 支持文件/Bindata加载模板
  */
 

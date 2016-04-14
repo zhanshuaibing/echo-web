@@ -5,6 +5,9 @@ import ()
 const (
 	RELEASE_MODE = false
 
+	// Http
+	SERVER_HTTP = "STANDARD" // Default "STANDARD",STANDARD,FASTHTTP
+
 	// Session
 	SESSION_STORE = "COOKIE" // Default "COOKIE",COOKIE,REDIS,FILE
 
@@ -40,4 +43,7 @@ const (
 
 	// Pongo2
 	PONGO2 = "PONGO2"
+
+	// Fasthttp
+	FASTHTTP = "FASTHTTP"
 )

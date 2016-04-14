@@ -2,16 +2,19 @@ package echo
 
 import (
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/engine/fasthttp"
+	"github.com/labstack/echo/engine/standard"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
 	// "github.com/olebedev/staticbin"
 
 	"assets"
 	"conf"
+	"middleware/bind"
+	"middleware/staticbin"
 	"models"
 	"modules/auth"
-	// "modules/cache"
-	"middleware/staticbin"
+	"modules/cache"
 	"modules/render"
 	"modules/sessions"
 	"routers/api"
@@ -34,7 +37,6 @@ func Run() {
 	e.Use(mw.Recover())
 
 	// 静态资源
-	e.Favicon("./assets/img/favicon.ico")
 	switch conf.STATIC_TYPE {
 	case conf.BINDATA:
 		e.Use(staticbin.Static(assets.Asset, staticbin.Options{
@@ -43,6 +45,9 @@ func Run() {
 	default:
 		e.Static("/assets", "./assets")
 	}
+
+	// Bind
+	e.SetBinder(bind.New())
 
 	// 模板
 	// e.HTMLRender = render.LoadTemplates()
@@ -57,7 +62,7 @@ func Run() {
 	e.Use(sessions.Sessions())
 
 	// Cache
-	// e.Use(cache.Cache())
+	e.Use(cache.Cache())
 
 	// Auth
 	e.Use(auth.Auth(models.GenerateAnonymousUser))
@@ -97,5 +102,11 @@ func Run() {
 		gApi.Get("/posts/:userId/p/:p/s/:s", api.PostsHandler)
 	}
 
-	e.Run(":8080") // listen and serve on 0.0.0.0:8080
+	// e.Run(":8080") // listen and serve on 0.0.0.0:8080
+	switch conf.SERVER_HTTP {
+	case conf.FASTHTTP:
+		e.Run(fasthttp.New(":8080"))
+	default:
+		e.Run(standard.New(":8080"))
+	}
 }

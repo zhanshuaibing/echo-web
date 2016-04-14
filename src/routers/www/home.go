@@ -9,7 +9,7 @@ import (
 	"models"
 )
 
-func HomeHandler(c *echo.Context) error {
+func HomeHandler(c echo.Context) error {
 	id, err := strconv.ParseUint("1", 10, 64)
 	if err != nil {
 		panic(err)

@@ -2,15 +2,15 @@ package www
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/syntaqx/echo-middleware/session"
+	"middleware/session" //"github.com/syntaqx/echo-middleware/session"
 	// "github.com/gin-gonic/gin/binding"
 
 	"models"
 	"modules/auth"
+	"modules/log"
 )
 
 type LoginForm struct {
@@ -18,8 +18,8 @@ type LoginForm struct {
 	Password string `form:"password" binding:"required"`
 }
 
-func LoginHandler(c *echo.Context) error {
-	redirect := c.Query(auth.RedirectParam)
+func LoginHandler(c echo.Context) error {
+	redirect := c.QueryParam(auth.RedirectParam)
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
@@ -37,8 +37,8 @@ func LoginHandler(c *echo.Context) error {
 	return nil
 }
 
-func LoginPostHandler(c *echo.Context) error {
-	redirect := c.Query(auth.RedirectParam)
+func LoginPostHandler(c echo.Context) error {
+	redirect := c.QueryParam(auth.RedirectParam)
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
@@ -49,9 +49,10 @@ func LoginPostHandler(c *echo.Context) error {
 	loginURL := fmt.Sprintf("/login?%s=%s", auth.RedirectParam, redirect)
 
 	var form LoginForm
-	if c.Bind(&form) == nil {
+	if err := c.Bind(&form); err == nil {
 		model := models.Default(c)
 		u := model.GetUserByNicknamePwd(form.Nickname, form.Password)
+
 		if u != nil {
 			session := session.Default(c)
 			err := auth.AuthenticateSession(session, u)
@@ -65,6 +66,8 @@ func LoginPostHandler(c *echo.Context) error {
 			return nil
 		}
 	} else {
+		log.DebugPrint("Login form params: %v", c.FormParams())
+		log.DebugPrint("Login form bind Error: %v", err)
 		c.Redirect(http.StatusMovedPermanently, loginURL)
 		return nil
 	}
@@ -72,7 +75,7 @@ func LoginPostHandler(c *echo.Context) error {
 	return nil
 }
 
-func LogoutHandler(c *echo.Context) error {
+func LogoutHandler(c echo.Context) error {
 	session := session.Default(c)
 	a := auth.Default(c)
 	auth.Logout(session, a.User)
@@ -82,12 +85,12 @@ func LogoutHandler(c *echo.Context) error {
 	return nil
 }
 
-func RegisterHandler(c *echo.Context) error {
-	redirect := c.Query(auth.RedirectParam)
+func RegisterHandler(c echo.Context) error {
+	redirect := c.QueryParam(auth.RedirectParam)
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
-		log.Print("Register IsAuthenticated!")
+		log.DebugPrint("Register IsAuthenticated!")
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
 	}
@@ -102,8 +105,8 @@ func RegisterHandler(c *echo.Context) error {
 	return nil
 }
 
-func RegisterPostHandler(c *echo.Context) error {
-	redirect := c.Query(auth.RedirectParam)
+func RegisterPostHandler(c echo.Context) error {
+	redirect := c.QueryParam(auth.RedirectParam)
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
@@ -114,7 +117,7 @@ func RegisterPostHandler(c *echo.Context) error {
 	registerURL := fmt.Sprintf("/register?%s=%s", auth.RedirectParam, redirect)
 
 	var form LoginForm
-	if c.Bind(&form) == nil {
+	if err := c.Bind(&form); err == nil {
 		model := models.Default(c)
 		u := model.AddUserWithNicknamePwd(form.Nickname, form.Password)
 		if u != nil {
@@ -126,12 +129,12 @@ func RegisterPostHandler(c *echo.Context) error {
 			c.Redirect(http.StatusMovedPermanently, redirect)
 			return nil
 		} else {
-			log.Print("Register user add error")
+			log.DebugPrint("Register user add error")
 			c.Redirect(http.StatusMovedPermanently, registerURL)
 			return nil
 		}
 	} else {
-		log.Print("Register form bind error")
+		log.DebugPrint("Register form bind Error: %v", err)
 		c.Redirect(http.StatusMovedPermanently, registerURL)
 		return nil
 	}

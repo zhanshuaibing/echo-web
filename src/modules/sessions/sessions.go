@@ -2,9 +2,9 @@ package sessions
 
 import (
 	"github.com/labstack/echo"
-	echo_sessions "github.com/syntaqx/echo-middleware/session"
 
 	"conf"
+	echo_sessions "middleware/session" //"github.com/syntaqx/echo-middleware/session"
 )
 
 func Sessions() echo.MiddlewareFunc {

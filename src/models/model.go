@@ -20,19 +20,20 @@ func (m model) DB() *gorm.DB {
 	return m.db
 }
 
-func Model() echo.HandlerFunc {
-	return func(c *echo.Context) error {
-		db := conf.DB()
-		model := model{db}
-		c.Set(DefaultKey, model)
-		// c.Next()
+func Model() echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			db := conf.DB()
+			model := model{db}
+			c.Set(DefaultKey, model)
 
-		return nil
+			return next(c)
+		}
 	}
 }
 
 // shortcut to get model
-func Default(c *echo.Context) model {
+func Default(c echo.Context) model {
 	// return c.MustGet(DefaultKey).(model)
 	return c.Get(DefaultKey).(model)
 }

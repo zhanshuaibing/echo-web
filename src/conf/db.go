@@ -22,7 +22,7 @@ const (
 )
 
 func DBInit() echo.HandlerFunc {
-	return func(c *echo.Context) error {
+	return func(c echo.Context) error {
 		sqlConnection := DB_USER_NAME + ":" + DB_PASSWORD + "@tcp(" + DB_HOST + ":" + DB_PORT + ")/" + DB_NAME + "?charset=utf8mb4&parseTime=True&loc=Local"
 		db, err := gorm.Open("mysql", sqlConnection)
 		if err != nil {
@@ -35,6 +35,6 @@ func DBInit() echo.HandlerFunc {
 }
 
 // shortcut to get DB
-func DefaultDB(c *echo.Context) gorm.DB {
+func DefaultDB(c echo.Context) gorm.DB {
 	return c.Get(DefaultKey).(gorm.DB)
 }
