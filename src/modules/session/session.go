@@ -14,12 +14,12 @@ func Session() echo.MiddlewareFunc {
 		if err != nil {
 			panic(err)
 		}
-		return es.Sessions("mysession", store)
+		return es.New("mysession", store)
 	case "FILE":
 		store := es.NewFilesystemStore("", []byte("secret-key"))
-		return es.Sessions("mysession", store)
+		return es.New("mysession", store)
 	default:
 		store := es.NewCookieStore([]byte("secret"))
-		return es.Sessions("mysession", store)
+		return es.New("mysession", store)
 	}
 }
