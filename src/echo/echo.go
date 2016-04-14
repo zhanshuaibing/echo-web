@@ -16,7 +16,7 @@ import (
 	"modules/auth"
 	"modules/cache"
 	"modules/render"
-	"modules/sessions"
+	"modules/session"
 	"routers/api"
 	"routers/www"
 )
@@ -59,7 +59,7 @@ func Run() {
 	e.Use(model)
 
 	// Session
-	e.Use(sessions.Sessions())
+	e.Use(session.Session())
 
 	// Cache
 	e.Use(cache.Cache())
