@@ -7,8 +7,6 @@
 _obj
 _test
 
-vendor
-
 # Architecture specific extensions/prefixes
 *.[568vq]
 [568vq].out
@@ -24,3 +22,8 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+
+vendor
+assets/assets.go
+templates/templates.go
