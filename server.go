@@ -1,7 +1,7 @@
 package main
 
 import (
-	"echo"
+	"github.com/hobo-go/echo-web/echo"
 )
 
 func main() {

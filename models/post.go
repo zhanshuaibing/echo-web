@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 
-	"modules/log"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 func (m model) GetPostById(id uint64) *Post {

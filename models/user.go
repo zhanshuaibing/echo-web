@@ -3,8 +3,8 @@ package models
 import (
 	"time"
 
-	"modules/auth"
-	"modules/log"
+	"github.com/hobo-go/echo-web/modules/auth"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 func (m model) GetUserById(id uint64) *User {

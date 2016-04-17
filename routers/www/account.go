@@ -8,9 +8,9 @@ import (
 	"github.com/labstack/echo"
 	// "github.com/gin-gonic/gin/binding"
 
-	"models"
-	"modules/auth"
-	"modules/log"
+	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/modules/auth"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 type LoginForm struct {

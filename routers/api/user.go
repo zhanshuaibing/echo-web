@@ -9,8 +9,8 @@ import (
 	"github.com/labstack/echo/engine/standard"
 	// "github.com/jinzhu/gorm"
 
-	"models"
-	"modules/cache"
+	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/modules/cache"
 )
 
 func UserHandler(c echo.Context) error {

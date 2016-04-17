@@ -3,11 +3,11 @@ package log
 import (
 	l "log"
 
-	"github.com/gin-gonic/gin"
+	"github.com/hobo-go/echo-web/conf"
 )
 
 func DebugPrint(format string, values ...interface{}) {
-	if gin.IsDebugging() {
+	if conf.RELEASE_MODE == false {
 		l.Printf("[Debug] "+format, values...)
 	}
 }

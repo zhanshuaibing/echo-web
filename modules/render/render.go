@@ -13,14 +13,14 @@ import (
 	"github.com/labstack/echo/engine/standard"
 	// "github.com/robvdl/pongo2gin"
 
-	"conf"
-	"templates"
-
 	"github.com/hobo-go/echo-mw/multitemplate"
 	"github.com/hobo-go/echo-mw/pongo2echo"
 
-	"modules/auth"
-	"modules/log"
+	"github.com/hobo-go/echo-web/conf"
+	"github.com/hobo-go/echo-web/templates"
+
+	"github.com/hobo-go/echo-web/modules/auth"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 func Render() echo.MiddlewareFunc {

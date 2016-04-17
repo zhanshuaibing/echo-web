@@ -22,9 +22,9 @@ do
 done
 
 # Go Path
-CURDIR=`pwd`
-OLDGOPATH="$GOPATH"
-export GOPATH="$OLDGOPATH:$CURDIR"
+# CURDIR=`pwd`
+# OLDGOPATH="$GOPATH"
+# export GOPATH="$OLDGOPATH:$CURDIR"
 
 LogPrefix=">>>>"
 
@@ -33,10 +33,10 @@ LogPrefix=">>>>"
 echo -e "$LogPrefix `date +"%H:%M:%S"` \033[42;37m start \033[0m"
 
 echo "$LogPrefix `date +"%H:%M:%S"` assets bindata"
-go-bindata -ignore=\\.DS_Store -pkg="assets" -o src/assets/assets.go assets/...
+go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
 
 echo "$LogPrefix `date +"%H:%M:%S"` templates bindata"
-go-bindata -ignore=\\.DS_Store -pkg="templates" -o src/templates/templates.go templates/...
+go-bindata -ignore=\\.DS_Store -ignore=templates.go -pkg="templates" -o templates/templates.go templates/...
 
 echo "$LogPrefix `date +"%H:%M:%S"` src package"
 gofmt -w src/
@@ -46,12 +46,12 @@ case  $OS  in
     linux)  
         # Linux
         echo "$LogPrefix `date +"%H:%M:%S"` build linux bin"
-        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install gin_sample
+        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install echo-web
         ;;  
     *) 
         # 本机
         echo "$LogPrefix `date +"%H:%M:%S"` build local bin"
-        go install gin_sample
+        go install echo-web
         ;;
 esac 
 

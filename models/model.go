@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 
-	"conf"
+	"github.com/hobo-go/echo-web/conf"
 )
 
 const (

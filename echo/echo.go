@@ -8,17 +8,17 @@ import (
 	"github.com/labstack/gommon/log"
 	// "github.com/olebedev/staticbin"
 
-	"assets"
-	"conf"
 	"github.com/hobo-go/echo-mw/bind"
 	"github.com/hobo-go/echo-mw/staticbin"
-	"models"
-	"modules/auth"
-	"modules/cache"
-	"modules/render"
-	"modules/session"
-	"routers/api"
-	"routers/www"
+	"github.com/hobo-go/echo-web/assets"
+	"github.com/hobo-go/echo-web/conf"
+	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/modules/auth"
+	"github.com/hobo-go/echo-web/modules/cache"
+	"github.com/hobo-go/echo-web/modules/render"
+	"github.com/hobo-go/echo-web/modules/session"
+	"github.com/hobo-go/echo-web/routers/api"
+	"github.com/hobo-go/echo-web/routers/www"
 )
 
 func Run() {

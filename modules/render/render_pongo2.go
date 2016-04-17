@@ -5,8 +5,8 @@ import (
 
 	"github.com/labstack/echo"
 
-	"conf"
-	"modules/log"
+	"github.com/hobo-go/echo-web/conf"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 func pongo2() echo.MiddlewareFunc {

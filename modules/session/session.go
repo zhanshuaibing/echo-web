@@ -3,8 +3,8 @@ package session
 import (
 	"github.com/labstack/echo"
 
-	"conf"
 	es "github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
+	"github.com/hobo-go/echo-web/conf"
 )
 
 func Session() echo.MiddlewareFunc {

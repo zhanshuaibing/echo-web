@@ -12,7 +12,7 @@ const (
 	SESSION_STORE = "COOKIE" // Default "COOKIE",COOKIE,REDIS,FILE
 
 	// Cache
-	CACHE_STORE = "MEMCACHED"
+	CACHE_STORE = "REDIS"
 
 	// Tmpl
 	TMPL_TYPE   = "PONGO2" // Default "",PONGO2,BINDATA
