@@ -25,11 +25,11 @@ func Routers() *echo.Echo {
 	e := echo.New()
 
 	// Customization
-	e.SetLogPrefix("Echo")
-	e.SetLogLevel(log.DEBUG)
 	if conf.RELEASE_MODE {
 		e.SetDebug(false)
 	}
+	e.SetLogPrefix("Echo")
+	e.SetLogLevel(log.DEBUG)
 
 	// Gzip
 	e.Use(mw.GzipWithConfig(mw.GzipConfig{

@@ -14,7 +14,8 @@ const (
 	DOMAIN_WWW = "echo.www.localhost:8080"
 
 	// Http
-	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default),(FASTHTTP不可用Session模块不支持)
+	// FASTHTTP不可用，Session模块暂不支持
+	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default)
 
 	// Session
 	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)
