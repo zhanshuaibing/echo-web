@@ -13,7 +13,7 @@ const (
 	DefaultExpiration = 3600
 	DEFAULT           = time.Duration(0)
 	FOREVER           = time.Duration(-1)
-	DefaultKey        = "modules/cache"
+	DefaultKey        = "github.com/hobo-go/echo-web/modules/cache"
 )
 
 func Cache() echo.MiddlewareFunc {

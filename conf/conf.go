@@ -3,24 +3,28 @@ package conf
 import ()
 
 const (
+	// Release
 	RELEASE_MODE = false
 
+	// Project
+	PROJECT_NAME = "Echo Web"
+
 	// Http
-	SERVER_HTTP = "STANDARD" // Default "STANDARD",STANDARD,FASTHTTP
+	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default)
 
 	// Session
-	SESSION_STORE = "COOKIE" // Default "COOKIE",COOKIE,REDIS,FILE
+	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)
 
 	// Cache
-	CACHE_STORE = "REDIS"
+	CACHE_STORE = REDIS //REDIS,MEMCACHED,IN_MEMORY(IN_MEMORY Default)
 
 	// Tmpl
-	TMPL_TYPE   = "PONGO2" // Default "",PONGO2,BINDATA
-	TMPL_DIR    = "templates/pongo2"
-	TMPL_SUFFIX = ".html" // .html,.tpl
+	TMPL_TYPE   = PONGO2             // PONGO2,BINDATA,FILE(FILE Default)
+	TMPL_DIR    = "templates/pongo2" // PONGO2(templates/pongo2),BINDATA/FILE(templates)
+	TMPL_SUFFIX = ".html"            // .html,.tpl
 
 	// Static
-	STATIC_TYPE = "BINDATA" // Default "",BINDATA
+	STATIC_TYPE = BINDATA // BINDATA,FILE(FILE Default)
 
 	// MySQL
 	DB_NAME      = "goweb_db"
@@ -30,20 +34,36 @@ const (
 	DB_PORT      = "3306"
 
 	// Redis
-	REDIS        = "REDIS"
 	REDIS_SERVER = "127.0.0.1:6379"
 	REDIS_PWD    = "123456"
 
 	// Memcached
-	MEMCACHED        = "MEMCACHED"
 	MEMCACHED_SERVER = "localhost:11211"
+)
 
-	// Bindata
-	BINDATA = "BINDATA"
+const (
+	// Http
+	STANDARD = "standard"
+	FASTHTTP = "fasthttp" // Fasthttp
 
 	// Pongo2
-	PONGO2 = "PONGO2"
+	PONGO2 = "pongo2"
 
-	// Fasthttp
-	FASTHTTP = "FASTHTTP"
+	// Bindata
+	BINDATA = "bindata"
+
+	// File
+	FILE = "file"
+
+	// Redis
+	REDIS = "redis"
+
+	// Memcached
+	MEMCACHED = "memcached"
+
+	// Cookie
+	COOKIE = "cookie"
+
+	// In Memory
+	IN_MEMORY = "InMemory"
 )

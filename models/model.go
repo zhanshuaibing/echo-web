@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	DefaultKey  = "models/model"
+	DefaultKey  = "github.com/hobo-go/echo-web/models/model"
 	errorFormat = "[models] ERROR! %s\n"
 )
 

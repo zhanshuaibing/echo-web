@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo"
 
 	es "github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
+
 	"github.com/hobo-go/echo-web/conf"
 )
 
@@ -15,7 +16,7 @@ func Session() echo.MiddlewareFunc {
 			panic(err)
 		}
 		return es.New("mysession", store)
-	case "FILE":
+	case conf.FILE:
 		store := es.NewFilesystemStore("", []byte("secret-key"))
 		return es.New("mysession", store)
 	default:

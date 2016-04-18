@@ -5,7 +5,7 @@ import (
 )
 
 func Print(format string, values ...interface{}) {
-	l.Printf("[Debug] "+format, values...)
+	l.Printf("[DEBUG] "+format, values...)
 }
 
 func PrinError(err error) {

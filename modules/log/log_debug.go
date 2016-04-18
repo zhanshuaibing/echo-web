@@ -8,7 +8,7 @@ import (
 
 func DebugPrint(format string, values ...interface{}) {
 	if conf.RELEASE_MODE == false {
-		l.Printf("[Debug] "+format, values...)
+		l.Printf("[DEBUG] "+format, values...)
 	}
 }
 

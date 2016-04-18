@@ -8,19 +8,16 @@ import (
 	"path/filepath"
 	"strings"
 
-	// "github.com/gin-gonic/contrib/renders/multitemplate"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
-	// "github.com/robvdl/pongo2gin"
 
 	"github.com/hobo-go/echo-mw/multitemplate"
 	"github.com/hobo-go/echo-mw/pongo2echo"
 
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/templates"
-
 	"github.com/hobo-go/echo-web/modules/auth"
 	"github.com/hobo-go/echo-web/modules/log"
+	"github.com/hobo-go/echo-web/templates"
 )
 
 func Render() echo.MiddlewareFunc {

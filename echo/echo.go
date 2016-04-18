@@ -6,10 +6,10 @@ import (
 	"github.com/labstack/echo/engine/standard"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
-	// "github.com/olebedev/staticbin"
 
-	"github.com/hobo-go/echo-mw/bind"
+	"github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/staticbin"
+
 	"github.com/hobo-go/echo-web/assets"
 	"github.com/hobo-go/echo-web/conf"
 	"github.com/hobo-go/echo-web/models"
@@ -27,7 +27,7 @@ func Run() {
 
 	// Customization
 	e.SetLogPrefix("Echo")
-	e.SetLogLevel(log.DEBUG)
+	e.SetLogLevel(log.WARN)
 	if conf.RELEASE_MODE {
 		e.SetDebug(false)
 	}
@@ -47,10 +47,9 @@ func Run() {
 	}
 
 	// Bind
-	e.SetBinder(bind.New())
+	e.SetBinder(binder.New())
 
 	// 模板
-	// e.HTMLRender = render.LoadTemplates()
 	e.SetRenderer(render.LoadTemplates())
 	e.Use(render.Render())
 
@@ -102,7 +101,6 @@ func Run() {
 		gApi.Get("/posts/:userId/p/:p/s/:s", api.PostsHandler)
 	}
 
-	// e.Run(":8080") // listen and serve on 0.0.0.0:8080
 	switch conf.SERVER_HTTP {
 	case conf.FASTHTTP:
 		e.Run(fasthttp.New(":8080"))

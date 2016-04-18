@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
+	"github.com/hobo-go/echo-mw/session"
 	"github.com/labstack/echo"
-	// "github.com/gin-gonic/gin/binding"
 
 	"github.com/hobo-go/echo-web/models"
 	"github.com/hobo-go/echo-web/modules/auth"

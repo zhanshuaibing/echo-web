@@ -4,7 +4,6 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo"
-	// "github.com/jinzhu/gorm"
 
 	"github.com/hobo-go/echo-web/models"
 )

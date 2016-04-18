@@ -5,13 +5,13 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
+	"github.com/hobo-go/echo-mw/session"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/standard"
 )
 
 const (
-	DefaultKey  = "modules/auth"
+	DefaultKey  = "github.com/hobo-go/echo-web/modules/auth"
 	errorFormat = "[modules] ERROR! %s\n"
 )
 
