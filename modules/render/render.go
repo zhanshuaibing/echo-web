@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	"github.com/labstack/echo"
-	"github.com/labstack/echo/engine/standard"
 
 	"github.com/hobo-go/echo-mw/multitemplate"
 	"github.com/hobo-go/echo-mw/pongo2echo"
@@ -86,8 +85,7 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas["UserId"] = userId
 	commonDatas["UserName"] = "用户名"
 
-	request := c.Request().(*standard.Request).Request
-	commonDatas["requestUrl"] = request.URL.String()
+	commonDatas["requestUrl"] = c.Request().URI()
 
 	return commonDatas
 }

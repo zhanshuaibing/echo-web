@@ -7,7 +7,6 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 	"github.com/labstack/echo"
-	"github.com/labstack/echo/engine/standard"
 )
 
 const (
@@ -111,8 +110,7 @@ func LoginRequired() echo.MiddlewareFunc {
 		return func(c echo.Context) error {
 			a := Default(c)
 			if a.User.IsAuthenticated() == false {
-				request := c.Request().(*standard.Request).Request
-				url := request.URL
+				url := c.Request().URL()
 
 				path := fmt.Sprintf("%s?%s=%s", RedirectUrl, RedirectParam, url.Path)
 				c.Redirect(http.StatusMovedPermanently, path)

@@ -6,7 +6,6 @@ import (
 	. "time"
 
 	"github.com/labstack/echo"
-	"github.com/labstack/echo/engine/standard"
 	// "github.com/jinzhu/gorm"
 
 	"github.com/hobo-go/echo-web/models"
@@ -32,21 +31,21 @@ func UserHandler(c echo.Context) error {
 		cacheStore.Get("userId", &value)
 	}
 
-	request := c.Request().(*standard.Request).Request
+	request := c.Request()
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"title":      "User",
-		"user":       u,
-		"value":      value,
-		"host":       request.Host,
-		"referer":    request.Referer(),
-		"method":     request.Method,
-		"RequestURI": request.RequestURI,
-		"RemoteAddr": request.RemoteAddr,
-		"url":        request.URL.String(),
-		"path":       request.URL.Path,
-		"query":      request.URL.Query().Encode(),
-		"uri":        request.URL.RequestURI(),
-		"rawquery":   request.URL.RawQuery,
+		"title":       "User",
+		"user":        u,
+		"value":       value,
+		"Scheme":      request.Scheme(),
+		"Host":        request.Host(),
+		"UserAgent":   request.UserAgent(),
+		"Method":      request.Method(),
+		"URI":         request.URI(),
+		"RemoteAddr":  request.RemoteAddress(),
+		"Path":        request.URL().Path(),
+		"QueryString": request.URL().QueryString(),
+		"QueryParams": request.URL().QueryParams(),
+		"HeaderKeys":  request.Header().Keys(),
 	})
 
 	return nil

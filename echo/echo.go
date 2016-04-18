@@ -27,7 +27,7 @@ func Run() {
 
 	// Customization
 	e.SetLogPrefix("Echo")
-	e.SetLogLevel(log.WARN)
+	e.SetLogLevel(log.DEBUG)
 	if conf.RELEASE_MODE {
 		e.SetDebug(false)
 	}
