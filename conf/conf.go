@@ -9,8 +9,12 @@ const (
 	// Project
 	PROJECT_NAME = "Echo Web"
 
+	// Domains
+	DOMAIN_API = "echo.api.localhost:8080"
+	DOMAIN_WWW = "echo.www.localhost:8080"
+
 	// Http
-	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default)
+	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default),(FASTHTTP不可用Session模块不支持)
 
 	// Session
 	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)

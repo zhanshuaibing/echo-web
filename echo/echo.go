@@ -17,9 +17,47 @@ import (
 	"github.com/hobo-go/echo-web/modules/cache"
 	"github.com/hobo-go/echo-web/modules/render"
 	"github.com/hobo-go/echo-web/modules/session"
+	"github.com/hobo-go/echo-web/routers"
 	"github.com/hobo-go/echo-web/routers/api"
 	"github.com/hobo-go/echo-web/routers/www"
 )
+
+// 子域名部署
+func RunSubdomains() {
+	hosts := routers.InitRoutes()
+
+	// Server
+	e := echo.New()
+	e.Pre(mw.RemoveTrailingSlash())
+
+	// CORS
+	e.Use(mw.CORSWithConfig(mw.CORSConfig{
+		AllowOrigins: []string{"http://" + conf.DOMAIN_WWW, "http://" + conf.DOMAIN_API},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAcceptEncoding},
+	}))
+
+	e.Any("/*", func(c echo.Context) (err error) {
+		req := c.Request()
+		res := c.Response()
+
+		host := hosts[req.Host()]
+
+		if host == nil {
+			err = echo.ErrNotFound
+		} else {
+			host.Echo.ServeHTTP(req, res)
+		}
+
+		return
+	})
+
+	switch conf.SERVER_HTTP {
+	case conf.FASTHTTP:
+		e.Run(fasthttp.New(":8080"))
+	default:
+		e.Run(standard.New(":8080"))
+	}
+}
 
 func Run() {
 	// Echo instance

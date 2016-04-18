@@ -85,7 +85,28 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas["UserId"] = userId
 	commonDatas["UserName"] = "用户名"
 
-	commonDatas["requestUrl"] = c.Request().URI()
+	commonDatas["DOMAIN_WWW"] = conf.DOMAIN_WWW
+	commonDatas["DOMAIN_API"] = conf.DOMAIN_API
+
+	path := c.Request().URL().Path()
+	uri := c.Request().URI()
+
+	// 登录、注册、退出页面取已有RedirectParam
+	redirect := c.QueryParam(auth.RedirectParam)
+	switch path {
+	case "/login":
+		uri = redirect
+	case "/register":
+		uri = redirect
+	case "/logout":
+		uri = redirect
+	default:
+	}
+
+	log.Print("Path : %v \n", path)
+	log.Print("URI : %v \n", uri)
+
+	commonDatas["requestUrl"] = uri
 
 	return commonDatas
 }

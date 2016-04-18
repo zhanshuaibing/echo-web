@@ -1,7 +1,6 @@
 package www
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/hobo-go/echo-mw/session"
@@ -22,6 +21,9 @@ func LoginHandler(c echo.Context) error {
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
+		if redirect == "" {
+			redirect = "/"
+		}
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
 	}
@@ -38,6 +40,9 @@ func LoginHandler(c echo.Context) error {
 
 func LoginPostHandler(c echo.Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
+	if redirect == "" {
+		redirect = "/"
+	}
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
@@ -45,7 +50,7 @@ func LoginPostHandler(c echo.Context) error {
 		return nil
 	}
 
-	loginURL := fmt.Sprintf("/login?%s=%s", auth.RedirectParam, redirect)
+	loginURL := c.Request().URI()
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
@@ -79,7 +84,12 @@ func LogoutHandler(c echo.Context) error {
 	a := auth.Default(c)
 	auth.Logout(session, a.User)
 
-	c.Redirect(http.StatusMovedPermanently, "/")
+	redirect := c.QueryParam(auth.RedirectParam)
+	if redirect == "" {
+		redirect = "/"
+	}
+
+	c.Redirect(http.StatusMovedPermanently, redirect)
 
 	return nil
 }
@@ -89,7 +99,9 @@ func RegisterHandler(c echo.Context) error {
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
-		log.DebugPrint("Register IsAuthenticated!")
+		if redirect == "" {
+			redirect = "/"
+		}
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
 	}
@@ -106,6 +118,9 @@ func RegisterHandler(c echo.Context) error {
 
 func RegisterPostHandler(c echo.Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
+	if redirect == "" {
+		redirect = "/"
+	}
 
 	a := auth.Default(c)
 	if a.User.IsAuthenticated() {
@@ -113,7 +128,7 @@ func RegisterPostHandler(c echo.Context) error {
 		return nil
 	}
 
-	registerURL := fmt.Sprintf("/register?%s=%s", auth.RedirectParam, redirect)
+	registerURL := c.Request().URI()
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
