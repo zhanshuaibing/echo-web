@@ -5,6 +5,7 @@ import (
 
 	"github.com/hobo-go/echo-web/conf"
 	"github.com/hobo-go/echo-web/routers/api"
+	"github.com/hobo-go/echo-web/routers/socket"
 	"github.com/hobo-go/echo-web/routers/www"
 )
 
@@ -20,6 +21,7 @@ func InitRoutes() map[string]*Host {
 
 	hosts[conf.DOMAIN_WWW] = &Host{www.Routers()}
 	hosts[conf.DOMAIN_API] = &Host{api.Routers()}
+	hosts[conf.DOMAIN_SOCKET] = &Host{socket.Routers()}
 
 	return hosts
 }

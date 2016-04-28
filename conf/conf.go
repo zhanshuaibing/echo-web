@@ -10,8 +10,9 @@ const (
 	PROJECT_NAME = "Echo Web"
 
 	// Domains
-	DOMAIN_API = "echo.api.localhost:8080"
-	DOMAIN_WWW = "echo.www.localhost:8080"
+	DOMAIN_API    = "echo.api.localhost:8080"
+	DOMAIN_WWW    = "echo.www.localhost:8080"
+	DOMAIN_SOCKET = "echo.socket.localhost:8080"
 
 	// Http
 	// FASTHTTP不可用，Session模块暂不支持
