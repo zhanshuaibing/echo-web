@@ -1,6 +1,16 @@
 # Golang Web
 
-# Glide
+##测试
+```
+./run.sh
+```
+
+##打包
+```
+./build.sh
+```
+
+##依赖管理Glide
 
 ```
 https://github.com/Masterminds/glide
@@ -13,7 +23,7 @@ $ glide install                           	# Install packages and dependencies
 $ go build                                	# Go tools work normally
 $ glide up                                	# Update to newest versions of the package
 ```
-## glide get
+###glide get
 ```
 github.com/labstack/echo
 github.com/go-sql-driver/mysql
@@ -43,5 +53,21 @@ github.com/gorilla/context
 github.com/gorilla/securecookie
 ```
 
+##框架功能
 
+功能 | 描述
+:--- | :---
+配置 | conf进行统一配置
+子域名部署 | 子域名区分模块
+缓存 | Redis、Memcached、Memory
+Session | Redis、File、Cookie
+ORM | gorm，使用示例需完善
+模板 | 支持PONGO2，模板文件打包bindata
+静态 | 静态资源打包bindata
 
+目标功能 | 描述
+:--- | :---
+缓存 | 查询缓存
+安全 | SQL注入、XSS、表单令牌、验证码等
+日志 | 分级
+多语言 | 
