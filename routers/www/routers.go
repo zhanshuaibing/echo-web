@@ -28,7 +28,7 @@ func Routers() *echo.Echo {
 	if conf.RELEASE_MODE {
 		e.SetDebug(false)
 	}
-	e.SetLogPrefix("Echo")
+	// e.SetLogPrefix("Echo")
 	e.SetLogLevel(log.DEBUG)
 
 	// Gzip

@@ -22,7 +22,7 @@ func Routers() *echo.Echo {
 	e := echo.New()
 
 	// Customization
-	e.SetLogPrefix("Echo")
+	// e.SetLogPrefix("Echo")
 	e.SetLogLevel(log.DEBUG)
 	if conf.RELEASE_MODE {
 		e.SetDebug(false)

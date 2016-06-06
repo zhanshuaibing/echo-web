@@ -1,3 +1,4 @@
+// Base on https://github.com/martini-contrib/sessionauth
 package auth
 
 import (
