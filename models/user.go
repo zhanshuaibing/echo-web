@@ -7,9 +7,9 @@ import (
 	"github.com/hobo-go/echo-web/modules/log"
 )
 
-func (m model) GetUserById(id uint64) *User {
+func GetUserById(id uint64) *User {
 	user := User{}
-	if err := m.db.Where("id = ?", id).First(&user).Error; err != nil {
+	if err := DB().Where("id = ?", id).First(&user).Error; err != nil {
 		log.DebugPrint("GetUserById error: %v", err)
 		return nil
 	}
@@ -17,19 +17,19 @@ func (m model) GetUserById(id uint64) *User {
 	return &user
 }
 
-func (m model) GetUserByNicknamePwd(nickname string, pwd string) *User {
+func GetUserByNicknamePwd(nickname string, pwd string) *User {
 	user := User{}
-	if err := m.db.Where("nickname = ? AND password = ?", nickname, pwd).First(&user).Error; err != nil {
+	if err := DB().Where("nickname = ? AND password = ?", nickname, pwd).First(&user).Error; err != nil {
 		log.DebugPrint("GetUserByNicknamePwd error: %v", err)
 		return nil
 	}
 	return &user
 }
 
-func (m model) AddUserWithNicknamePwd(nickname string, pwd string) *User {
+func AddUserWithNicknamePwd(nickname string, pwd string) *User {
 	user := User{Nickname: nickname, Password: pwd, Birthday: time.Now()}
 
-	if err := m.db.Create(&user).Error; err != nil {
+	if err := DB().Create(&user).Error; err != nil {
 		return nil
 	}
 	return &user

@@ -1,5 +1,5 @@
-hash: 0c2285710a3d7ec48f8a23ef11a3eb55b8ed1824f565e5d0182cd51fc85f9f3b
-updated: 2016-06-04T14:57:50.951405612+08:00
+hash: 4b7f113d4b63c6c31bbe57570fb84eb3214aae1abf3c8e7f3850c6f56e4f60ba
+updated: 2016-06-08T13:22:29.846938738+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -12,7 +12,7 @@ imports:
   subpackages:
   - spew
 - name: github.com/dgrijalva/jwt-go
-  version: 9b486c879bab3fde556ce8c27d9a2bb05d5b2c60
+  version: c04502f106d7c5b3fae17c5da49a1bbdd3006b3c
 - name: github.com/flosch/pongo2
   version: 7f5515449ea9bbeb00256d9cbb654c556e7d0146
 - name: github.com/garyburd/redigo
@@ -26,23 +26,23 @@ imports:
   - cache
 - name: github.com/gin-gonic/gin
   version: ac0ad2fed865d40a0adc1ac3ccaadc3acff5db4b
-  subpackages:
-  - binding
-  - render
 - name: github.com/go-sql-driver/mysql
   version: 3654d25ec346ee8ce71a68431025458d52a38ac0
+- name: github.com/go-xorm/xorm
+  version: 8150bebe6a68d3e86a14e3aa0cbac4873c05131d
 - name: github.com/gorilla/context
   version: aed02d124ae4a0e94fea4541c8effd05bf0c8296
 - name: github.com/gorilla/securecookie
   version: ff356348f74133a59d3e93aa24b5b4551b6fe90d
 - name: github.com/gorilla/sessions
-  version: a4e6dd28f9e9274729417506b9bd0a6c3edb91ce
+  version: 56ba4b0a11da87516629a57408a5f7e4c8ea7b0b
 - name: github.com/hobo-go/echo-mw
   version: 92908792b1aca9aa254269c7464d5ea5ebdf7073
   subpackages:
   - binder
   - staticbin
   - session
+  - cache
   - multitemplate
   - pongo2echo
 - name: github.com/jinzhu/gorm
@@ -62,7 +62,7 @@ imports:
 - name: github.com/klauspost/crc32
   version: 19b0b332c9e4516a6370a0456e6182c3b5036720
 - name: github.com/labstack/echo
-  version: 02f12767fd348947062580837b85b5f43a2b142f
+  version: aeee1d87d0123bbd2eac036f7c6531e956cc4753
   subpackages:
   - engine/fasthttp
   - engine/standard
@@ -70,7 +70,7 @@ imports:
   - engine
   - log
 - name: github.com/labstack/gommon
-  version: b5f03e345acd2096591b6f738cb8d2b9b3231c50
+  version: d47a5823fd5d22ea8ac478f8439d41c53227e447
   subpackages:
   - color
   - log
@@ -79,10 +79,6 @@ imports:
   version: 043ae16291351db8465272edf465c9f388161627
 - name: github.com/mattn/go-isatty
   version: 56b76bdf51f7708750eac80fa38b952bb9f32639
-- name: github.com/pili-engineering/pili-sdk-go
-  version: ed9bef726485ee32a9da5d1d581ace7442037fb5
-  subpackages:
-  - pili
 - name: github.com/pmezard/go-difflib
   version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
@@ -100,7 +96,7 @@ imports:
   subpackages:
   - assert
 - name: github.com/valyala/fasthttp
-  version: 90baa054bca117a5d6c7e1fd338a3d6a5fe39bee
+  version: efbb037c40c52079e7ba605abb055ad7470a12de
 - name: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
 - name: golang.org/x/net
@@ -108,10 +104,12 @@ imports:
   subpackages:
   - context
   - websocket
-- name: golang.org/x/sys
-  version: 076b546753157f758b316e59bcb51e6807c04057
-  subpackages:
-  - unix
+- name: golang.org/x/net/context
+  version: ""
+- name: golang.org/x/net/websocket
+  version: ""
+- name: golang.org/x/sys/unix
+  version: ""
 - name: gopkg.in/joeybloggs/go-validate-yourself.v4
   version: a3cb430fa1e43b15e72d7bec5b20d0bdff4c2bb8
 devImports: []

@@ -57,10 +57,6 @@ func Routers() *echo.Echo {
 	e.SetRenderer(render.LoadTemplates())
 	e.Use(render.Render())
 
-	// 模型
-	model := models.Model()
-	e.Use(model)
-
 	// Session
 	e.Use(session.Session())
 

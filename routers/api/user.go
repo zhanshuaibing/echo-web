@@ -17,8 +17,7 @@ func UserHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	model := models.Default(c)
-	u := model.GetUserById(id)
+	u := models.GetUserById(id)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "User",

@@ -6,14 +6,14 @@ import (
 	"github.com/hobo-go/echo-web/modules/log"
 )
 
-func (m model) GetPostById(id uint64) *Post {
+func GetPostById(id uint64) *Post {
 	post := Post{}
-	if err := m.db.Where("id = ?", id).First(&post).Error; err != nil {
+	if err := DB().Where("id = ?", id).First(&post).Error; err != nil {
 		log.DebugPrint("Get post error: %v", err)
 		return nil
 	}
 
-	if err := m.db.Model(&post).Related(&post.User).Error; err != nil {
+	if err := DB().Model(&post).Related(&post.User).Error; err != nil {
 		log.DebugPrint("Post user related error: %v", err)
 		return &post
 	}
@@ -21,15 +21,15 @@ func (m model) GetPostById(id uint64) *Post {
 	return &post
 }
 
-func (m model) GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
+func GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
 	posts := []Post{}
-	if err := m.db.Where("user_id = ?", userId).Offset((page - 1) * size).Limit(size).Find(&posts).Error; err != nil {
+	if err := DB().Where("user_id = ?", userId).Offset((page - 1) * size).Limit(size).Find(&posts).Error; err != nil {
 		log.DebugPrint("Get user posts error: %v", err)
 		return nil
 	}
 
 	for key, post := range posts {
-		if err := m.db.Model(&post).Related(&post.User).Error; err != nil {
+		if err := DB().Model(&post).Related(&post.User).Error; err != nil {
 			log.DebugPrint("Post user related error: %v", err)
 		}
 		posts[key] = post
@@ -38,8 +38,8 @@ func (m model) GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
 	return &posts
 }
 
-func (m model) PostSave() {
-	tx := m.db.Begin()
+func PostSave() {
+	tx := DB().Begin()
 
 	post1 := Post{Title: "标题3"}
 	if err := tx.Create(&post1).Error; err != nil {

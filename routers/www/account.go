@@ -54,8 +54,7 @@ func LoginPostHandler(c echo.Context) error {
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
-		model := models.Default(c)
-		u := model.GetUserByNicknamePwd(form.Nickname, form.Password)
+		u := models.GetUserByNicknamePwd(form.Nickname, form.Password)
 
 		if u != nil {
 			session := session.Default(c)
@@ -132,8 +131,7 @@ func RegisterPostHandler(c echo.Context) error {
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
-		model := models.Default(c)
-		u := model.AddUserWithNicknamePwd(form.Nickname, form.Password)
+		u := models.AddUserWithNicknamePwd(form.Nickname, form.Password)
 		if u != nil {
 			session := session.Default(c)
 			err := auth.AuthenticateSession(session, u)

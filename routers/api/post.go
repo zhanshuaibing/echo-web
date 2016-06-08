@@ -18,8 +18,7 @@ func PostHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	model := models.Default(c)
-	post := model.GetPostById(id)
+	post := models.GetPostById(id)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post",
@@ -46,8 +45,7 @@ func PostsHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	model := models.Default(c)
-	posts := model.GetUserPostsByUserId(userId, page, size)
+	posts := models.GetUserPostsByUserId(userId, page, size)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post",
@@ -58,8 +56,7 @@ func PostsHandler(c echo.Context) error {
 }
 
 func PostSaveHandler(c echo.Context) error {
-	model := models.Default(c)
-	model.PostSave()
+	models.PostSave()
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post Add",

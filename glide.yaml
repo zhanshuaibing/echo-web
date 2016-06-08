@@ -1,9 +1,8 @@
-parent: null
 package: main
 import:
 - package: github.com/klauspost/compress
   subpackages:
-  - /flate
+  - flate
 - package: github.com/garyburd/redigo
   version: 535138d7bcd717d6531c701ef5933d98b1866257
   subpackages:
@@ -20,7 +19,7 @@ import:
   - difflib
 - package: github.com/qiniu/bytes
   subpackages:
-  - /seekable
+  - seekable
 - package: github.com/gorilla/securecookie
 - package: github.com/davecgh/go-spew
   version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
@@ -37,7 +36,7 @@ import:
 - package: github.com/klauspost/cpuid
 - package: github.com/gin-gonic/contrib
   subpackages:
-  - /cache
+  - cache
 - package: github.com/labstack/echo
 - package: github.com/jinzhu/inflection
 - package: github.com/jinzhu/gorm
@@ -64,3 +63,4 @@ import:
 - package: github.com/flosch/pongo2
 - package: github.com/gorilla/sessions
 - package: github.com/hobo-go/echo-mw
+- package: github.com/go-xorm/xorm

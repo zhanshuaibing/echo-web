@@ -14,8 +14,7 @@ func HomeHandler(c echo.Context) error {
 	if err != nil {
 		panic(err)
 	}
-	model := models.Default(c)
-	u := model.GetUserById(id)
+	u := models.GetUserById(id)
 
 	c.Set("tmpl", "www/home")
 	c.Set("data", map[string]interface{}{

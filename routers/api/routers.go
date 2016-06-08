@@ -1,11 +1,13 @@
 package api
 
 import (
+	// "time"
+
+	"github.com/hobo-go/echo-mw/binder"
+	// ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
-
-	"github.com/hobo-go/echo-mw/binder"
 
 	"github.com/hobo-go/echo-web/conf"
 	"github.com/hobo-go/echo-web/models"
@@ -40,15 +42,14 @@ func Routers() *echo.Echo {
 	// Bind
 	e.SetBinder(binder.New())
 
-	// 模型
-	model := models.Model()
-	e.Use(model)
-
 	// Session
 	e.Use(session.Session())
 
 	// Cache
 	e.Use(cache.Cache())
+
+	// e.Use(ec.SiteCache(ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour), time.Minute))
+	// e.Get("/user/:id", ec.CachePage(ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour), time.Minute, UserHandler))
 
 	// Auth
 	e.Use(auth.Auth(models.GenerateAnonymousUser))
