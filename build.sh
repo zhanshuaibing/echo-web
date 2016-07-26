@@ -46,12 +46,12 @@ case  $OS  in
     linux)  
         # Linux
         echo "$LogPrefix `date +"%H:%M:%S"` build linux bin"
-        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install echo-web
+        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go install
         ;;  
     *) 
         # 本机
         echo "$LogPrefix `date +"%H:%M:%S"` build local bin"
-        go install echo-web
+        go install
         ;;
 esac 
 
