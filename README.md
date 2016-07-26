@@ -77,7 +77,7 @@ github.com/gorilla/securecookie
 配置 | conf进行统一配置
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
-Session | Redis、File、Cookie，fasthttp模式Session不支持
+Session | Redis、File、Cookie，fasthttp模式Session未实现，Session支持Flash
 ORM | gorm，使用示例需完善
 模板 | 支持template、PONGO2，template模板支持打包bindata
 静态 | 静态资源打包bindata
@@ -86,7 +86,6 @@ Socket | Socket演示
 目标功能 | 描述
 :--- | :---
 缓存 | 查询缓存
-Flash |
 安全 | SQL注入、XSS、表单令牌、验证码等
 日志 | 分级
 多语言 | 
