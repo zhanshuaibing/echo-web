@@ -1,6 +1,7 @@
 package echo
 
 import (
+	"github.com/facebookgo/grace/gracehttp"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/engine/fasthttp"
 	"github.com/labstack/echo/engine/standard"
@@ -55,7 +56,12 @@ func RunSubdomains() {
 	case conf.FASTHTTP:
 		e.Run(fasthttp.New(":8080"))
 	default:
-		e.Run(standard.New(":8080"))
+		// e.Run(standard.New(":8080"))
+
+		// Graceful Shutdown
+		std := standard.New(":8080")
+		std.SetHandler(e)
+		gracehttp.Serve(std.Server)
 	}
 }
 

@@ -1,5 +1,5 @@
-hash: 11f21f9ac5d208904496ceb0d141695cd9c5c96557c9d5a49e446346ed56448b
-updated: 2016-07-25T17:54:22.37527344+08:00
+hash: f9c9211ece86fb588566a9a287968df60f99c1a3b49325ed232d0619b2cbdfc1
+updated: 2016-07-26T09:52:20.904253804+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -13,6 +13,17 @@ imports:
   - spew
 - name: github.com/dgrijalva/jwt-go
   version: 01aeca54ebda6e0fbfafd0a524d234159c05ec20
+- name: github.com/facebookgo/clock
+  version: 600d898af40aa09a7a93ecb9265d87b0504b6f03
+- name: github.com/facebookgo/grace
+  version: 053ab5d25436faedf3fe76fbf3da797c8c27c659
+  subpackages:
+  - gracehttp
+  - gracenet
+- name: github.com/facebookgo/httpdown
+  version: a3b1354551a26449fbe05f5d855937f6e7acbd71
+- name: github.com/facebookgo/stats
+  version: 1b76add642e42c6ffba7211ad7b3939ce654526e
 - name: github.com/flosch/pongo2
   version: 5e20832cab69d8dc4453e2403804e451a26d1277
 - name: github.com/garyburd/redigo

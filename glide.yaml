@@ -65,3 +65,6 @@ import:
 - package: github.com/hobo-go/echo-mw
 - package: github.com/go-xorm/xorm
 - package: github.com/valyala/bytebufferpool
+- package: github.com/facebookgo/grace
+  subpackages:
+  - gracehttp
