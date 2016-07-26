@@ -1,13 +1,24 @@
 # Golang Web
 
+##子域名部署
+```
+# ./conf/cong.go
+DOMAIN_API    = "echo.api.localhost:8080"
+DOMAIN_WWW    = "echo.www.localhost:8080"
+
+$ vi /etc/hosts
+127.0.0.1       echo.api.localhost
+127.0.0.1       echo.www.localhost
+```
+
 ##测试
 ```
-./run.sh
+$ ./run.sh
 ```
 
 ##打包
 ```
-./build.sh 		# 需要go-bindata工具
+$ ./build.sh 		# 需要go-bindata工具
 ```
 ```
 Bindata打包工具
