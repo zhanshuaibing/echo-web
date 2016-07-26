@@ -7,7 +7,7 @@
 
 ##打包
 ```
-./build.sh 		// 需要go-bindata工具
+./build.sh 		# 需要go-bindata工具
 ```
 ```
 Bindata打包工具
