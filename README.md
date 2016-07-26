@@ -7,13 +7,13 @@
 
 ##打包
 ```
+./build.sh 		// 需要go-bindata工具
+```
+```
 Bindata打包工具
 https://github.com/jteeuwen/go-bindata
 go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
 go-bindata -ignore=\\.DS_Store -ignore=templates.go -pkg="templates" -o templates/templates.go templates/...
-```
-```
-./build.sh
 ```
 
 ##依赖管理Glide
