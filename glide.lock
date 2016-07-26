@@ -1,5 +1,5 @@
-hash: 4b7f113d4b63c6c31bbe57570fb84eb3214aae1abf3c8e7f3850c6f56e4f60ba
-updated: 2016-06-08T13:22:29.846938738+08:00
+hash: 11f21f9ac5d208904496ceb0d141695cd9c5c96557c9d5a49e446346ed56448b
+updated: 2016-07-25T17:54:22.37527344+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -12,16 +12,16 @@ imports:
   subpackages:
   - spew
 - name: github.com/dgrijalva/jwt-go
-  version: c04502f106d7c5b3fae17c5da49a1bbdd3006b3c
+  version: 01aeca54ebda6e0fbfafd0a524d234159c05ec20
 - name: github.com/flosch/pongo2
-  version: 7f5515449ea9bbeb00256d9cbb654c556e7d0146
+  version: 5e20832cab69d8dc4453e2403804e451a26d1277
 - name: github.com/garyburd/redigo
   version: 535138d7bcd717d6531c701ef5933d98b1866257
   subpackages:
   - redis
   - internal
 - name: github.com/gin-gonic/contrib
-  version: 120df5cf76f14a246b04f0e35d5ee029b14d8dfb
+  version: 547e518040cfb96576b507d2f26779ab9c6fc829
   subpackages:
   - cache
 - name: github.com/gin-gonic/gin
@@ -37,7 +37,7 @@ imports:
 - name: github.com/gorilla/sessions
   version: 56ba4b0a11da87516629a57408a5f7e4c8ea7b0b
 - name: github.com/hobo-go/echo-mw
-  version: 92908792b1aca9aa254269c7464d5ea5ebdf7073
+  version: 6e2cbc4ed0c9a882a9da315d32bbff827fc6eca6
   subpackages:
   - binder
   - staticbin
@@ -46,9 +46,9 @@ imports:
   - multitemplate
   - pongo2echo
 - name: github.com/jinzhu/gorm
-  version: bf0e23607840019d62e32e87e9af48e881d74b1e
+  version: a646b13548ec0aa812fe805b2780f460dd2771b6
 - name: github.com/jinzhu/inflection
-  version: 3272df6c21d04180007eb3349844c89a3856bc25
+  version: 8f4d3a0d04ce0b7c0cf3126fb98524246d00d102
 - name: github.com/julienschmidt/httprouter
   version: 999ba04938b528fb4fb859231ee929958b8db4a6
 - name: github.com/klauspost/compress
@@ -62,7 +62,7 @@ imports:
 - name: github.com/klauspost/crc32
   version: 19b0b332c9e4516a6370a0456e6182c3b5036720
 - name: github.com/labstack/echo
-  version: aeee1d87d0123bbd2eac036f7c6531e956cc4753
+  version: 579cb79a41a2e931699bad83111728d78aa11d48
   subpackages:
   - engine/fasthttp
   - engine/standard
@@ -70,11 +70,12 @@ imports:
   - engine
   - log
 - name: github.com/labstack/gommon
-  version: d47a5823fd5d22ea8ac478f8439d41c53227e447
+  version: 2b77da35954472fe18dd4cf4d09c662a4119b0bd
   subpackages:
   - color
   - log
   - bytes
+  - random
 - name: github.com/mattn/go-colorable
   version: 043ae16291351db8465272edf465c9f388161627
 - name: github.com/mattn/go-isatty
@@ -95,8 +96,12 @@ imports:
   version: de7fcff264cd05cc0c90c509ea789a436a0dd206
   subpackages:
   - assert
+- name: github.com/valyala/bytebufferpool
+  version: 8ebd0474e5a2f0a5c7a74ad2bf421a1d1a90264f
 - name: github.com/valyala/fasthttp
-  version: efbb037c40c52079e7ba605abb055ad7470a12de
+  version: 45697fe30a130ec6a54426a069c82f3abe76b63d
+  subpackages:
+  - fasthttputil
 - name: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
 - name: golang.org/x/net

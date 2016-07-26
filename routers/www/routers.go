@@ -31,6 +31,18 @@ func Routers() *echo.Echo {
 	// e.SetLogPrefix("Echo")
 	e.SetLogLevel(log.DEBUG)
 
+	// CORS
+	e.Use(mw.CORSWithConfig(mw.CORSConfig{
+		AllowOrigins: []string{"http://echo.www.localhost:8080", "http://echo.api.localhost:8080"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType},
+		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+	}))
+
+	// CSRF
+	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
+		TokenLookup: "form:X-XSRF-TOKEN",
+	}))
+
 	// Gzip
 	e.Use(mw.GzipWithConfig(mw.GzipConfig{
 		Level: 5,

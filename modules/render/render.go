@@ -88,6 +88,10 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas["DOMAIN_WWW"] = conf.DOMAIN_WWW
 	commonDatas["DOMAIN_API"] = conf.DOMAIN_API
 
+	// CSRF
+	csrf := c.Get("csrf")
+	commonDatas["_csrf"] = csrf
+
 	path := c.Request().URL().Path()
 	uri := c.Request().URI()
 

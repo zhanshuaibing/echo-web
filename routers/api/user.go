@@ -8,6 +8,7 @@ import (
 	// "github.com/jinzhu/gorm"
 
 	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/modules/auth"
 )
 
 func UserHandler(c echo.Context) error {
@@ -19,9 +20,13 @@ func UserHandler(c echo.Context) error {
 
 	u := models.GetUserById(id)
 
+	a := auth.Default(c)
+	userId := a.User.UniqueId().(uint64)
+
 	c.JSON(http.StatusOK, map[string]interface{}{
-		"title": "User",
-		"user":  u,
+		"title":  "User",
+		"user":   u,
+		"userId": userId,
 	})
 
 	return nil
