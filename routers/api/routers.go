@@ -3,15 +3,14 @@ package api
 import (
 	// "time"
 
-	"github.com/hobo-go/echo-mw/binder"
 	// ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
 
+	"github.com/hobo-go/echo-mw/binder"
+
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/models"
-	"github.com/hobo-go/echo-web/modules/auth"
 	"github.com/hobo-go/echo-web/modules/cache"
 	"github.com/hobo-go/echo-web/modules/session"
 )
@@ -42,12 +41,6 @@ func Routers() *echo.Echo {
 		TokenLookup: "form:X-XSRF-TOKEN",
 	}))
 
-	// JWT
-	// e.Use(mw.JWTWithConfig(mw.JWTConfig{
-	// 	SigningKey:  []byte("secret"),
-	// 	TokenLookup: "query:token",
-	// }))
-
 	// Gzip
 	e.Use(mw.GzipWithConfig(mw.GzipConfig{
 		Level: 5,
@@ -70,15 +63,26 @@ func Routers() *echo.Echo {
 	// e.Get("/user/:id", ec.CachePage(ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour), time.Minute, UserHandler))
 
 	// Auth
-	e.Use(auth.Auth(models.GenerateAnonymousUser))
+	// e.Use(auth.Auth(models.GenerateAnonymousUser))
 
 	// Routers
 	e.Get("/", ApiHandler)
 	e.Get("/:id", ApiHandler)
-	e.Get("/user/:id", UserHandler)
 	e.Get("/login", UserLoginHandler)
 	e.Get("/register", UserRegisterHandler)
-	post := e.Group("/post")
+
+	// JWT
+	r := e.Group("/restricted")
+	r.Use(mw.JWTWithConfig(mw.JWTConfig{
+		SigningKey:  []byte("secret"),
+		ContextKey:  "_user",
+		TokenLookup: "header:" + echo.HeaderAuthorization,
+	}))
+
+	// curl http://echo.api.localhost:8080/restricted/user -H "Authorization: Bearer XXX"
+	r.Get("/user", UserHandler)
+
+	post := r.Group("/post")
 	{
 		post.Get("/save", PostSaveHandler)
 		post.Get("/id/:id", PostHandler)

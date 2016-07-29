@@ -9,6 +9,7 @@ import (
 	// "github.com/jinzhu/gorm"
 
 	"github.com/hobo-go/echo-mw/session"
+
 	"github.com/hobo-go/echo-web/modules/cache"
 )
 
@@ -31,7 +32,10 @@ func ApiHandler(c echo.Context) error {
 	// Flash测试
 	s := session.Default(c)
 	s.AddFlash("0")
-	s.AddFlash("1", "key")
+	s.AddFlash("1")
+	s.AddFlash("10", "key1")
+	s.AddFlash("20", "key2")
+	s.AddFlash("21", "key2")
 
 	request := c.Request()
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -48,7 +52,8 @@ func ApiHandler(c echo.Context) error {
 		"QueryParams":  request.URL().QueryParams(),
 		"HeaderKeys":   request.Header().Keys(),
 		"FlashDefault": s.Flashes(),
-		"Flash":        s.Flashes("key"),
+		"Flash1":       s.Flashes("key1"),
+		"Flash2":       s.Flashes("key2"),
 	})
 
 	return nil

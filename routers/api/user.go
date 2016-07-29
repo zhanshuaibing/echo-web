@@ -3,16 +3,20 @@ package api
 import (
 	"net/http"
 	"strconv"
+	// "time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
 	// "github.com/jinzhu/gorm"
 
 	"github.com/hobo-go/echo-web/models"
-	"github.com/hobo-go/echo-web/modules/auth"
 )
 
 func UserHandler(c echo.Context) error {
-	idStr := c.Param("id")
+	user := c.Get("_user").(*jwt.Token)
+	claims := user.Claims.(jwt.MapClaims)
+	idStr := claims["id"].(string)
+
 	id, err := strconv.ParseUint(idStr, 10, 64)
 	if err != nil {
 		panic(err)
@@ -20,21 +24,36 @@ func UserHandler(c echo.Context) error {
 
 	u := models.GetUserById(id)
 
-	a := auth.Default(c)
-	userId := a.User.UniqueId().(uint64)
-
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title":  "User",
 		"user":   u,
-		"userId": userId,
+		"claims": claims,
 	})
 
 	return nil
 }
 
 func UserLoginHandler(c echo.Context) error {
+	// Create token
+	token := jwt.New(jwt.SigningMethodHS256)
 
-	c.JSON(200, map[string]interface{}{"URI": "api user login"})
+	// Set claims
+	claims := token.Claims.(jwt.MapClaims)
+	claims["id"] = "1"
+	claims["name"] = "Hobo"
+	claims["admin"] = true
+	// claims["exp"] = time.Now().Add(time.Minute * 1).Unix()
+
+	// Generate encoded token and send it as response.
+	t, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		return err
+	}
+
+	c.JSON(200, map[string]interface{}{
+		"URI":   "api user login",
+		"token": t,
+	})
 
 	return nil
 }
