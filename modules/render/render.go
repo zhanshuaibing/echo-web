@@ -12,6 +12,7 @@ import (
 
 	"github.com/hobo-go/echo-mw/multitemplate"
 	"github.com/hobo-go/echo-mw/pongo2echo"
+	"github.com/hobo-go/echo-mw/session"
 
 	"github.com/hobo-go/echo-web/conf"
 	"github.com/hobo-go/echo-web/modules/auth"
@@ -89,8 +90,12 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas["DOMAIN_API"] = conf.DOMAIN_API
 
 	// CSRF
-	csrf := c.Get("csrf")
+	csrf := c.Get("_csrf")
 	commonDatas["_csrf"] = csrf
+
+	// Error
+	s := session.Default(c)
+	commonDatas["_error"] = s.Flashes("_error")
 
 	path := c.Request().URL().Path()
 	uri := c.Request().URI()

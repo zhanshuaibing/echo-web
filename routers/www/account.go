@@ -3,8 +3,9 @@ package www
 import (
 	"net/http"
 
-	"github.com/hobo-go/echo-mw/session"
 	"github.com/labstack/echo"
+
+	"github.com/hobo-go/echo-mw/session"
 
 	"github.com/hobo-go/echo-web/models"
 	"github.com/hobo-go/echo-web/modules/auth"
@@ -127,8 +128,6 @@ func RegisterPostHandler(c echo.Context) error {
 		return nil
 	}
 
-	registerURL := c.Request().URI()
-
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
 		u := models.AddUserWithNicknamePwd(form.Nickname, form.Password)
@@ -142,12 +141,34 @@ func RegisterPostHandler(c echo.Context) error {
 			return nil
 		} else {
 			log.DebugPrint("Register user add error")
-			c.Redirect(http.StatusMovedPermanently, registerURL)
+
+			s := session.Default(c)
+			s.AddFlash("Register user add error", "_error")
+
+			// registerURL := c.Request().URI()
+			// c.Redirect(http.StatusMovedPermanently, registerURL)
+			c.Set("tmpl", "www/register")
+			c.Set("data", map[string]interface{}{
+				"title":         "Register",
+				"redirectParam": auth.RedirectParam,
+				"redirect":      redirect,
+			})
 			return nil
 		}
 	} else {
 		log.DebugPrint("Register form bind Error: %v", err)
-		c.Redirect(http.StatusMovedPermanently, registerURL)
+
+		s := session.Default(c)
+		s.AddFlash("Register form bind Error:"+err.Error(), "_error")
+
+		// registerURL := c.Request().URI()
+		// c.Redirect(http.StatusMovedPermanently, registerURL)
+		c.Set("tmpl", "www/register")
+		c.Set("data", map[string]interface{}{
+			"title":         "Register",
+			"redirectParam": auth.RedirectParam,
+			"redirect":      redirect,
+		})
 		return nil
 	}
 

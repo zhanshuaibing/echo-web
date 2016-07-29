@@ -40,7 +40,8 @@ func Routers() *echo.Echo {
 
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
-		TokenLookup: "form:X-XSRF-TOKEN",
+		ContextKey:  "_csrf",
+		TokenLookup: "form:_csrf",
 	}))
 
 	// Gzip

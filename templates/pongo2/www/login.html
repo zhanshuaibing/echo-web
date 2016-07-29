@@ -15,7 +15,7 @@
 <div class="container" style="padding:0px 10px; width:900px;">
 	<h2 class="text-center">{{title}}</h2>
 	<form method="POST" action="/login?{{redirectParam}}={{redirect}}" enctype="application/json">
-		<input type="hidden" name="X-XSRF-TOKEN" value="{{_csrf}}" /><br />
+		<input type="hidden" name="_csrf" value="{{_csrf}}" /><br />
 		<input type="text" placeholder="Username" name="nickname" /><br />
 		<input type="password" placeholder="Password" name="password" /><br />
 		<button>Login</button>	
