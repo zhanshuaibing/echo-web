@@ -8,6 +8,7 @@ var require = {
     paths: {
         'app': '../app',
         'jquery': 'jquery/jquery-2.1.3.min',
+        'jquery-form': 'jquery-form/jquery.form.3.51',
         'bootstrap': 'bootstrap/bootstrap.min',
         'jquery.treetable': 'jquery-treetable/jquery.treetable'
     },

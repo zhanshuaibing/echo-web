@@ -7,7 +7,7 @@ import (
 	"github.com/hobo-go/echo-web/modules/log"
 )
 
-func GetUserById(id uint64) *User {
+func (u *User) GetUserById(id uint64) *User {
 	user := User{}
 	if err := DB().Where("id = ?", id).First(&user).Error; err != nil {
 		log.DebugPrint("GetUserById error: %v", err)
@@ -17,7 +17,7 @@ func GetUserById(id uint64) *User {
 	return &user
 }
 
-func GetUserByNicknamePwd(nickname string, pwd string) *User {
+func (u *User) GetUserByNicknamePwd(nickname string, pwd string) *User {
 	user := User{}
 	if err := DB().Where("nickname = ? AND password = ?", nickname, pwd).First(&user).Error; err != nil {
 		log.DebugPrint("GetUserByNicknamePwd error: %v", err)
@@ -26,7 +26,7 @@ func GetUserByNicknamePwd(nickname string, pwd string) *User {
 	return &user
 }
 
-func AddUserWithNicknamePwd(nickname string, pwd string) *User {
+func (u *User) AddUserWithNicknamePwd(nickname string, pwd string) *User {
 	user := User{Nickname: nickname, Password: pwd, Birthday: time.Now()}
 
 	if err := DB().Create(&user).Error; err != nil {

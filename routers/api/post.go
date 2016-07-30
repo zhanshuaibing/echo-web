@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 	"strconv"
-	. "time"
+	// . "time"
 
 	"github.com/labstack/echo"
 	// "github.com/jinzhu/gorm"
@@ -18,7 +18,8 @@ func PostHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	post := models.GetPostById(id)
+	var Post models.Post
+	post := Post.GetPostById(id)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post",
@@ -45,7 +46,8 @@ func PostsHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	posts := models.GetUserPostsByUserId(userId, page, size)
+	var Post models.Post
+	posts := Post.GetUserPostsByUserId(userId, page, size)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post",
@@ -56,7 +58,8 @@ func PostsHandler(c echo.Context) error {
 }
 
 func PostSaveHandler(c echo.Context) error {
-	models.PostSave()
+	var Post models.Post
+	Post.PostSave()
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title": "Post Add",

@@ -34,7 +34,7 @@ func RunSubdomains() {
 	// CORS
 	e.Use(mw.CORSWithConfig(mw.CORSConfig{
 		AllowOrigins: []string{"http://" + conf.DOMAIN_WWW, "http://" + conf.DOMAIN_API},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAcceptEncoding},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAcceptEncoding, echo.HeaderAuthorization},
 	}))
 
 	e.Any("/*", func(c echo.Context) (err error) {

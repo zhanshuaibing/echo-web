@@ -22,7 +22,8 @@ func UserHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	u := models.GetUserById(id)
+	var User models.User
+	u := User.GetUserById(id)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title":  "User",
@@ -34,18 +35,8 @@ func UserHandler(c echo.Context) error {
 }
 
 func UserLoginHandler(c echo.Context) error {
-	// Create token
-	token := jwt.New(jwt.SigningMethodHS256)
 
-	// Set claims
-	claims := token.Claims.(jwt.MapClaims)
-	claims["id"] = "1"
-	claims["name"] = "Hobo"
-	claims["admin"] = true
-	// claims["exp"] = time.Now().Add(time.Minute * 1).Unix()
-
-	// Generate encoded token and send it as response.
-	t, err := token.SignedString([]byte("secret"))
+	t, err := getJETToken()
 	if err != nil {
 		return err
 	}
@@ -63,4 +54,20 @@ func UserRegisterHandler(c echo.Context) error {
 	c.JSON(200, map[string]interface{}{"URI": "api user regist"})
 
 	return nil
+}
+
+func getJETToken() (t string, e error) {
+	// Create token
+	token := jwt.New(jwt.SigningMethodHS256)
+
+	// Set claims
+	claims := token.Claims.(jwt.MapClaims)
+	claims["id"] = "1"
+	claims["name"] = "Hobo"
+	claims["admin"] = true
+	// claims["exp"] = time.Now().Add(time.Minute * 1).Unix()
+
+	// Generate encoded token and send it as response.
+	t, e = token.SignedString([]byte("secret"))
+	return
 }

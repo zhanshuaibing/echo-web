@@ -10,12 +10,22 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
+	"github.com/hobo-go/echo-web/models"
 	"github.com/hobo-go/echo-web/modules/cache"
+	"github.com/hobo-go/echo-web/modules/log"
 )
 
 func ApiHandler(c echo.Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
+
+	u := &models.User{}
+	if err != nil {
+		log.DebugPrint("Render Error: %v", err)
+	} else {
+		var User models.User
+		u = User.GetUserById(id)
+	}
 
 	// 缓存测试
 	value := -1
@@ -40,6 +50,7 @@ func ApiHandler(c echo.Context) error {
 	request := c.Request()
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"title":        "Api Index",
+		"User":         u,
 		"CacheValue":   value,
 		"Scheme":       request.Scheme(),
 		"Host":         request.Host(),
@@ -54,6 +65,20 @@ func ApiHandler(c echo.Context) error {
 		"FlashDefault": s.Flashes(),
 		"Flash1":       s.Flashes("key1"),
 		"Flash2":       s.Flashes("key2"),
+	})
+
+	return nil
+}
+
+func JETTesterHandler(c echo.Context) error {
+	t, err := getJETToken()
+	if err != nil {
+		return err
+	}
+	c.Set("tmpl", "api/jwt_tester")
+	c.Set("data", map[string]interface{}{
+		"title": "JWT 接口测试",
+		"token": t,
 	})
 
 	return nil

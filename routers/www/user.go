@@ -15,7 +15,8 @@ func UserHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	u := models.GetUserById(id)
+	var User models.User
+	u := User.GetUserById(id)
 
 	c.Set("tmpl", "www/user")
 	c.Set("data", map[string]interface{}{

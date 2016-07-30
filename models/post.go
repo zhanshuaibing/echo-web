@@ -6,7 +6,7 @@ import (
 	"github.com/hobo-go/echo-web/modules/log"
 )
 
-func GetPostById(id uint64) *Post {
+func (p *Post) GetPostById(id uint64) *Post {
 	post := Post{}
 	if err := DB().Where("id = ?", id).First(&post).Error; err != nil {
 		log.DebugPrint("Get post error: %v", err)
@@ -21,7 +21,7 @@ func GetPostById(id uint64) *Post {
 	return &post
 }
 
-func GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
+func (p *Post) GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
 	posts := []Post{}
 	if err := DB().Where("user_id = ?", userId).Offset((page - 1) * size).Limit(size).Find(&posts).Error; err != nil {
 		log.DebugPrint("Get user posts error: %v", err)
@@ -38,7 +38,7 @@ func GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
 	return &posts
 }
 
-func PostSave() {
+func (p *Post) PostSave() {
 	tx := DB().Begin()
 
 	post1 := Post{Title: "标题3"}

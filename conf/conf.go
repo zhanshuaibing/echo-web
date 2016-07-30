@@ -30,7 +30,7 @@ const (
 	TMPL_SUFFIX = ".html"            // .html,.tpl
 
 	// Static
-	STATIC_TYPE = BINDATA // BINDATA,FILE(FILE Default)
+	STATIC_TYPE = FILE // BINDATA,FILE(FILE Default)
 
 	// MySQL
 	DB_NAME      = "goweb_db"

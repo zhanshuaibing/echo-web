@@ -3,11 +3,11 @@ package api
 import (
 	// "time"
 
-	// ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
 
+	// ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/hobo-go/echo-mw/binder"
 
 	"github.com/hobo-go/echo-web/conf"
@@ -29,13 +29,6 @@ func Routers() *echo.Echo {
 		e.SetDebug(false)
 	}
 
-	// CORS
-	e.Use(mw.CORSWithConfig(mw.CORSConfig{
-		AllowOrigins: []string{"http://echo.www.localhost:8080", "http://echo.api.localhost:8080"},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType},
-		AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
-	}))
-
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
 		TokenLookup: "form:X-XSRF-TOKEN",
@@ -50,6 +43,8 @@ func Routers() *echo.Echo {
 	e.Use(mw.Logger())
 	e.Use(mw.Recover())
 
+	e.Static("/favicon.ico", "./assets/img/favicon.ico")
+
 	// Bind
 	e.SetBinder(binder.New())
 
@@ -62,22 +57,19 @@ func Routers() *echo.Echo {
 	// e.Use(ec.SiteCache(ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour), time.Minute))
 	// e.Get("/user/:id", ec.CachePage(ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour), time.Minute, UserHandler))
 
-	// Auth
-	// e.Use(auth.Auth(models.GenerateAnonymousUser))
-
 	// Routers
-	e.Get("/", ApiHandler)
-	e.Get("/:id", ApiHandler)
 	e.Get("/login", UserLoginHandler)
 	e.Get("/register", UserRegisterHandler)
 
 	// JWT
-	r := e.Group("/restricted")
+	r := e.Group("")
 	r.Use(mw.JWTWithConfig(mw.JWTConfig{
 		SigningKey:  []byte("secret"),
 		ContextKey:  "_user",
 		TokenLookup: "header:" + echo.HeaderAuthorization,
 	}))
+
+	r.Get("/", ApiHandler)
 
 	// curl http://echo.api.localhost:8080/restricted/user -H "Authorization: Bearer XXX"
 	r.Get("/user", UserHandler)
