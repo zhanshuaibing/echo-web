@@ -31,4 +31,4 @@ vendor
 
 # Bindata
 assets/assets.go
-templates/templates.go
+template/template.go
