@@ -7,9 +7,9 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
-	"github.com/hobo-go/echo-web/models"
-	"github.com/hobo-go/echo-web/modules/auth"
-	"github.com/hobo-go/echo-web/modules/log"
+	"github.com/hobo-go/echo-web/model"
+	"github.com/hobo-go/echo-web/module/auth"
+	"github.com/hobo-go/echo-web/module/log"
 )
 
 type LoginForm struct {
@@ -55,7 +55,7 @@ func LoginPostHandler(c echo.Context) error {
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
-		var User models.User
+		var User model.User
 		u := User.GetUserByNicknamePwd(form.Nickname, form.Password)
 
 		if u != nil {
@@ -131,7 +131,7 @@ func RegisterPostHandler(c echo.Context) error {
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
-		var User models.User
+		var User model.User
 		u := User.AddUserWithNicknamePwd(form.Nickname, form.Password)
 		if u != nil {
 			session := session.Default(c)

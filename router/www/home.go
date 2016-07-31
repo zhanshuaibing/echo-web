@@ -6,7 +6,7 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/model"
 )
 
 func HomeHandler(c echo.Context) error {
@@ -15,7 +15,7 @@ func HomeHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	var User models.User
+	var User model.User
 	u := User.GetUserById(id)
 
 	c.Set("tmpl", "www/home")

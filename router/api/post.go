@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo"
 	// "github.com/jinzhu/gorm"
 
-	"github.com/hobo-go/echo-web/models"
+	"github.com/hobo-go/echo-web/model"
 )
 
 func PostHandler(c echo.Context) error {
@@ -18,7 +18,7 @@ func PostHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	var Post models.Post
+	var Post model.Post
 	post := Post.GetPostById(id)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -46,7 +46,7 @@ func PostsHandler(c echo.Context) error {
 		panic(err)
 	}
 
-	var Post models.Post
+	var Post model.Post
 	posts := Post.GetUserPostsByUserId(userId, page, size)
 
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -58,7 +58,7 @@ func PostsHandler(c echo.Context) error {
 }
 
 func PostSaveHandler(c echo.Context) error {
-	var Post models.Post
+	var Post model.Post
 	Post.PostSave()
 
 	c.JSON(http.StatusOK, map[string]interface{}{

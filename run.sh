@@ -16,15 +16,15 @@ do
             go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
             ;;
         t)
-            echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] templates bindata"
-            go-bindata -ignore=\\.DS_Store -ignore=templates.go -pkg="templates" -o templates/templates.go templates/...
+            echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] template bindata"
+            go-bindata -ignore=\\.DS_Store -ignore=template.go -pkg="template" -o template/template.go template/...
             ;; 
         h)  #help带a参数仅用于测试脚本，并备忘
             case $OPTARG in
                 a )
                     echo "-[a] [t] [h] help"
                     echo "-a update assets bindata"
-                    echo "-t update templates bindata"
+                    echo "-t update template bindata"
                     ;;
             esac
             echo "-h [a] help"

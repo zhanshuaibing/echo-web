@@ -1,10 +1,10 @@
-package models
+package model
 
 import (
 	"time"
 
-	"github.com/hobo-go/echo-web/modules/auth"
-	"github.com/hobo-go/echo-web/modules/log"
+	"github.com/hobo-go/echo-web/module/auth"
+	"github.com/hobo-go/echo-web/module/log"
 )
 
 func (u *User) GetUserById(id uint64) *User {

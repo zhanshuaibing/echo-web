@@ -1,10 +1,10 @@
-package models
+package model
 
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/modules/log"
+	"github.com/hobo-go/echo-web/module/log"
 )
 
 // @TODO Drivers

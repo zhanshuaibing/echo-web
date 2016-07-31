@@ -10,20 +10,20 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
-	"github.com/hobo-go/echo-web/models"
-	"github.com/hobo-go/echo-web/modules/cache"
-	"github.com/hobo-go/echo-web/modules/log"
+	"github.com/hobo-go/echo-web/model"
+	"github.com/hobo-go/echo-web/module/cache"
+	"github.com/hobo-go/echo-web/module/log"
 )
 
 func ApiHandler(c echo.Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 
-	u := &models.User{}
+	u := &model.User{}
 	if err != nil {
 		log.DebugPrint("Render Error: %v", err)
 	} else {
-		var User models.User
+		var User model.User
 		u = User.GetUserById(id)
 	}
 

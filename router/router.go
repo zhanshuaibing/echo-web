@@ -1,12 +1,12 @@
-package routers
+package router
 
 import (
 	"github.com/labstack/echo"
 
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/routers/api"
-	"github.com/hobo-go/echo-web/routers/socket"
-	"github.com/hobo-go/echo-web/routers/www"
+	"github.com/hobo-go/echo-web/router/api"
+	"github.com/hobo-go/echo-web/router/socket"
+	"github.com/hobo-go/echo-web/router/www"
 )
 
 type (

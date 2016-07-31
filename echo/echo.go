@@ -13,19 +13,19 @@ import (
 
 	"github.com/hobo-go/echo-web/assets"
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/models"
-	"github.com/hobo-go/echo-web/modules/auth"
-	"github.com/hobo-go/echo-web/modules/cache"
-	"github.com/hobo-go/echo-web/modules/render"
-	"github.com/hobo-go/echo-web/modules/session"
-	"github.com/hobo-go/echo-web/routers"
-	"github.com/hobo-go/echo-web/routers/api"
-	"github.com/hobo-go/echo-web/routers/www"
+	"github.com/hobo-go/echo-web/model"
+	"github.com/hobo-go/echo-web/module/auth"
+	"github.com/hobo-go/echo-web/module/cache"
+	"github.com/hobo-go/echo-web/module/render"
+	"github.com/hobo-go/echo-web/module/session"
+	"github.com/hobo-go/echo-web/router"
+	"github.com/hobo-go/echo-web/router/api"
+	"github.com/hobo-go/echo-web/router/www"
 )
 
 // 子域名部署
 func RunSubdomains() {
-	hosts := routers.InitRoutes()
+	hosts := router.InitRoutes()
 
 	// Server
 	e := echo.New()
@@ -104,7 +104,7 @@ func Run() {
 	e.Use(cache.Cache())
 
 	// Auth
-	e.Use(auth.Auth(models.GenerateAnonymousUser))
+	e.Use(auth.Auth(model.GenerateAnonymousUser))
 
 	// Routers
 	e.Get("/", www.HomeHandler)

@@ -15,9 +15,9 @@ import (
 	"github.com/hobo-go/echo-mw/session"
 
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/modules/auth"
-	"github.com/hobo-go/echo-web/modules/log"
-	"github.com/hobo-go/echo-web/templates"
+	"github.com/hobo-go/echo-web/module/auth"
+	"github.com/hobo-go/echo-web/module/log"
+	MT "github.com/hobo-go/echo-web/template"
 )
 
 func Render() echo.MiddlewareFunc {
@@ -141,16 +141,16 @@ func LoadTemplates() echo.Renderer {
 	}
 }
 
-func loadTemplatesDefault(templatesDir string) *multitemplate.Render {
+func loadTemplatesDefault(templateDir string) *multitemplate.Render {
 	r := multitemplate.New()
 
-	layoutDir := templatesDir + "/layouts/"
+	layoutDir := templateDir + "/layout/"
 	layouts, err := filepath.Glob(layoutDir + "*/*" + conf.TMPL_SUFFIX)
 	if err != nil {
 		panic(err.Error())
 	}
 
-	includeDir := templatesDir + "/includes/"
+	includeDir := templateDir + "/include/"
 	includes, err := filepath.Glob(includeDir + "*" + conf.TMPL_SUFFIX)
 	if err != nil {
 		panic(err.Error())
@@ -168,18 +168,18 @@ func loadTemplatesDefault(templatesDir string) *multitemplate.Render {
 	return &r
 }
 
-func loadTemplatesBindata(templatesDir string) *multitemplate.Render {
+func loadTemplatesBindata(templateDir string) *multitemplate.Render {
 	r := multitemplate.New()
 
-	layoutDir := templatesDir + "/layouts"
-	layoutDirs, err := templates.AssetDir(layoutDir)
+	layoutDir := templateDir + "/layout"
+	layoutDirs, err := MT.AssetDir(layoutDir)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	var layouts []string
 	for _, dir := range layoutDirs {
-		files, err := templates.AssetDir(layoutDir + "/" + dir)
+		files, err := MT.AssetDir(layoutDir + "/" + dir)
 		if err != nil {
 			panic(err.Error())
 		}
@@ -193,8 +193,8 @@ func loadTemplatesBindata(templatesDir string) *multitemplate.Render {
 		layouts = append(layouts, layoutFiels...)
 	}
 
-	includeDir := templatesDir + "/includes"
-	includeFiels, err := templates.AssetDir(includeDir)
+	includeDir := templateDir + "/include"
+	includeFiels, err := MT.AssetDir(includeDir)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -236,7 +236,7 @@ func parseBindataFiles(filenames ...string) (*template.Template, error) {
 		return nil, fmt.Errorf("html/template: no files named in call to ParseFiles")
 	}
 	for _, filename := range filenames {
-		b, err := templates.Asset(filename)
+		b, err := MT.Asset(filename)
 		if err != nil {
 			return nil, err
 		}

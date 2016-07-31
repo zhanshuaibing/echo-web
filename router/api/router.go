@@ -11,8 +11,8 @@ import (
 	"github.com/hobo-go/echo-mw/binder"
 
 	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/modules/cache"
-	"github.com/hobo-go/echo-web/modules/session"
+	"github.com/hobo-go/echo-web/module/cache"
+	"github.com/hobo-go/echo-web/module/session"
 )
 
 //-----

@@ -35,8 +35,8 @@ echo -e "$LogPrefix `date +"%H:%M:%S"` \033[42;37m start \033[0m"
 echo "$LogPrefix `date +"%H:%M:%S"` assets bindata"
 go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
 
-echo "$LogPrefix `date +"%H:%M:%S"` templates bindata"
-go-bindata -ignore=\\.DS_Store -ignore=templates.go -pkg="templates" -o templates/templates.go templates/...
+echo "$LogPrefix `date +"%H:%M:%S"` template bindata"
+go-bindata -ignore=\\.DS_Store -ignore=template.go -pkg="template" -o template/template.go template/...
 
 echo "$LogPrefix `date +"%H:%M:%S"` src package"
 gofmt -w src/
