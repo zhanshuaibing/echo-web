@@ -38,8 +38,8 @@ go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.
 echo "$LogPrefix `date +"%H:%M:%S"` template bindata"
 go-bindata -ignore=\\.DS_Store -ignore=template.go -pkg="template" -o template/template.go template/...
 
-echo "$LogPrefix `date +"%H:%M:%S"` src package"
-gofmt -w src/
+# echo "$LogPrefix `date +"%H:%M:%S"` src package"
+# gofmt -w src/
 
 # 交叉编译
 case  $OS  in   
