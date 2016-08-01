@@ -2,7 +2,7 @@
 
 ##子域名部署
 ```
-# ./conf/cong.go
+# ./conf/conf.go
 DOMAIN_API    = "echo.api.localhost:8080"
 DOMAIN_WWW    = "echo.www.localhost:8080"
 
