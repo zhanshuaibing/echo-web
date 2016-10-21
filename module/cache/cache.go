@@ -6,7 +6,7 @@ import (
 	ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/conf"
+	"echo-web/conf"
 )
 
 const (

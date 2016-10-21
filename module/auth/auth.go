@@ -111,7 +111,7 @@ func LoginRequired() echo.MiddlewareFunc {
 		return func(c echo.Context) error {
 			a := Default(c)
 			if a.User.IsAuthenticated() == false {
-				uri := c.Request().URI()
+				uri := c.Request().RequestURI
 				path := fmt.Sprintf("%s?%s=%s", RedirectUrl, RedirectParam, uri)
 				c.Redirect(http.StatusMovedPermanently, path)
 				return echo.NewHTTPError(http.StatusUnauthorized)

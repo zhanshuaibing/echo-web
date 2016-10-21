@@ -7,9 +7,9 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
-	"github.com/hobo-go/echo-web/model"
-	"github.com/hobo-go/echo-web/module/auth"
-	"github.com/hobo-go/echo-web/module/log"
+	"echo-web/model"
+	"echo-web/module/auth"
+	"echo-web/module/log"
 )
 
 type LoginForm struct {
@@ -51,7 +51,7 @@ func LoginPostHandler(c echo.Context) error {
 		return nil
 	}
 
-	loginURL := c.Request().URI()
+	loginURL := c.Request().RequestURI
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {
@@ -71,7 +71,8 @@ func LoginPostHandler(c echo.Context) error {
 			return nil
 		}
 	} else {
-		log.DebugPrint("Login form params: %v", c.FormParams())
+		params, _ := c.FormParams()
+		log.DebugPrint("Login form params: %v", params)
 		log.DebugPrint("Login form bind Error: %v", err)
 		c.Redirect(http.StatusMovedPermanently, loginURL)
 		return nil

@@ -5,7 +5,7 @@ import (
 
 	es "github.com/hobo-go/echo-mw/session" //"github.com/syntaqx/echo-middleware/session"
 
-	"github.com/hobo-go/echo-web/conf"
+	"echo-web/conf"
 )
 
 func Session() echo.MiddlewareFunc {

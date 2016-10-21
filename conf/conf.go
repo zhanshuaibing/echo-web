@@ -14,10 +14,6 @@ const (
 	DOMAIN_WWW    = "echo.www.localhost:8080"
 	DOMAIN_SOCKET = "echo.socket.localhost:8080"
 
-	// Http
-	// FASTHTTP不可用，Session模块暂不支持
-	SERVER_HTTP = STANDARD // STANDARD,FASTHTTP(STANDARD Default)
-
 	// Session
 	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)
 
@@ -48,10 +44,6 @@ const (
 )
 
 const (
-	// Http
-	STANDARD = "standard"
-	FASTHTTP = "fasthttp" // Fasthttp
-
 	// Pongo2
 	PONGO2 = "pongo2"
 

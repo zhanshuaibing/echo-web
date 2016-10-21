@@ -14,10 +14,10 @@ import (
 	"github.com/hobo-go/echo-mw/pongo2echo"
 	"github.com/hobo-go/echo-mw/session"
 
-	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/module/auth"
-	"github.com/hobo-go/echo-web/module/log"
-	MT "github.com/hobo-go/echo-web/template"
+	"echo-web/conf"
+	"echo-web/module/auth"
+	"echo-web/module/log"
+	MT "echo-web/template"
 )
 
 func Render() echo.MiddlewareFunc {
@@ -97,8 +97,8 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	s := session.Default(c)
 	commonDatas["_error"] = s.Flashes("_error")
 
-	path := c.Request().URL().Path()
-	uri := c.Request().URI()
+	path := c.Request().URL.Path
+	uri := c.Request().RequestURI
 
 	// 登录、注册、退出页面取已有RedirectParam
 	redirect := c.QueryParam(auth.RedirectParam)

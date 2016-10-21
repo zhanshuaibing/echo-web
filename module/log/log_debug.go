@@ -3,7 +3,7 @@ package log
 import (
 	l "log"
 
-	"github.com/hobo-go/echo-web/conf"
+	"echo-web/conf"
 )
 
 func DebugPrint(format string, values ...interface{}) {

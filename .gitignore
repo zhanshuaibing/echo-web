@@ -26,6 +26,9 @@ _testmain.go
 # Mac
 .DS_Store
 
+# IDEA
+.idea
+
 # Glide
 vendor
 

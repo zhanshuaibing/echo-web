@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/module/log"
+	"echo-web/module/log"
 )
 
 // @TODO Drivers

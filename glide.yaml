@@ -1,70 +1,29 @@
-package: main
+package: echo-web
 import:
-- package: github.com/klauspost/compress
-  subpackages:
-  - flate
-- package: github.com/garyburd/redigo
-  version: 535138d7bcd717d6531c701ef5933d98b1866257
-  subpackages:
-  - redis
-- package: gopkg.in/joeybloggs/go-validate-yourself.v4
-  version: a3cb430fa1e43b15e72d7bec5b20d0bdff4c2bb8
-- package: golang.org/x/net
-  subpackages:
-  - context
-  - websocket
-- package: github.com/pmezard/go-difflib
-  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
-  subpackages:
-  - difflib
-- package: github.com/qiniu/bytes
-  subpackages:
-  - seekable
-- package: github.com/gorilla/securecookie
-- package: github.com/davecgh/go-spew
-  version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
-  subpackages:
-  - spew
-- package: github.com/boj/redistore
-- package: github.com/julienschmidt/httprouter
-  version: 999ba04938b528fb4fb859231ee929958b8db4a6
-- package: github.com/valyala/fasttemplate
-- package: github.com/gorilla/context
-- package: github.com/go-sql-driver/mysql
-- package: github.com/gin-gonic/gin
-  version: ac0ad2fed865d40a0adc1ac3ccaadc3acff5db4b
-- package: github.com/klauspost/cpuid
-- package: github.com/gin-gonic/contrib
-  subpackages:
-  - cache
-- package: github.com/labstack/echo
-- package: github.com/jinzhu/inflection
-- package: github.com/jinzhu/gorm
-- package: github.com/stretchr/objx
-  version: cbeaeb16a013161a98496fad62933b1d21786672
-- package: github.com/valyala/fasthttp
-- package: github.com/robfig/go-cache
-  version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
-- package: github.com/mattn/go-colorable
-  version: 043ae16291351db8465272edf465c9f388161627
-- package: github.com/labstack/gommon
-  subpackages:
-  - color
-  - log
-- package: github.com/stretchr/testify
-  version: de7fcff264cd05cc0c90c509ea789a436a0dd206
-  subpackages:
-  - assert
-- package: github.com/bradfitz/gomemcache
-  version: 72a68649ba712ee7c4b5b4a943a626bcd7d90eb8
-  subpackages:
-  - memcache
-- package: github.com/klauspost/crc32
-- package: github.com/flosch/pongo2
-- package: github.com/gorilla/sessions
-- package: github.com/hobo-go/echo-mw
-- package: github.com/go-xorm/xorm
-- package: github.com/valyala/bytebufferpool
+- package: github.com/dgrijalva/jwt-go
 - package: github.com/facebookgo/grace
   subpackages:
   - gracehttp
+- package: github.com/go-sql-driver/mysql
+- package: github.com/hobo-go/echo-mw
+  subpackages:
+  - binder
+  - cache
+  - multitemplate
+  - pongo2echo
+  - session
+  - staticbin
+- package: github.com/jinzhu/gorm
+- package: github.com/labstack/echo
+  version: v3
+  subpackages:
+  - middleware
+- package: github.com/labstack/gommon
+  subpackages:
+  - log
+- package: golang.org/x/net
+  subpackages:
+  - websocket
+- package: golang.org/x/crypto
+  subpackages:
+  - ocsp

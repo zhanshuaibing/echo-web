@@ -4,7 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 
-	"github.com/hobo-go/echo-web/conf"
+	"echo-web/conf"
 )
 
 func NewDB() (*gorm.DB, error) {

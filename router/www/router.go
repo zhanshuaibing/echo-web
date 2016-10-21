@@ -3,18 +3,18 @@ package www
 import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	"github.com/labstack/gommon/log"
+	// "github.com/labstack/gommon/log"
 
-	"github.com/hobo-go/echo-mw/binder"
+	// "github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/staticbin"
 
-	"github.com/hobo-go/echo-web/assets"
-	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/model"
-	"github.com/hobo-go/echo-web/module/auth"
-	"github.com/hobo-go/echo-web/module/cache"
-	"github.com/hobo-go/echo-web/module/render"
-	"github.com/hobo-go/echo-web/module/session"
+	"echo-web/assets"
+	"echo-web/conf"
+	"echo-web/model"
+	"echo-web/module/auth"
+	"echo-web/module/cache"
+	"echo-web/module/render"
+	"echo-web/module/session"
 )
 
 //---------
@@ -26,10 +26,10 @@ func Routers() *echo.Echo {
 
 	// Customization
 	if conf.RELEASE_MODE {
-		e.SetDebug(false)
+		// e.SetDebug(false)
 	}
 	// e.SetLogPrefix("Echo")
-	e.SetLogLevel(log.DEBUG)
+	// e.SetLogLevel(log.DEBUG)
 
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
@@ -57,10 +57,11 @@ func Routers() *echo.Echo {
 	}
 
 	// Bind
-	e.SetBinder(binder.New())
+	// e.SetBinder(binder.New())
 
 	// 模板
-	e.SetRenderer(render.LoadTemplates())
+	// e.SetRenderer(render.LoadTemplates())
+	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())
 
 	// Session
@@ -73,31 +74,31 @@ func Routers() *echo.Echo {
 	e.Use(auth.Auth(model.GenerateAnonymousUser))
 
 	// Routers
-	e.Get("/", HomeHandler)
-	e.Get("/login", LoginHandler)
-	e.Get("/register", RegisterHandler)
-	e.Get("/logout", LogoutHandler)
-	e.Post("/login", LoginPostHandler)
-	e.Post("/register", RegisterPostHandler)
+	e.GET("/", HomeHandler)
+	e.GET("/login", LoginHandler)
+	e.GET("/register", RegisterHandler)
+	e.GET("/logout", LogoutHandler)
+	e.POST("/login", LoginPostHandler)
+	e.POST("/register", RegisterPostHandler)
 
-	e.Get("/jwt/tester", JWTTesterHandler)
+	e.GET("/jwt/tester", JWTTesterHandler)
 
 	demo := e.Group("/demo")
 	demo.Use(auth.LoginRequired())
 	{
-		demo.Get("", DemoHandler)
+		demo.GET("", DemoHandler)
 	}
 
 	user := e.Group("/user")
 	user.Use(auth.LoginRequired())
 	{
-		user.Get("/:id", UserHandler)
+		user.GET("/:id", UserHandler)
 	}
 
 	about := e.Group("/about")
 	about.Use(auth.LoginRequired())
 	{
-		about.Get("", AboutHandler)
+		about.GET("", AboutHandler)
 	}
 
 	return e

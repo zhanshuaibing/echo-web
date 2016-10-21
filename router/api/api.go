@@ -10,9 +10,9 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
-	"github.com/hobo-go/echo-web/model"
-	"github.com/hobo-go/echo-web/module/cache"
-	"github.com/hobo-go/echo-web/module/log"
+	"echo-web/model"
+	"echo-web/module/cache"
+	"echo-web/module/log"
 )
 
 func ApiHandler(c echo.Context) error {
@@ -52,16 +52,16 @@ func ApiHandler(c echo.Context) error {
 		"title":        "Api Index",
 		"User":         u,
 		"CacheValue":   value,
-		"Scheme":       request.Scheme(),
-		"Host":         request.Host(),
+		"Scheme":       request.URL.Scheme,
+		"Host":         request.URL.Host,
 		"UserAgent":    request.UserAgent(),
-		"Method":       request.Method(),
-		"URI":          request.URI(),
-		"RemoteAddr":   request.RemoteAddress(),
-		"Path":         request.URL().Path(),
-		"QueryString":  request.URL().QueryString(),
-		"QueryParams":  request.URL().QueryParams(),
-		"HeaderKeys":   request.Header().Keys(),
+		"Method":       request.Method,
+		"URI":          request.RequestURI,
+		"RemoteAddr":   request.RemoteAddr,
+		"Path":         request.URL.Path,
+		"QueryString":  request.URL.RawQuery,
+		"QueryParams":  request.URL.Query(),
+		"HeaderKeys":   request.Header,
 		"FlashDefault": s.Flashes(),
 		"Flash1":       s.Flashes("key1"),
 		"Flash2":       s.Flashes("key2"),

@@ -3,10 +3,10 @@ package router
 import (
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/conf"
-	"github.com/hobo-go/echo-web/router/api"
-	"github.com/hobo-go/echo-web/router/socket"
-	"github.com/hobo-go/echo-web/router/www"
+	"echo-web/conf"
+	"echo-web/router/api"
+	"echo-web/router/socket"
+	"echo-web/router/www"
 )
 
 type (

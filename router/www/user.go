@@ -5,7 +5,7 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-web/model"
+	"echo-web/model"
 )
 
 func UserHandler(c echo.Context) error {

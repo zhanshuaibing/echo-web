@@ -3,7 +3,7 @@
 # Go Path
 # CURDIR=`pwd`
 # OLDGOPATH="$GOPATH"
-# export GOPATH="$OLDGOPATH:$CURDIR"
+# export GOPATH="$CURDIR/../../"
 
 LogPrefix=">>>>"
 
