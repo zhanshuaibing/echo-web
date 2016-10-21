@@ -3,9 +3,9 @@ package www
 import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	// "github.com/labstack/gommon/log"
+	"github.com/labstack/gommon/log"
 
-	// "github.com/hobo-go/echo-mw/binder"
+	"github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/staticbin"
 
 	"echo-web/assets"
@@ -28,8 +28,8 @@ func Routers() *echo.Echo {
 	if conf.RELEASE_MODE {
 		// e.SetDebug(false)
 	}
-	// e.SetLogPrefix("Echo")
-	// e.SetLogLevel(log.DEBUG)
+	e.Logger.SetPrefix("Echo")
+	e.Logger.SetLevel(log.DEBUG)
 
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
@@ -58,6 +58,7 @@ func Routers() *echo.Echo {
 
 	// Bind
 	// e.SetBinder(binder.New())
+	e.Binder = binder.New()
 
 	// 模板
 	// e.SetRenderer(render.LoadTemplates())

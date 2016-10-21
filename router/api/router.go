@@ -5,10 +5,9 @@ import (
 
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	// "github.com/labstack/gommon/log"
+	"github.com/labstack/gommon/log"
 
-	// ec "github.com/hobo-go/echo-mw/cache"
-	// "github.com/hobo-go/echo-mw/binder"
+	"github.com/hobo-go/echo-mw/binder"
 
 	"echo-web/conf"
 	"echo-web/module/cache"
@@ -23,8 +22,9 @@ func Routers() *echo.Echo {
 	e := echo.New()
 
 	// Customization
-	// e.SetLogPrefix("Echo")
-	// e.SetLogLevel(log.DEBUG)
+	e.Logger.SetPrefix("Echo")
+	e.Logger.SetLevel(log.DEBUG)
+
 	if conf.RELEASE_MODE {
 		// e.SetDebug(false)
 	}
@@ -47,6 +47,7 @@ func Routers() *echo.Echo {
 
 	// Bind
 	// e.SetBinder(binder.New())
+	e.Binder = binder.New()
 
 	// Session
 	e.Use(session.Session())

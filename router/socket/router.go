@@ -20,6 +20,7 @@ func Routers() *echo.Echo {
 
 	// 模板
 	// e.SetRenderer(render.LoadTemplates())
+	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())
 
 	// Session
