@@ -1,4 +1,4 @@
-# Golang Web
+# Golang Web Echo v3
 
 ##子域名部署
 ```
@@ -52,16 +52,6 @@ github.com/hobo-go/echo-mw
 	github.com/gorilla/sessions
 	github.com/boj/redistore
 
-github.com/gin-gonic/contrib/cache
-
-<!-- vendor/github.com/valyala/fasthttp/compress.go:9:2: cannot find package "github.com/klauspost/compress/flate" in any of: -->
-github.com/klauspost/compress/flate
-
-<!-- vendor/github.com/klauspost/compress/flate/crc32_amd64.go:9:2: cannot find package "github.com/klauspost/cpuid" in any of: -->
-github.com/klauspost/cpuid
-
-<!-- vendor/github.com/klauspost/compress/gzip/gunzip.go:17:2: cannot find package "github.com/klauspost/crc32" in any of: -->
-github.com/klauspost/crc32
 
 <!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
 github.com/gorilla/context
@@ -77,7 +67,7 @@ github.com/gorilla/securecookie
 配置 | conf进行统一配置
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
-Session | Redis、File、Cookie，fasthttp模式Session未实现，Session支持Flash
+Session | Redis、File、Cookie，Session支持Flash
 ORM | gorm，使用示例需完善
 模板 | 支持template、PONGO2，template模板支持打包bindata
 静态 | 静态资源打包bindata
