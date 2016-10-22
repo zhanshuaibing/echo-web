@@ -6,7 +6,6 @@ import (
 	mw "github.com/labstack/echo/middleware"
 	"github.com/labstack/gommon/log"
 
-	// "github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/staticbin"
 
 	"echo-web/assets"
