@@ -29,6 +29,10 @@ func RunSubdomains() {
 	e := echo.New()
 	e.Pre(mw.RemoveTrailingSlash())
 
+	// Secure
+	e.Use(mw.SecureWithConfig(mw.DefaultSecureConfig))
+	mw.MethodOverride()
+
 	// CORS
 	e.Use(mw.CORSWithConfig(mw.CORSConfig{
 		AllowOrigins: []string{"http://" + conf.DOMAIN_WWW, "http://" + conf.DOMAIN_API},

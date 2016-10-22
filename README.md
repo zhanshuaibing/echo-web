@@ -70,14 +70,13 @@ Session | Redis、File、Cookie，支持Flash
 ORM | gorm，使用示例需完善
 模板 | 支持template、PONGO2，template模板支持打包bindata
 静态 | 静态资源，支持打包bindata
-Socket | Socket演示
-CORS | 跨域
-其他 | JWT、CSRF
+安全 | CORS、CSRF、XSS、HSTS等
+其他 | JWT、Socket演示
 
 目标功能 | 描述
 :--- | :---
 配置 | 配置文件
-缓存 | 查询缓存
-安全 | SQL注入、XSS、表单令牌、验证码等
+缓存 | ORM查询缓存
+安全 | SQL注入、验证码等
 日志 | 分级
-多语言 | 
+多语言 | i18n
