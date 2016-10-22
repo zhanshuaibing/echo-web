@@ -64,17 +64,19 @@ github.com/gorilla/securecookie
 
 功能 | 描述
 :--- | :---
-配置 | conf进行统一配置
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
-Session | Redis、File、Cookie，Session支持Flash
+Session | Redis、File、Cookie，支持Flash
 ORM | gorm，使用示例需完善
 模板 | 支持template、PONGO2，template模板支持打包bindata
-静态 | 静态资源打包bindata
+静态 | 静态资源，支持打包bindata
 Socket | Socket演示
+CORS | 跨域
+其他 | JWT、CSRF
 
 目标功能 | 描述
 :--- | :---
+配置 | 配置文件
 缓存 | 查询缓存
 安全 | SQL注入、XSS、表单令牌、验证码等
 日志 | 分级
