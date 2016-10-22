@@ -48,10 +48,11 @@ func ApiHandler(c echo.Context) error {
 	s.AddFlash("21", "key2")
 
 	request := c.Request()
-	c.JSON(http.StatusOK, map[string]interface{}{
+	Ctx{c}.AutoFMT(http.StatusOK, map[string]interface{}{
 		"title":        "Api Index",
 		"User":         u,
 		"CacheValue":   value,
+		"URL":          request.URL,
 		"Scheme":       request.URL.Scheme,
 		"Host":         request.URL.Host,
 		"UserAgent":    request.UserAgent(),
