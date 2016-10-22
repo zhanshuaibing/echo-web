@@ -19,7 +19,6 @@ func Routers() *echo.Echo {
 	e.Use(middleware.Static("public"))
 
 	// 模板
-	// e.SetRenderer(render.LoadTemplates())
 	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())
 

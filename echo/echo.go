@@ -4,7 +4,7 @@ import (
 	// "github.com/facebookgo/grace/gracehttp"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	// "github.com/labstack/gommon/log"
+	"github.com/labstack/gommon/log"
 
 	// "github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/staticbin"
@@ -19,6 +19,7 @@ import (
 	"echo-web/router"
 	"echo-web/router/api"
 	"echo-web/router/www"
+	"github.com/hobo-go/echo-mw/binder"
 )
 
 // 子域名部署
@@ -63,8 +64,8 @@ func Run() {
 	e := echo.New()
 
 	// Customization
-	// e.SetLogPrefix("Echo")
-	// e.SetLogLevel(log.DEBUG)
+	e.Logger.SetPrefix("Echo")
+	e.Logger.SetLevel(log.DEBUG)
 	if conf.RELEASE_MODE {
 		// e.SetDebug(false)
 	}
@@ -84,10 +85,10 @@ func Run() {
 	}
 
 	// Bind
-	// e.SetBinder(binder.New())
+	e.Binder = binder.New()
 
 	// 模板
-	// e.SetRenderer(render.LoadTemplates())
+	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())
 
 	// Session

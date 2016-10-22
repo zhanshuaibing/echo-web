@@ -45,8 +45,7 @@ func Routers() *echo.Echo {
 
 	e.Static("/favicon.ico", "./assets/img/favicon.ico")
 
-	// Bind
-	// e.SetBinder(binder.New())
+	// Binder
 	e.Binder = binder.New()
 
 	// Session

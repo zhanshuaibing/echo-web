@@ -56,12 +56,10 @@ func Routers() *echo.Echo {
 		e.Static("/assets", "./assets")
 	}
 
-	// Bind
-	// e.SetBinder(binder.New())
+	// Binder
 	e.Binder = binder.New()
 
 	// 模板
-	// e.SetRenderer(render.LoadTemplates())
 	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())
 
