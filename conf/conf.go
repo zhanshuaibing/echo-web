@@ -21,9 +21,10 @@ const (
 	CACHE_STORE = REDIS //REDIS,MEMCACHED,IN_MEMORY(IN_MEMORY Default)
 
 	// Tmpl
-	TMPL_TYPE   = PONGO2            // PONGO2,BINDATA,FILE(FILE Default)
-	TMPL_DIR    = "template/pongo2" // PONGO2(template/pongo2),BINDATA/FILE(template)
-	TMPL_SUFFIX = ".html"           // .html,.tpl
+	TMPL_TYPE   = PONGO2   // PONGO2,TEMPLATE(TEMPLATE Default)
+	TMPL_DATA   = BINDATA       // BINDATA,FILE(FILE Default)
+	TMPL_DIR    = "template/pongo2" // PONGO2(template/pongo2),TEMPLATE(template)
+	TMPL_SUFFIX = ".html"    // .html,.tpl
 
 	// Static
 	STATIC_TYPE = BINDATA // BINDATA,FILE(FILE Default)
@@ -44,8 +45,9 @@ const (
 )
 
 const (
-	// Pongo2
-	PONGO2 = "pongo2"
+	// Template Type
+	PONGO2   = "pongo2"
+	TEMPLATE = "template"
 
 	// Bindata
 	BINDATA = "bindata"

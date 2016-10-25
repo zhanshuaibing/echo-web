@@ -128,17 +128,35 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 func LoadTemplates() echo.Renderer {
 	switch conf.TMPL_TYPE {
 	case conf.PONGO2:
-		return pongo2echo.New(
-			pongo2echo.RenderOptions{
-				TemplateDir: conf.TMPL_DIR,
-				ContentType: "text/html; charset=utf-8",
-				Debug:       !conf.RELEASE_MODE,
-			})
-	case conf.BINDATA:
-		return loadTemplatesBindata(conf.TMPL_DIR)
+		switch conf.TMPL_DATA {
+		case conf.BINDATA:
+			return pongo2echo.New(
+				pongo2echo.RenderOptions{
+					TmplLoader: BindataFileLoader{baseDir: conf.TMPL_DIR},
+					//TemplateDir: conf.TMPL_DIR,
+					ContentType: "text/html; charset=utf-8",
+					Debug:       !conf.RELEASE_MODE,
+				})
+		case conf.TEMPLATE:
+		default:
+			return pongo2echo.New(
+				pongo2echo.RenderOptions{
+					TemplateDir: conf.TMPL_DIR,
+					ContentType: "text/html; charset=utf-8",
+					Debug:       !conf.RELEASE_MODE,
+				})
+		}
+	case conf.TEMPLATE:
 	default:
-		return loadTemplatesDefault(conf.TMPL_DIR)
+		switch conf.TMPL_DATA {
+		case conf.BINDATA:
+			return loadTemplatesBindata(conf.TMPL_DIR)
+		default:
+			return loadTemplatesDefault(conf.TMPL_DIR)
+		}
 	}
+
+	return loadTemplatesDefault(conf.TMPL_DIR)
 }
 
 func loadTemplatesDefault(templateDir string) *multitemplate.Render {
