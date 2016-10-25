@@ -68,7 +68,7 @@ github.com/gorilla/securecookie
 缓存 | Redis、Memcached、Memory
 Session | Redis、File、Cookie，支持Flash
 ORM | gorm，使用示例需完善
-模板 | 支持template、PONGO2，template模板支持打包bindata
+模板 | 支持html/template、PONGO2，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
 安全 | CORS、CSRF、XSS、HSTS等
 其他 | JWT、Socket演示
