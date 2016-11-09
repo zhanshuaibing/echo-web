@@ -21,6 +21,9 @@ func Routers() *echo.Echo {
 	// Echo instance
 	e := echo.New()
 
+	// Context自定义
+	e.Use(NewContext())
+
 	// Customization
 	e.Logger.SetPrefix("Echo")
 	e.Logger.SetLevel(log.DEBUG)
@@ -69,7 +72,7 @@ func Routers() *echo.Echo {
 		TokenLookup: "header:" + echo.HeaderAuthorization,
 	}))
 
-	r.GET("/", ApiHandler)
+	r.GET("/", handler(ApiHandler))
 
 	// curl http://echo.api.localhost:8080/restricted/user -H "Authorization: Bearer XXX"
 	r.GET("/user", UserHandler)
@@ -82,4 +85,18 @@ func Routers() *echo.Echo {
 	}
 
 	return e
+}
+
+type (
+	HandlerFunc func(*Context) error
+)
+
+/**
+ * 自定义Context的Handler
+ */
+func handler(h HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		ctx := c.(*Context)
+		return h(ctx)
+	}
 }

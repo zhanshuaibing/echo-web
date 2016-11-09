@@ -3,12 +3,29 @@
 ##子域名部署
 ```
 # ./conf/conf.go
-DOMAIN_API    = "echo.api.localhost:8080"
-DOMAIN_WWW    = "echo.www.localhost:8080"
+SERVER_ADDR = ":8080"
+DOMAIN_API    = "echo.api.localhost.com"
+DOMAIN_WWW    = "echo.www.localhost.com"
 
 $ vi /etc/hosts
-127.0.0.1       echo.api.localhost
-127.0.0.1       echo.www.localhost
+127.0.0.1       echo.api.localhost.com
+127.0.0.1       echo.www.localhost.com
+
+# Nginx配置
+server{
+
+    listen       80;
+    server_name  echo.www.localhost.com echo.api.localhost.com;
+
+    charset utf-8;
+
+    location / {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host            $http_host;
+
+        proxy_pass http://127.0.0.1:8080;
+    }
+}
 ```
 
 ##测试

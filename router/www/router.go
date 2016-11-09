@@ -24,6 +24,9 @@ func Routers() *echo.Echo {
 	// Echo instance
 	e := echo.New()
 
+	// Context自定义
+	e.Use(NewContext())
+
 	// Customization
 	if conf.RELEASE_MODE {
 		// e.SetDebug(false)
@@ -70,35 +73,49 @@ func Routers() *echo.Echo {
 	e.Use(cache.Cache())
 
 	// Auth
-	e.Use(auth.Auth(model.GenerateAnonymousUser))
+	e.Use(auth.New(model.GenerateAnonymousUser))
 
 	// Routers
-	e.GET("/", HomeHandler)
-	e.GET("/login", LoginHandler)
-	e.GET("/register", RegisterHandler)
-	e.GET("/logout", LogoutHandler)
-	e.POST("/login", LoginPostHandler)
-	e.POST("/register", RegisterPostHandler)
+	e.GET("/", handler(HomeHandler))
+	e.GET("/login", handler(LoginHandler))
+	e.GET("/register", handler(RegisterHandler))
+	e.GET("/logout", handler(LogoutHandler))
+	e.POST("/login", handler(LoginPostHandler))
+	e.POST("/register", handler(RegisterPostHandler))
 
-	e.GET("/jwt/tester", JWTTesterHandler)
+	e.GET("/jwt/tester", handler(JWTTesterHandler))
 
 	demo := e.Group("/demo")
 	demo.Use(auth.LoginRequired())
 	{
-		demo.GET("", DemoHandler)
+		demo.GET("", handler(DemoHandler))
 	}
 
 	user := e.Group("/user")
 	user.Use(auth.LoginRequired())
 	{
-		user.GET("/:id", UserHandler)
+		user.GET("/:id", handler(UserHandler))
 	}
 
 	about := e.Group("/about")
 	about.Use(auth.LoginRequired())
 	{
-		about.GET("", AboutHandler)
+		about.GET("", handler(AboutHandler))
 	}
 
 	return e
+}
+
+type (
+	HandlerFunc func(*Context) error
+)
+
+/**
+ * 自定义Context的Handler
+ */
+func handler(h HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		ctx := c.(*Context)
+		return h(ctx)
+	}
 }

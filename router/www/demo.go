@@ -1,10 +1,8 @@
 package www
 
-import (
-	"github.com/labstack/echo"
-)
+import ()
 
-func DemoHandler(c echo.Context) error {
+func DemoHandler(c *Context) error {
 	c.Set("tmpl", "www/demo")
 	c.Set("data", map[string]interface{}{
 		"title": "Demo",

@@ -1,10 +1,8 @@
 package www
 
-import (
-	"github.com/labstack/echo"
-)
+import ()
 
-func JWTTesterHandler(c echo.Context) error {
+func JWTTesterHandler(c *Context) error {
 	c.Set("tmpl", "www/jwt_tester")
 	c.Set("data", map[string]interface{}{
 		"title": "JWT 接口测试",

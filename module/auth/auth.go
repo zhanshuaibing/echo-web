@@ -45,11 +45,11 @@ type User interface {
 	GetById(id interface{}) error
 }
 
-type auth struct {
+type Auth struct {
 	User
 }
 
-func Auth(newUser func() User) echo.MiddlewareFunc {
+func New(newUser func() User) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			s := session.Default(c)
@@ -67,7 +67,7 @@ func Auth(newUser func() User) echo.MiddlewareFunc {
 				log.Printf("Login Error: No UserId")
 			}
 
-			auth := auth{user}
+			auth := Auth{user}
 			c.Set(DefaultKey, auth)
 
 			return next(c)
@@ -76,9 +76,9 @@ func Auth(newUser func() User) echo.MiddlewareFunc {
 }
 
 // shortcut to get Auth
-func Default(c echo.Context) auth {
+func Default(c echo.Context) Auth {
 	// return c.MustGet(DefaultKey).(auth)
-	return c.Get(DefaultKey).(auth)
+	return c.Get(DefaultKey).(Auth)
 }
 
 // AuthenticateSession will mark the session and user object as authenticated. Then
@@ -89,7 +89,7 @@ func AuthenticateSession(s session.Session, user User) error {
 	return UpdateUser(s, user)
 }
 
-func (a auth) LogoutTest(s session.Session) {
+func (a Auth) LogoutTest(s session.Session) {
 	a.User.Logout()
 	s.Delete(SessionKey)
 	s.Save()

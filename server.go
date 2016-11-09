@@ -5,8 +5,6 @@ import (
 )
 
 func main() {
-	// echo.Run()
-
 	// 子域名部署
 	echo.RunSubdomains()
 }

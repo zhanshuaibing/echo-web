@@ -3,10 +3,6 @@ package www
 import (
 	"net/http"
 
-	"github.com/labstack/echo"
-
-	"github.com/hobo-go/echo-mw/session"
-
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/log"
@@ -17,10 +13,10 @@ type LoginForm struct {
 	Password string `form:"password" binding:"required"`
 }
 
-func LoginHandler(c echo.Context) error {
+func LoginHandler(c *Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
 
-	a := auth.Default(c)
+	a := c.Auth()
 	if a.User.IsAuthenticated() {
 		if redirect == "" {
 			redirect = "/"
@@ -39,13 +35,13 @@ func LoginHandler(c echo.Context) error {
 	return nil
 }
 
-func LoginPostHandler(c echo.Context) error {
+func LoginPostHandler(c *Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
 	if redirect == "" {
 		redirect = "/"
 	}
 
-	a := auth.Default(c)
+	a := c.Auth()
 	if a.User.IsAuthenticated() {
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
@@ -59,7 +55,7 @@ func LoginPostHandler(c echo.Context) error {
 		u := User.GetUserByNicknamePwd(form.Nickname, form.Password)
 
 		if u != nil {
-			session := session.Default(c)
+			session := c.Session()
 			err := auth.AuthenticateSession(session, u)
 			if err != nil {
 				c.JSON(http.StatusBadRequest, err)
@@ -81,9 +77,9 @@ func LoginPostHandler(c echo.Context) error {
 	return nil
 }
 
-func LogoutHandler(c echo.Context) error {
-	session := session.Default(c)
-	a := auth.Default(c)
+func LogoutHandler(c *Context) error {
+	session := c.Session()
+	a := c.Auth()
 	auth.Logout(session, a.User)
 
 	redirect := c.QueryParam(auth.RedirectParam)
@@ -96,10 +92,10 @@ func LogoutHandler(c echo.Context) error {
 	return nil
 }
 
-func RegisterHandler(c echo.Context) error {
+func RegisterHandler(c *Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
 
-	a := auth.Default(c)
+	a := c.Auth()
 	if a.User.IsAuthenticated() {
 		if redirect == "" {
 			redirect = "/"
@@ -118,13 +114,13 @@ func RegisterHandler(c echo.Context) error {
 	return nil
 }
 
-func RegisterPostHandler(c echo.Context) error {
+func RegisterPostHandler(c *Context) error {
 	redirect := c.QueryParam(auth.RedirectParam)
 	if redirect == "" {
 		redirect = "/"
 	}
 
-	a := auth.Default(c)
+	a := c.Auth()
 	if a.User.IsAuthenticated() {
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
@@ -135,7 +131,7 @@ func RegisterPostHandler(c echo.Context) error {
 		var User model.User
 		u := User.AddUserWithNicknamePwd(form.Nickname, form.Password)
 		if u != nil {
-			session := session.Default(c)
+			session := c.Session()
 			err := auth.AuthenticateSession(session, u)
 			if err != nil {
 				c.JSON(http.StatusBadRequest, err)
@@ -145,7 +141,7 @@ func RegisterPostHandler(c echo.Context) error {
 		} else {
 			log.DebugPrint("Register user add error")
 
-			s := session.Default(c)
+			s := c.Session()
 			s.AddFlash("Register user add error", "_error")
 
 			// registerURL := c.Request().URI()
@@ -161,7 +157,7 @@ func RegisterPostHandler(c echo.Context) error {
 	} else {
 		log.DebugPrint("Register form bind Error: %v", err)
 
-		s := session.Default(c)
+		s := c.Session()
 		s.AddFlash("Register form bind Error:"+err.Error(), "_error")
 
 		// registerURL := c.Request().URI()

@@ -15,7 +15,7 @@ import (
 	"echo-web/module/log"
 )
 
-func ApiHandler(c echo.Context) error {
+func ApiHandler(c *Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 
@@ -48,7 +48,7 @@ func ApiHandler(c echo.Context) error {
 	s.AddFlash("21", "key2")
 
 	request := c.Request()
-	Ctx{c}.AutoFMT(http.StatusOK, map[string]interface{}{
+	c.AutoFMT(http.StatusOK, map[string]interface{}{
 		"title":        "Api Index",
 		"User":         u,
 		"CacheValue":   value,

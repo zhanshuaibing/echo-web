@@ -9,10 +9,12 @@ const (
 	// Project
 	PROJECT_NAME = "Echo Web"
 
+	SERVER_ADDR = ":8080"
+
 	// Domains
-	DOMAIN_API    = "echo.api.localhost:8080"
-	DOMAIN_WWW    = "echo.www.localhost:8080"
-	DOMAIN_SOCKET = "echo.socket.localhost:8080"
+	DOMAIN_API    = "echo.api.localhost.com"
+	DOMAIN_WWW    = "echo.www.localhost.com"
+	DOMAIN_SOCKET = "echo.socket.localhost.com"
 
 	// Session
 	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)

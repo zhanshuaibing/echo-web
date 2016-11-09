@@ -29,7 +29,7 @@ func Routers() *echo.Echo {
 	e.Use(cache.Cache())
 
 	// Auth
-	e.Use(auth.Auth(model.GenerateAnonymousUser))
+	e.Use(auth.New(model.GenerateAnonymousUser))
 
 	e.GET("/", indexHandler)
 	e.GET("/ws", socketHandler())

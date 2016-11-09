@@ -4,21 +4,9 @@ import (
 	// "github.com/facebookgo/grace/gracehttp"
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	"github.com/labstack/gommon/log"
 
-	"github.com/hobo-go/echo-mw/staticbin"
-
-	"echo-web/assets"
 	"echo-web/conf"
-	"echo-web/model"
-	"echo-web/module/auth"
-	"echo-web/module/cache"
-	"echo-web/module/render"
-	"echo-web/module/session"
 	"echo-web/router"
-	"echo-web/router/api"
-	"echo-web/router/www"
-	"github.com/hobo-go/echo-mw/binder"
 )
 
 // 子域名部署
@@ -54,7 +42,7 @@ func RunSubdomains() {
 		return
 	})
 
-	e.Start(":8080")
+	e.Start(conf.SERVER_ADDR)
 
 	// Graceful Shutdown
 	// std := echo.New()
@@ -62,6 +50,7 @@ func RunSubdomains() {
 	// gracehttp.Serve(std.Server)
 }
 
+/**
 func Run() {
 	// Echo instance
 	e := echo.New()
@@ -140,3 +129,4 @@ func Run() {
 
 	e.Start(":8080")
 }
+*/

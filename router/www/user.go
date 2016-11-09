@@ -3,12 +3,10 @@ package www
 import (
 	"strconv"
 
-	"github.com/labstack/echo"
-
 	"echo-web/model"
 )
 
-func UserHandler(c echo.Context) error {
+func UserHandler(c *Context) error {
 	idStr := c.Param("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 	if err != nil {
