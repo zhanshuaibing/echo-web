@@ -3,7 +3,6 @@ package auth
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/hobo-go/echo-mw/session"
@@ -59,12 +58,12 @@ func New(newUser func() User) echo.MiddlewareFunc {
 			if userId != nil {
 				err := user.GetById(userId)
 				if err != nil {
-					log.Printf("Login Error: %v\n", err)
+					c.Logger().Errorf("Login Error: %v", err)
 				} else {
 					user.Login()
 				}
 			} else {
-				log.Printf("Login Error: No UserId")
+				c.Logger().Infof("Login status: No UserId")
 			}
 
 			auth := Auth{user}

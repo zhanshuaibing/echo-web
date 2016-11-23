@@ -39,7 +39,7 @@ func render() echo.MiddlewareFunc {
 			if err == nil {
 				c.Render(http.StatusOK, tmpl, context)
 			} else {
-				log.DebugPrint("Render Error: %v, tmpl %v, content %v", err, tmpl, context)
+				c.Logger().Errorf("Render Error: %v, tmpl %v, content %v", err, tmpl, context)
 			}
 
 			return nil

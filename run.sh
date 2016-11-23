@@ -13,11 +13,11 @@ do
     case $arg in
         a)
             echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] assets bindata"
-            go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
+            go-bindata -ignore=\\.DS_Store -debug -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
             ;;
         t)
             echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] template bindata"
-            go-bindata -ignore=\\.DS_Store -ignore=template.go -pkg="template" -o template/template.go template/...
+            go-bindata -ignore=\\.DS_Store -debug -ignore=template.go -pkg="template" -o template/template.go template/...
             ;; 
         h)  #help带a参数仅用于测试脚本，并备忘
             case $OPTARG in

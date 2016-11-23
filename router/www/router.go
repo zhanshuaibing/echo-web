@@ -54,6 +54,7 @@ func Routers() *echo.Echo {
 	case conf.BINDATA:
 		e.Use(staticbin.Static(assets.Asset, staticbin.Options{
 			Dir: "/",
+			SkipLogging:true,
 		}))
 	default:
 		e.Static("/assets", "./assets")
@@ -61,7 +62,7 @@ func Routers() *echo.Echo {
 
 	// Binder
 	e.Binder = binder.New()
-
+	
 	// 模板
 	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())

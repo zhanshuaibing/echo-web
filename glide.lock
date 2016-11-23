@@ -48,11 +48,6 @@ imports:
   version: 5d853fc53c446a8ce4c60bd85a771b4d5c54999d
 - name: github.com/jinzhu/inflection
   version: 74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff
-- name: github.com/labstack/echo
-  version: 0eb7c42aa1f9de452d7cc56ed4af384a5bb23e25
-  subpackages:
-  - middleware
-  - engine
 - name: github.com/labstack/gommon
   version: f3b1a1b3bd4726161e1200863d278df7da5e66ff
   subpackages:
