@@ -10,6 +10,7 @@ import (
 
 	"echo-web/assets"
 	"echo-web/conf"
+	"echo-web/middleware/captcha"
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/cache"
@@ -29,7 +30,7 @@ func Routers() *echo.Echo {
 
 	// Customization
 	if conf.RELEASE_MODE {
-		// e.SetDebug(false)
+		e.Debug = false
 	}
 	e.Logger.SetPrefix("Echo")
 	e.Logger.SetLevel(log.DEBUG)
@@ -40,29 +41,36 @@ func Routers() *echo.Echo {
 		TokenLookup: "form:_csrf",
 	}))
 
-	// Gzip
-	e.Use(mw.GzipWithConfig(mw.GzipConfig{
-		Level: 5,
-	}))
-
 	// Middleware
 	e.Use(mw.Logger())
 	e.Use(mw.Recover())
+
+	// 验证码，优先于静态资源
+	e.Use(captcha.Captcha(captcha.Options{
+		CaptchaPath: "/captcha/",
+		SkipLogging: true,
+	}))
 
 	// 静态资源
 	switch conf.STATIC_TYPE {
 	case conf.BINDATA:
 		e.Use(staticbin.Static(assets.Asset, staticbin.Options{
-			Dir: "/",
-			SkipLogging:true,
+			Dir:         "/",
+			SkipLogging: true,
 		}))
 	default:
 		e.Static("/assets", "./assets")
 	}
 
+	// Gzip，在验证码、静态资源之后
+	// 验证码、静态资源使用http.ServeContent()，与Gzip有冲突，Nginx报错，验证码无法访问
+	e.Use(mw.GzipWithConfig(mw.GzipConfig{
+		Level: 5,
+	}))
+
 	// Binder
 	e.Binder = binder.New()
-	
+
 	// 模板
 	e.Renderer = render.LoadTemplates()
 	e.Use(render.Render())

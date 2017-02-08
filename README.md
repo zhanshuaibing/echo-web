@@ -69,7 +69,7 @@ github.com/hobo-go/echo-mw
 	github.com/flosch/pongo2
 	github.com/gorilla/sessions
 	github.com/boj/redistore
-
+https://github.com/dchest/captcha
 
 <!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
 github.com/gorilla/context
@@ -88,13 +88,13 @@ Session | Redis、File、Cookie，支持Flash
 ORM | gorm，使用示例需完善
 模板 | 支持html/template、PONGO2，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
-安全 | CORS、CSRF、XSS、HSTS等
+安全 | CORS、CSRF、XSS、HSTS、验证码等
 其他 | JWT、Socket演示
 
 目标功能 | 描述
 :--- | :---
 配置 | 配置文件
 缓存 | ORM查询缓存
-安全 | SQL注入、验证码等
+安全 | SQL注入等
 日志 | 分级
 多语言 | i18n

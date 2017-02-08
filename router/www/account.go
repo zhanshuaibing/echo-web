@@ -3,6 +3,8 @@ package www
 import (
 	"net/http"
 
+	"github.com/dchest/captcha"
+
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/log"
@@ -30,12 +32,23 @@ func LoginHandler(c *Context) error {
 		"title":         "Login",
 		"redirectParam": auth.RedirectParam,
 		"redirect":      redirect,
+		"CaptchaId":     captcha.NewLen(6),
 	})
 
 	return nil
 }
 
 func LoginPostHandler(c *Context) error {
+	loginURL := c.Request().RequestURI
+
+	if !captcha.VerifyString(c.FormValue("captchaId"), c.FormValue("captchaSolution")) {
+		log.DebugPrint("Wrong captcha solution: %v! No robots allowed!\n", c.Param("captchaSolution"))
+		c.Redirect(http.StatusMovedPermanently, loginURL)
+		return nil
+	} else {
+		log.DebugPrint("Great job, human! You solved the captcha.\n")
+	}
+
 	redirect := c.QueryParam(auth.RedirectParam)
 	if redirect == "" {
 		redirect = "/"
@@ -46,8 +59,6 @@ func LoginPostHandler(c *Context) error {
 		c.Redirect(http.StatusMovedPermanently, redirect)
 		return nil
 	}
-
-	loginURL := c.Request().RequestURI
 
 	var form LoginForm
 	if err := c.Bind(&form); err == nil {

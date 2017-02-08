@@ -1,40 +1,35 @@
-hash: b37946bb3f8a988a151c15a0cd956d3e4b47375140c869aff02f26a14ccc89af
-updated: 2016-10-19T18:31:27.258879619+08:00
+hash: a069ca57753b81413d5c45ca8e70b391c24b016bc10a005762ab316be67afe93
+updated: 2017-02-07T18:08:31.932870983+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
 - name: github.com/bradfitz/gomemcache
-  version: fb1f79c6b65acda83063cbc69f6bba1522558bfc
+  version: 2fafb84a66c4911e11a8f50955b01e74fe3ab9c5
   subpackages:
   - memcache
+- name: github.com/dchest/captcha
+  version: 9e952142169c3cd6268c6482a3a61c121536aca2
 - name: github.com/dgrijalva/jwt-go
-  version: 24c63f56522a87ec5339cc3567883f1039378fdb
-- name: github.com/facebookgo/clock
-  version: 600d898af40aa09a7a93ecb9265d87b0504b6f03
+  version: 2268707a8f0843315e2004ee4f1d021dc08baedf
 - name: github.com/facebookgo/grace
   version: 5729e484473f52048578af1b80d0008c7024089b
   subpackages:
   - gracehttp
-  - gracenet
-- name: github.com/facebookgo/httpdown
-  version: a3b1354551a26449fbe05f5d855937f6e7acbd71
-- name: github.com/facebookgo/stats
-  version: 1b76add642e42c6ffba7211ad7b3939ce654526e
 - name: github.com/flosch/pongo2
   version: 22499f94d3d56c7238591344a6902715d0b8fbbf
 - name: github.com/garyburd/redigo
-  version: ffa8d46ada782d81cfda81a0fbd9f45ceae448e8
+  version: 908534c8b97586a4597e3fa195875d2d26502b97
   subpackages:
   - redis
   - internal
 - name: github.com/go-sql-driver/mysql
-  version: 0b58b37b664c21f3010e836f1b931e1d0b0b0685
+  version: 2e00b5cd70399450106cec6431c2e2ce3cae5034
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/securecookie
   version: fa5329f913702981df43dcb2a380bac429c810b5
 - name: github.com/gorilla/sessions
-  version: ca9ada44574153444b00d3fd9c8559e4cc95f896
+  version: 83c8db3bdc9be789e57e3756ffbcffd2d7d40176
 - name: github.com/hobo-go/echo-mw
   version: ""
   subpackages:
@@ -45,55 +40,44 @@ imports:
   - session
   - staticbin
 - name: github.com/jinzhu/gorm
-  version: 5d853fc53c446a8ce4c60bd85a771b4d5c54999d
+  version: c730b30a7830a04a4a3d536edcb1f8c5f77d3482
 - name: github.com/jinzhu/inflection
-  version: 74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff
+  version: 1c35d901db3da928c72a72d8458480cc9ade058f
+- name: github.com/labstack/echo
+  version: a8b6864be328fcb5c2d96d32c75b750f84e0e4be
+  subpackages:
+  - middleware
 - name: github.com/labstack/gommon
-  version: f3b1a1b3bd4726161e1200863d278df7da5e66ff
+  version: f72d3c883f8ea180da8f085dd320804c41332ad1
   subpackages:
   - log
   - color
   - bytes
   - random
 - name: github.com/mattn/go-colorable
-  version: 6c903ff4aa50920ca86087a280590b36b3152b9c
+  version: d228849504861217f796da67fae4f6e347643f15
 - name: github.com/mattn/go-isatty
-  version: 66b8e73f3f5cda9f96b69efd03dd3d7fc4a5cdb8
-- name: github.com/miekg/dns
-  version: 58f52c57ce9df13460ac68200cef30a008b9c468
+  version: 30a891c33c7cde7b02a981314b4228ec99380cca
 - name: github.com/robfig/go-cache
   version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
-- name: github.com/rsc/letsencrypt
-  version: 76104d26167d38b6a0010f42bfc8ec5487742e8b
-- name: github.com/tylerb/graceful
-  version: 50a48b6e73fcc75b45e22c05b79629a67c79e938
+- name: github.com/valyala/bytebufferpool
+  version: e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7
 - name: github.com/valyala/fasttemplate
-  version: 3b874956e03f1636d171bda64b130f9135f42cff
-- name: github.com/xenolf/lego
-  version: e953bbc8b95ad7d2f7172ae6732e71069be48957
-  subpackages:
-  - acme
+  version: d090d65668a286d9a180d43a19dfdc5dcad8fe88
 - name: golang.org/x/crypto
   version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
   subpackages:
   - ocsp
+  - acme/autocert
+  - acme
 - name: golang.org/x/net
   version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
   subpackages:
   - websocket
   - context
-  - publicsuffix
+  - context/ctxhttp
 - name: golang.org/x/sys
   version: 076b546753157f758b316e59bcb51e6807c04057
   subpackages:
   - unix
-- name: golang.org/x/time
-  version: 711ca1cb87636abec28122ef3bc6a77269d433f3
-  subpackages:
-  - rate
-- name: gopkg.in/square/go-jose.v1
-  version: aa2e30fdd1fe9dd3394119af66451ae790d50e0d
-  subpackages:
-  - cipher
-  - json
 devImports: []
