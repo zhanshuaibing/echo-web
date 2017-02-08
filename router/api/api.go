@@ -16,7 +16,7 @@ import (
 )
 
 func ApiHandler(c *Context) error {
-	idStr := c.Param("id")
+	idStr := c.QueryParam("id")
 	id, err := strconv.ParseUint(idStr, 10, 64)
 
 	u := &model.User{}
