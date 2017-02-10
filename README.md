@@ -28,10 +28,28 @@ server{
     }
 }
 ```
+##环境配置
+```
+# 依赖
+$ glide install
+
+# SQL脚本
+echo-web/common/db_structure.sql
+
+# MySQL配置
+DB_NAME      = "goweb_db"
+DB_USER_NAME = "goweb_dba"
+DB_PASSWORD  = "123456"
+DB_HOST      = "127.0.0.1"
+DB_PORT      = "3306"
+
+# Redis配置
+REDIS_SERVER = "127.0.0.1:6379"
+REDIS_PWD    = "123456"
+```
 
 ##测试
 ```
-$ glide install
 $ ./run.sh
 ```
 
