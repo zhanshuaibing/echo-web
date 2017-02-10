@@ -31,6 +31,7 @@ server{
 
 ##测试
 ```
+$ glide install
 $ ./run.sh
 ```
 
