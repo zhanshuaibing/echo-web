@@ -1,28 +1,35 @@
 # Echo Web
 Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://github.com/hobo-go/echo-mw)
 
-##环境配置
-```
-# 依赖
-$ glide install
+## 环境配置
 
+1. #### 依赖安装
+```
+$ cd echo_web/
+$ glide install
+```
+
+2. #### MySQL配置
+```
 # ./conf/conf.go
-# MySQL配置
 DB_NAME      = "goweb_db"
 DB_USER_NAME = "goweb_dba"
 DB_PASSWORD  = "123456"
 DB_HOST      = "127.0.0.1"
 DB_PORT      = "3306"
 
-# Redis配置
-REDIS_SERVER = "127.0.0.1:6379"
-REDIS_PWD    = "123456"
-
 # 测试SQL脚本
 ./echo-web/common/db_structure.sql
 ```
 
-###子域名部署
+3. #### Redis配置
+```
+# ./conf/conf.go
+REDIS_SERVER = "127.0.0.1:6379"
+REDIS_PWD    = "123456"
+```
+
+4. #### 子域名，Nginx配置
 ```
 # ./conf/conf.go
 SERVER_ADDR = ":8080"
@@ -51,57 +58,28 @@ server{
 }
 ```
 
-##运行
+5. #### Bindata打包工具
 ```
-$ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets template Bindata 打包
-$ ./run.sh
-```
-
-##打包
-```
-$ ./build.sh 		# 需要go-bindata工具
-```
-```
-Bindata打包工具
-https://github.com/jteeuwen/go-bindata
-go-bindata -ignore=\\.DS_Store -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
-go-bindata -ignore=\\.DS_Store -ignore=templates.go -pkg="templates" -o templates/templates.go templates/...
+# https://github.com/jteeuwen/go-bindata
+$ go get -u github.com/jteeuwen/go-bindata/...
 ```
 
-##依赖管理Glide
-
+## 运行
 ```
-https://github.com/Masterminds/glide
+$ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets、template资源打包 Bindata
 
-$ glide create                            	# Start a new workspace
-$ open glide.yaml                         	# and edit away!
-$ glide get github.com/hobo-go/echo-md 		# Get a package and add to glide.yaml
-$ glide install                           	# Install packages and dependencies
-
-$ go build                                	# Go tools work normally
-$ glide up                                	# Update to newest versions of the package
-```
-###glide get
-```
-github.com/labstack/echo
-github.com/go-sql-driver/mysql
-github.com/jinzhu/gorm
-	github.com/jinzhu/inflection
-github.com/labstack/gommon
-github.com/hobo-go/echo-mw
-	github.com/flosch/pongo2
-	github.com/gorilla/sessions
-	github.com/boj/redistore
-https://github.com/dchest/captcha
-
-<!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
-github.com/gorilla/context
-
-<!-- vendor/github.com/boj/redistore/redistore.go:19:2: cannot find package "github.com/gorilla/securecookie" in any of: -->
-github.com/gorilla/securecookie
+$ ./run.sh -h a     # help
 ```
 
-##框架功能
+## 打包
+```
+$ ./build.sh 		# 默认本机
+$ ./buuld.sh -l     # 打包Linux平台
+
+$ ./buuld.sh -h a     # help
+```
+
+## 框架功能
 
 功能 | 描述
 :--- | :---
@@ -121,3 +99,36 @@ ORM | gorm，使用示例需完善
 安全 | SQL注入等
 日志 | 分级
 多语言 | i18n
+
+## 依赖管理Glide
+
+```
+https://github.com/Masterminds/glide
+
+$ glide create                            	# Start a new workspace
+$ open glide.yaml                         	# and edit away!
+$ glide get github.com/hobo-go/echo-md 		# Get a package and add to glide.yaml
+$ glide install                           	# Install packages and dependencies
+
+$ go build                                	# Go tools work normally
+$ glide up                                	# Update to newest versions of the package
+```
+### glide 包
+```
+github.com/labstack/echo
+github.com/go-sql-driver/mysql
+github.com/jinzhu/gorm
+	github.com/jinzhu/inflection
+github.com/labstack/gommon
+github.com/hobo-go/echo-mw
+	github.com/flosch/pongo2
+	github.com/gorilla/sessions
+	github.com/boj/redistore
+github.com/dchest/captcha
+
+<!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
+github.com/gorilla/context
+
+<!-- vendor/github.com/boj/redistore/redistore.go:19:2: cannot find package "github.com/gorilla/securecookie" in any of: -->
+github.com/gorilla/securecookie
+```
