@@ -1,13 +1,35 @@
 # Echo Web
 Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://github.com/hobo-go/echo-mw)
 
-##子域名部署
+##环境配置
+```
+# 依赖
+$ glide install
+
+# ./conf/conf.go
+# MySQL配置
+DB_NAME      = "goweb_db"
+DB_USER_NAME = "goweb_dba"
+DB_PASSWORD  = "123456"
+DB_HOST      = "127.0.0.1"
+DB_PORT      = "3306"
+
+# Redis配置
+REDIS_SERVER = "127.0.0.1:6379"
+REDIS_PWD    = "123456"
+
+# 测试SQL脚本
+./echo-web/common/db_structure.sql
+```
+
+###子域名部署
 ```
 # ./conf/conf.go
 SERVER_ADDR = ":8080"
 DOMAIN_API    = "echo.api.localhost.com"
 DOMAIN_WWW    = "echo.www.localhost.com"
 
+# 改host
 $ vi /etc/hosts
 127.0.0.1       echo.api.localhost.com
 127.0.0.1       echo.www.localhost.com
@@ -28,27 +50,8 @@ server{
     }
 }
 ```
-##环境配置
-```
-# 依赖
-$ glide install
 
-# SQL脚本
-echo-web/common/db_structure.sql
-
-# MySQL配置
-DB_NAME      = "goweb_db"
-DB_USER_NAME = "goweb_dba"
-DB_PASSWORD  = "123456"
-DB_HOST      = "127.0.0.1"
-DB_PORT      = "3306"
-
-# Redis配置
-REDIS_SERVER = "127.0.0.1:6379"
-REDIS_PWD    = "123456"
-```
-
-##测试
+##运行
 ```
 $ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets template Bindata 打包
 $ ./run.sh
