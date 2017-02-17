@@ -50,6 +50,7 @@ REDIS_PWD    = "123456"
 
 ##测试
 ```
+$ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets template Bindata 打包
 $ ./run.sh
 ```
 

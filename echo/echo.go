@@ -17,7 +17,7 @@ func RunSubdomains() {
 	e := echo.New()
 	e.Pre(mw.RemoveTrailingSlash())
 
-	// Secure
+	// Secure, XSS/CSS HSTS
 	e.Use(mw.SecureWithConfig(mw.DefaultSecureConfig))
 	mw.MethodOverride()
 
