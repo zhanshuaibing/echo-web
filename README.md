@@ -74,9 +74,9 @@ $ ./run.sh -h a     # help
 ## 打包
 ```
 $ ./build.sh 		# 默认本机
-$ ./buuld.sh -l     # 打包Linux平台
+$ ./build.sh -l		# 打包Linux平台
 
-$ ./buuld.sh -h a     # help
+$ ./build.sh -h a	# help
 ```
 
 ## 框架功能
