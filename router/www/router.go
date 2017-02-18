@@ -6,11 +6,11 @@ import (
 	"github.com/labstack/gommon/log"
 
 	"github.com/hobo-go/echo-mw/binder"
+	"github.com/hobo-go/echo-mw/captcha"
 	"github.com/hobo-go/echo-mw/staticbin"
 
 	"echo-web/assets"
 	"echo-web/conf"
-	"echo-web/middleware/captcha"
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/cache"
