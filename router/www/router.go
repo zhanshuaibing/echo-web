@@ -46,7 +46,7 @@ func Routers() *echo.Echo {
 	e.Use(mw.Recover())
 
 	// 验证码，优先于静态资源
-	e.Use(captcha.Captcha(captcha.Options{
+	e.Use(captcha.Captcha(captcha.Config{
 		CaptchaPath: "/captcha/",
 		SkipLogging: true,
 	}))
