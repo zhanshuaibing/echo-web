@@ -3,13 +3,13 @@ Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://gi
 
 ## 环境配置
 
-1. #### 依赖安装
+##### 1.依赖安装
 ```
 $ cd echo_web/
 $ glide install
 ```
 
-2. #### MySQL配置
+##### 2.MySQL配置
 ```
 # ./conf/conf.go
 DB_NAME      = "goweb_db"
@@ -22,14 +22,14 @@ DB_PORT      = "3306"
 ./echo-web/common/db_structure.sql
 ```
 
-3. #### Redis配置
+##### 3.Redis配置
 ```
 # ./conf/conf.go
 REDIS_SERVER = "127.0.0.1:6379"
 REDIS_PWD    = "123456"
 ```
 
-4. #### 子域名，Nginx配置
+##### 4.子域名，Nginx配置
 ```
 # ./conf/conf.go
 SERVER_ADDR = ":8080"
@@ -58,7 +58,7 @@ server{
 }
 ```
 
-5. #### Bindata打包工具
+#### 5.Bindata打包工具
 ```
 # https://github.com/jteeuwen/go-bindata
 $ go get -u github.com/jteeuwen/go-bindata/...
@@ -74,9 +74,9 @@ $ ./run.sh -h a     # help
 ## 打包
 ```
 $ ./build.sh 		# 默认本机
-$ ./buuld.sh -l     # 打包Linux平台
+$ ./build.sh -l		# 打包Linux平台
 
-$ ./buuld.sh -h a     # help
+$ ./build.sh -h a	# help
 ```
 
 ## 框架功能
