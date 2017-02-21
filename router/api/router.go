@@ -5,7 +5,6 @@ import (
 
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
-	"github.com/labstack/gommon/log"
 
 	"github.com/hobo-go/echo-mw/binder"
 
@@ -26,7 +25,7 @@ func Routers() *echo.Echo {
 
 	// Customization
 	e.Logger.SetPrefix("Echo")
-	e.Logger.SetLevel(log.DEBUG)
+	e.Logger.SetLevel(conf.LOG_LEVEL)
 
 	if conf.RELEASE_MODE {
 		// e.SetDebug(false)

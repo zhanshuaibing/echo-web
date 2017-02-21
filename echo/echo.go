@@ -1,7 +1,12 @@
 package echo
 
 import (
-	// "github.com/facebookgo/grace/gracehttp"
+	"context"
+	"net/url"
+	"os"
+	"os/signal"
+	"time"
+
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 
@@ -16,6 +21,7 @@ func RunSubdomains() {
 	// Server
 	e := echo.New()
 	e.Pre(mw.RemoveTrailingSlash())
+	e.Logger.SetLevel(conf.LOG_LEVEL)
 
 	// Secure, XSS/CSS HSTS
 	e.Use(mw.SecureWithConfig(mw.DefaultSecureConfig))
@@ -31,9 +37,14 @@ func RunSubdomains() {
 		req := c.Request()
 		res := c.Response()
 
-		host := hosts[req.Host]
+		u, _err := url.Parse(c.Scheme() + "://" + req.Host)
+		if _err != nil {
+			e.Logger.Errorf("Request URL parse error:%v", _err)
+		}
 
+		host := hosts[u.Hostname()]
 		if host == nil {
+			e.Logger.Info("Host not found")
 			err = echo.ErrNotFound
 		} else {
 			host.Echo.ServeHTTP(res, req)
@@ -42,12 +53,28 @@ func RunSubdomains() {
 		return
 	})
 
-	e.Start(conf.SERVER_ADDR)
+	if !conf.GRACEFUL {
+		e.Logger.Fatal(e.Start(conf.SERVER_ADDR))
+	} else {
+		// Graceful Shutdown
+		// Start server
+		go func() {
+			if err := e.Start(conf.SERVER_ADDR); err != nil {
+				e.Logger.Errorf("Shutting down the server with error:%v", err)
+			}
+		}()
 
-	// Graceful Shutdown
-	// std := echo.New()
-	// std.SetHandler(e)
-	// gracehttp.Serve(std.Server)
+		// Wait for interrupt signal to gracefully shutdown the server with
+		// a timeout of 10 seconds.
+		quit := make(chan os.Signal)
+		signal.Notify(quit, os.Interrupt)
+		<-quit
+		ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+		if err := e.Shutdown(ctx); err != nil {
+			e.Logger.Fatal(err)
+		}
+	}
 }
 
 /**

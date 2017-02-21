@@ -1,5 +1,5 @@
 hash: a069ca57753b81413d5c45ca8e70b391c24b016bc10a005762ab316be67afe93
-updated: 2017-02-07T18:08:31.932870983+08:00
+updated: 2017-02-21T12:01:50.22550668+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -31,7 +31,7 @@ imports:
 - name: github.com/gorilla/sessions
   version: 83c8db3bdc9be789e57e3756ffbcffd2d7d40176
 - name: github.com/hobo-go/echo-mw
-  version: ""
+  version: a3c62f25136a12c6a6f4d596ba5029fb103d49ff
   subpackages:
   - binder
   - cache
@@ -39,12 +39,13 @@ imports:
   - pongo2echo
   - session
   - staticbin
+  - captcha
 - name: github.com/jinzhu/gorm
   version: c730b30a7830a04a4a3d536edcb1f8c5f77d3482
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/labstack/echo
-  version: a8b6864be328fcb5c2d96d32c75b750f84e0e4be
+  version: 70be2c2f8747c510df1f5540dc609fceb7b7b82c
   subpackages:
   - middleware
 - name: github.com/labstack/gommon

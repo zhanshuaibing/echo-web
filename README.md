@@ -1,6 +1,10 @@
 # Echo Web
 Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://github.com/hobo-go/echo-mw)
 
+> Requires
+- go1.8+
+- Echo V3
+
 ## 环境配置
 
 ##### 1.依赖安装
@@ -41,9 +45,8 @@ $ vi /etc/hosts
 127.0.0.1       echo.api.localhost.com
 127.0.0.1       echo.www.localhost.com
 
-# Nginx配置
+# Nginx配置，可选
 server{
-
     listen       80;
     server_name  echo.www.localhost.com echo.api.localhost.com;
 
@@ -67,15 +70,17 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 ## 运行
 ```
 $ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets、template资源打包 Bindata
-
 $ ./run.sh -h a     # help
+
+# 浏览器访问
+echo.www.localhost.com      # Nginx代理
+echo.www.localhost.com:8080 # 无代理
 ```
 
 ## 打包
 ```
 $ ./build.sh 		# 默认本机
 $ ./build.sh -l		# 打包Linux平台
-
 $ ./build.sh -h a	# help
 ```
 

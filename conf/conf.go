@@ -1,6 +1,8 @@
 package conf
 
-import ()
+import (
+	"github.com/labstack/gommon/log"
+)
 
 const (
 	// Release
@@ -9,12 +11,16 @@ const (
 	// Project
 	PROJECT_NAME = "Echo Web"
 
+	GRACEFUL    = true
 	SERVER_ADDR = ":8080"
 
 	// Domains
 	DOMAIN_API    = "echo.api.localhost.com"
 	DOMAIN_WWW    = "echo.www.localhost.com"
 	DOMAIN_SOCKET = "echo.socket.localhost.com"
+
+	// Log
+	LOG_LEVEL = log.DEBUG
 
 	// Session
 	SESSION_STORE = REDIS // REDIS,FILE,COOKIE(COOKIE Default)
@@ -23,10 +29,10 @@ const (
 	CACHE_STORE = REDIS //REDIS,MEMCACHED,IN_MEMORY(IN_MEMORY Default)
 
 	// Tmpl
-	TMPL_TYPE   = PONGO2   // PONGO2,TEMPLATE(TEMPLATE Default)
-	TMPL_DATA   = BINDATA       // BINDATA,FILE(FILE Default)
+	TMPL_TYPE   = PONGO2            // PONGO2,TEMPLATE(TEMPLATE Default)
+	TMPL_DATA   = BINDATA           // BINDATA,FILE(FILE Default)
 	TMPL_DIR    = "template/pongo2" // PONGO2(template/pongo2),TEMPLATE(template)
-	TMPL_SUFFIX = ".html"    // .html,.tpl
+	TMPL_SUFFIX = ".html"           // .html,.tpl
 
 	// Static
 	STATIC_TYPE = BINDATA // BINDATA,FILE(FILE Default)
