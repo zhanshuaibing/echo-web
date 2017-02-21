@@ -61,7 +61,7 @@ server{
 }
 ```
 
-#### 5.Bindata打包工具
+##### 5.Bindata打包工具
 ```
 # https://github.com/jteeuwen/go-bindata
 $ go get -u github.com/jteeuwen/go-bindata/...
