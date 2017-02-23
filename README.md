@@ -27,9 +27,11 @@ DB_PORT      = "3306"
 ```
 
 ##### 3.Redis、Memcached配置，可选
+
 > 需修改session、cache的store配置
 - SESSION_STORE: FILE或COOKIE
 - CACHE_STORE: IN_MEMORY
+
 ```
 # ./conf/conf.go
 REDIS_SERVER = "127.0.0.1:6379"
