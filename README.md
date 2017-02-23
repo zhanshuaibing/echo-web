@@ -28,7 +28,7 @@ DB_PORT      = "3306"
 
 ##### 3.Redis、Memcached配置，可选
 
-> 需修改session、cache的store配置
+> 可选需修改session、cache的store配置
 - SESSION_STORE: FILE或COOKIE
 - CACHE_STORE: IN_MEMORY
 
@@ -85,6 +85,7 @@ echo.www.localhost.com:8080 # 无代理
 
 ## 打包
 > 打包静态资源及模板文件必须使用 Bindata
+
 ```
 $ ./build.sh 		    # 默认本机
 $ ./build.sh -l		    # 打包Linux平台
