@@ -84,7 +84,7 @@ echo.www.localhost.com:8080 # 无代理
 ```
 
 ## 打包
-> 打包静态资源及模板文件必须使用 Bindata
+> 打包静态资源及模板文件须安装Bindata
 
 ```
 $ ./build.sh 		    # 默认本机
