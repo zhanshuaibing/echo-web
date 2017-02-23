@@ -33,5 +33,5 @@ _testmain.go
 vendor
 
 # Bindata
-assets/assets.go
-template/template.go
+# assets/assets.go
+# template/template.go
