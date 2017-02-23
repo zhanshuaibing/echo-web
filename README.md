@@ -22,18 +22,23 @@ DB_PASSWORD  = "123456"
 DB_HOST      = "127.0.0.1"
 DB_PORT      = "3306"
 
-# 测试SQL脚本
+# 测试数据库SQL脚本
 ./echo-web/common/db_structure.sql
 ```
 
-##### 3.Redis配置
+##### 3.Redis、Memcached配置，可选
+> 需修改session、cache的store配置
+- SESSION_STORE: FILE或COOKIE
+- CACHE_STORE: IN_MEMORY
 ```
 # ./conf/conf.go
 REDIS_SERVER = "127.0.0.1:6379"
 REDIS_PWD    = "123456"
+
+MEMCACHED_SERVER = "localhost:11211"
 ```
 
-##### 4.子域名，Nginx配置
+##### 4.子域名
 ```
 # ./conf/conf.go
 SERVER_ADDR = ":8080"
@@ -61,7 +66,7 @@ server{
 }
 ```
 
-##### 5.Bindata打包工具
+##### 5.Bindata打包工具，可选(运行可选，打包必选)
 ```
 # https://github.com/jteeuwen/go-bindata
 $ go get -u github.com/jteeuwen/go-bindata/...
@@ -69,8 +74,7 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 
 ## 运行
 ```
-$ ./run.sh -a -t    # -a -t 可选(首次运行必选)，assets、template资源打包 Bindata
-$ ./run.sh -h a     # help
+$ ./run.sh [-a] [-t]        # -a -t 可选(须安装Bindata)，以debug方式更新assets、template的Bindata资源包
 
 # 浏览器访问
 echo.www.localhost.com      # Nginx代理
@@ -78,10 +82,10 @@ echo.www.localhost.com:8080 # 无代理
 ```
 
 ## 打包
+> 打包静态资源及模板文件必须使用 Bindata
 ```
-$ ./build.sh 		# 默认本机
-$ ./build.sh -l		# 打包Linux平台
-$ ./build.sh -h a	# help
+$ ./build.sh 		    # 默认本机
+$ ./build.sh -l		    # 打包Linux平台
 ```
 
 ## 框架功能

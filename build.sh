@@ -1,21 +1,26 @@
 #!/bin/bash
 
 OS="local"
-while getopts "lh" arg
+while getopts "lh:" arg
 do
     case $arg in
+
+        h)  #help带all参数仅用于测试脚本，并备忘
+            echo "-h [all] help"
+            case $OPTARG in
+                all)
+                    echo "-l build linux bin, default local"
+                    ;;
+            esac
+            exit
+            ;;
         l)
             OS="linux"
             ;;
-        h)
-            echo "-l build linux bin, default local"
-            echo "-h [a] help"
-            exit
-            ;;
         ?)
             echo "unkonw argument"
+            echo "-h all help"
             echo "-l build linux bin, default local"
-            echo "-h help"
             exit 1
             ;;
     esac

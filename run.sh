@@ -8,9 +8,16 @@
 LogPrefix=">>>>"
 
 # 更新Bindata
-while getopts "ath:" arg #选项后面的冒号表示该选项需要参数
+while getopts "ath" arg
 do
     case $arg in
+         h)
+            echo "- [h] [a] [t] help"
+            echo "-h [a] help"
+            echo "-a update assets bindata"
+            echo "-t update template bindata"
+            exit
+            ;;
         a)
             echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] assets bindata"
             go-bindata -ignore=\\.DS_Store -debug -ignore=assets.go -pkg="assets" -o assets/assets.go assets/...
@@ -18,17 +25,6 @@ do
         t)
             echo -e "$LogPrefix `date +"%H:%M:%S"` [\033[44;37m update \033[0m] template bindata"
             go-bindata -ignore=\\.DS_Store -debug -ignore=template.go -pkg="template" -o template/template.go template/...
-            ;; 
-        h)  #help带a参数仅用于测试脚本，并备忘
-            case $OPTARG in
-                a )
-                    echo "-[a] [t] [h] help"
-                    echo "-a update assets bindata"
-                    echo "-t update template bindata"
-                    ;;
-            esac
-            echo "-h [a] help"
-            exit
             ;;
         ?)  #当有不认识的选项的时候arg为?
             echo "unkonw argument"
