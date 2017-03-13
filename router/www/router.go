@@ -4,7 +4,6 @@ import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 
-	"github.com/hobo-go/echo-mw/binder"
 	"github.com/hobo-go/echo-mw/captcha"
 	"github.com/hobo-go/echo-mw/staticbin"
 
@@ -66,9 +65,6 @@ func Routers() *echo.Echo {
 	e.Use(mw.GzipWithConfig(mw.GzipConfig{
 		Level: 5,
 	}))
-
-	// Binder
-	e.Binder = binder.New()
 
 	// 模板
 	e.Renderer = render.LoadTemplates()

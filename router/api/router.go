@@ -6,8 +6,6 @@ import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 
-	"github.com/hobo-go/echo-mw/binder"
-
 	"echo-web/conf"
 	"echo-web/module/cache"
 	"echo-web/module/session"
@@ -46,9 +44,6 @@ func Routers() *echo.Echo {
 	e.Use(mw.Recover())
 
 	e.Static("/favicon.ico", "./assets/img/favicon.ico")
-
-	// Binder
-	e.Binder = binder.New()
 
 	// Session
 	e.Use(session.Session())
