@@ -15,6 +15,7 @@ import (
 	"github.com/hobo-go/echo-mw/session"
 
 	"echo-web/conf"
+	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/log"
 	MT "echo-web/template"
@@ -79,12 +80,10 @@ func getContext(c echo.Context) (tmpl string, context map[string]interface{}, er
 
 func getCommonContext(c echo.Context) map[string]interface{} {
 	a := auth.Default(c)
-	userId := a.User.UniqueId().(uint64)
 
 	// 公共模板数据
 	commonDatas := make(map[string]interface{})
-	commonDatas["UserId"] = userId
-	commonDatas["UserName"] = "用户名"
+	commonDatas["_user"] = a.User.(*model.User)
 
 	commonDatas["DOMAIN_WWW"] = conf.DOMAIN_WWW
 	commonDatas["DOMAIN_API"] = conf.DOMAIN_API

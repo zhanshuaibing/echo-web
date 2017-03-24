@@ -15,7 +15,9 @@
 	<div class="jumbotron">
 		<h1>Welcome!</h1>
 		<p>吧啦吧啦吧啦！</p>
-		<p>Hello {{user.Nickname}}!</p>
+		{% if _user.Id %}
+		<p>Hello {{_user.Nickname}}!</p>
+		{% endif %}
 		<p><a class="btn btn-primary btn-lg" href="https://github.com/hobo-c" role="button">GitHub</a></p>
 	</div>
 </div>

@@ -63,7 +63,7 @@ func New(newUser func() User) echo.MiddlewareFunc {
 					user.Login()
 				}
 			} else {
-				c.Logger().Infof("Login status: No UserId")
+				c.Logger().Debugf("Login status: No UserId")
 			}
 
 			auth := Auth{user}
