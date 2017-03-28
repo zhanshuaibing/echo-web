@@ -1,9 +1,9 @@
 #### ORM支持部分查询缓存
 - 查询缓存接口
-    - First()
-    - Last()
-    - Find()
-    - Count()
+    - `First()`
+    - `Last()`
+    - `Find()`
+    - `Count()`
 
 > 使用`Cache(db)`做查询支持缓存
 ```go
