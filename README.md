@@ -1,5 +1,7 @@
 # Echo Web
-Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://github.com/hobo-go/echo-mw)
+Go(Golang) web framework Echo V3 sample. 
+
+Echo V3 middleware [echo-mw](https://github.com/hobo-go/echo-mw).
 
 > Requires
 - go1.8+
