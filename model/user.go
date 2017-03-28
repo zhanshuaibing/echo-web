@@ -9,7 +9,9 @@ import (
 
 func (u *User) GetUserById(id uint64) *User {
 	user := User{}
-	if err := DB().Where("id = ?", id).First(&user).Error; err != nil {
+	var count int64
+	db := DB().Where("id = ?", id)
+	if err := Cache(db).First(&user).Count(&count).Error; err != nil {
 		log.DebugPrint("GetUserById error: %v", err)
 		return nil
 	}

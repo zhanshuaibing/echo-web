@@ -84,8 +84,6 @@ func LoginPostHandler(c *Context) error {
 		c.Redirect(http.StatusMovedPermanently, loginURL)
 		return nil
 	}
-
-	return nil
 }
 
 func LogoutHandler(c *Context) error {
@@ -181,6 +179,4 @@ func RegisterPostHandler(c *Context) error {
 		})
 		return nil
 	}
-
-	return nil
 }

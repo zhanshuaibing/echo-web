@@ -8,13 +8,13 @@ Go(Golang) web framework Echo V3 sample. Echo V3 middleware [echo-mw](https://gi
 ## 环境配置
 
 ##### 1.依赖安装
-```
+```shell
 $ cd echo_web/
 $ glide install
 ```
 
 ##### 2.MySQL配置
-```
+```shell
 # ./conf/conf.go
 DB_NAME      = "goweb_db"
 DB_USER_NAME = "goweb_dba"
@@ -32,7 +32,7 @@ DB_PORT      = "3306"
 - SESSION_STORE: FILE或COOKIE
 - CACHE_STORE: IN_MEMORY
 
-```
+```shell
 # ./conf/conf.go
 REDIS_SERVER = "127.0.0.1:6379"
 REDIS_PWD    = "123456"
@@ -41,7 +41,7 @@ MEMCACHED_SERVER = "localhost:11211"
 ```
 
 ##### 4.子域名
-```
+```shell
 # ./conf/conf.go
 SERVER_ADDR = ":8080"
 DOMAIN_API    = "echo.api.localhost.com"
@@ -69,13 +69,13 @@ server{
 ```
 
 ##### 5.Bindata打包工具，可选(运行可选，打包必选)
-```
+```shell
 # https://github.com/jteeuwen/go-bindata
 $ go get -u github.com/jteeuwen/go-bindata/...
 ```
 
 ## 运行
-```
+```shell
 $ ./run.sh [-a] [-t]        # -a -t 可选(须安装Bindata)，以debug方式更新assets、template的Bindata资源包
 
 # 浏览器访问
@@ -86,7 +86,7 @@ echo.www.localhost.com:8080 # 无代理
 ## 打包
 > 打包静态资源及模板文件须安装Bindata
 
-```
+```shell
 $ ./build.sh 		    # 默认本机
 $ ./build.sh -l		    # 打包Linux平台
 ```
@@ -98,7 +98,8 @@ $ ./build.sh -l		    # 打包Linux平台
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
 Session | Redis、File、Cookie，支持Flash
-ORM | gorm，使用示例需完善
+ORM | Fork gorm，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
+缓存 | 支持`First`、`Last`、`Find`、`Count`的查询缓存
 模板 | 支持html/template、PONGO2，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
 安全 | CORS、CSRF、XSS、HSTS、验证码等
@@ -107,13 +108,12 @@ ORM | gorm，使用示例需完善
 目标功能 | 描述
 :--- | :---
 配置 | 配置文件
-缓存 | ORM查询缓存
 安全 | SQL注入等
 日志 | 分级
 多语言 | i18n
 
 ## 依赖管理Glide
-```
+```shell
 https://github.com/Masterminds/glide
 
 $ glide create                            	# Start a new workspace
@@ -125,7 +125,7 @@ $ go build                                	# Go tools work normally
 $ glide up                                	# Update to newest versions of the package
 ```
 ### glide 包
-```
+```shell
 github.com/labstack/echo
 github.com/go-sql-driver/mysql
 github.com/jinzhu/gorm

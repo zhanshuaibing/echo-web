@@ -13,7 +13,6 @@ import:
   - pongo2echo
   - session
   - staticbin
-- package: github.com/jinzhu/gorm
 - package: github.com/labstack/echo
   subpackages:
   - middleware
@@ -27,3 +26,4 @@ import:
   subpackages:
   - ocsp
 - package: github.com/dchest/captcha
+- package: github.com/hobo-go/gorm

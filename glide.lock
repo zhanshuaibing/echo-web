@@ -1,5 +1,5 @@
-hash: a069ca57753b81413d5c45ca8e70b391c24b016bc10a005762ab316be67afe93
-updated: 2017-02-21T12:01:50.22550668+08:00
+hash: 558ff612e0be9001009d6d911fda57d2c97e04c37930ea9ad7d01b3f143de9c1
+updated: 2017-03-28T21:12:25.768456052+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -40,12 +40,12 @@ imports:
   - session
   - staticbin
   - captcha
-- name: github.com/jinzhu/gorm
-  version: c730b30a7830a04a4a3d536edcb1f8c5f77d3482
+- name: github.com/hobo-go/gorm
+  version: 9cf98762e3211accfcbde0d8696e3cfd3f2f1134
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/labstack/echo
-  version: 70be2c2f8747c510df1f5540dc609fceb7b7b82c
+  version: 22012e0e9da962b1b6a67b9e009d8eabe35d2d7e
   subpackages:
   - middleware
 - name: github.com/labstack/gommon

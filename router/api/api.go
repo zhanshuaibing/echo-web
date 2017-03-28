@@ -35,7 +35,9 @@ func ApiHandler(c *Context) error {
 			value = 0
 			cacheStore.Set("userId", 1, time.Minute)
 		} else {
-			cacheStore.Get("userId", &value)
+			if err := cacheStore.Get("userId", &value); err != nil {
+				log.DebugPrint("cache userId get err:%v", err)
+			}
 		}
 	}
 
