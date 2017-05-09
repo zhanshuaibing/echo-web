@@ -7,7 +7,9 @@ import (
 	"github.com/hobo-go/echo-mw/cache"
 	"github.com/hobo-go/gorm"
 
-	"echo-web/common/util"
+	"echo-web/util/conv"
+	"echo-web/util/sql"
+	"echo-web/util/crypt"
 	"echo-web/module/log"
 )
 
@@ -119,9 +121,9 @@ func (c *CacheDB) Count(out interface{}) *CacheDB {
 				p := v.Elem()
 				switch p.Kind() {
 				case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
-					value = util.IntPtrTo64(out)
+					value = conv.IntPtrTo64(out)
 				case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64:
-					value = util.UintPtrTo64(out)
+					value = conv.UintPtrTo64(out)
 				}
 			}
 			if err := c.store.Set(key, value, c.Expire); err != nil {
@@ -133,8 +135,8 @@ func (c *CacheDB) Count(out interface{}) *CacheDB {
 	return c
 }
 
-func cacheKey(sql gorm.SQL) string {
+func cacheKey(gSql gorm.SQL) string {
 	//sqlStr := fmt.Sprintf(CacheKeyFormat, sql.SQL, sql.SQLVars)
-	sqlStr := util.SqlParse(sql.SQL, sql.SQLVars)
-	return util.MD5([]byte(sqlStr))
+	sqlStr := sql.SqlParse(gSql.SQL, gSql.SQLVars)
+	return crypt.MD5([]byte(sqlStr))
 }
