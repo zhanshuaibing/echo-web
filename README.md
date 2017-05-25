@@ -103,13 +103,13 @@ $ ./build.sh -l		    # 打包Linux平台
 
 功能 | 描述
 :--- | :---
-配置 | [toml](github.com/BurntSushi/toml)配置文件
+配置 | [toml](http://github.com/BurntSushi/toml)配置文件
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
 Session | Redis、File、Cookie，支持Flash
-ORM | Fork [gorm](github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
+ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
 缓存 | 支持`First`、`Last`、`Find`、`Count`的查询缓存
-模板 | 支持html/template、[pongo2](github.com/flosch/pongo2)，模板支持打包bindata
+模板 | 支持html/template、[pongo2](http://github.com/flosch/pongo2)，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
 安全 | CORS、CSRF、XSS、HSTS、验证码等
 其他 | JWT、Socket演示
