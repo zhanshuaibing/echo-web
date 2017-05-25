@@ -5,18 +5,18 @@ import (
 
 	es "github.com/hobo-go/echo-mw/session"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 )
 
 func Session() echo.MiddlewareFunc {
-	switch conf.SESSION_STORE {
-	case conf.REDIS:
-		store, err := es.NewRedisStore(32, "tcp", conf.REDIS_SERVER, conf.REDIS_PWD, []byte("secret"))
+	switch Conf.SessionStore {
+	case REDIS:
+		store, err := es.NewRedisStore(32, "tcp", Conf.Redis.Server, Conf.Redis.Pwd, []byte("secret"))
 		if err != nil {
 			panic(err)
 		}
 		return es.New("mysession", store)
-	case conf.FILE:
+	case FILE:
 		store := es.NewFilesystemStore("", []byte("secret-key"))
 		return es.New("mysession", store)
 	default:

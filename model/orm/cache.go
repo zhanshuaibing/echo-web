@@ -53,7 +53,7 @@ func (c *CacheDB) First(out interface{}, where ...interface{}) *CacheDB {
 	}
 
 	if err := c.store.Get(key, out); err != nil {
-		log.DebugPrint("first no cache data")
+		log.Debugf("first no cache data")
 		c.DB = c.DB.First(out, where...)
 		if err := c.DB.Error; err == nil {
 			c.store.Set(key, out, c.Expire)
@@ -73,7 +73,7 @@ func (c *CacheDB) Last(out interface{}, where ...interface{}) *CacheDB {
 	}
 
 	if err := c.store.Get(key, out); err != nil {
-		log.DebugPrint("last no cache data")
+		log.Debugf("last no cache data")
 		c.DB = c.DB.Last(out, where...)
 		if err := c.DB.Error; err == nil {
 			c.store.Set(key, out, c.Expire)
@@ -93,7 +93,7 @@ func (c *CacheDB) Find(out interface{}, where ...interface{}) *CacheDB {
 	}
 
 	if err := c.store.Get(key, out); err != nil {
-		log.DebugPrint("find no cache data")
+		log.Debugf("find no cache data")
 		c.DB = c.DB.Find(out, where...)
 		if err := c.DB.Error; err == nil {
 			c.store.Set(key, out, c.Expire)
@@ -113,7 +113,7 @@ func (c *CacheDB) Count(out interface{}) *CacheDB {
 	}
 
 	if err := c.store.Get(key, out); err != nil {
-		log.DebugPrint("count no cache data, err:%s", err)
+		log.Debugf("count no cache data, err:%s", err)
 		c.DB = c.DB.Count(out)
 		if err := c.DB.Error; err == nil {
 			var value interface{}

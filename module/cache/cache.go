@@ -6,7 +6,7 @@ import (
 	ec "github.com/hobo-go/echo-mw/cache"
 	"github.com/labstack/echo"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 )
 
 const (
@@ -19,11 +19,11 @@ const (
 func Cache() echo.MiddlewareFunc {
 	var store ec.CacheStore
 
-	switch conf.CACHE_STORE {
-	case conf.MEMCACHED:
-		store = ec.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour)
-	case conf.REDIS:
-		store = ec.NewRedisCache(conf.REDIS_SERVER, conf.REDIS_PWD, DefaultExpiration)
+	switch Conf.CacheStore {
+	case MEMCACHED:
+		store = ec.NewMemcachedStore([]string{Conf.Memcached.Server}, time.Hour)
+	case REDIS:
+		store = ec.NewRedisCache(Conf.Redis.Server, Conf.Redis.Pwd, DefaultExpiration)
 	default:
 		store = ec.NewInMemoryStore(time.Hour)
 	}

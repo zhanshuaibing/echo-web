@@ -14,7 +14,7 @@ import (
 	"github.com/hobo-go/echo-mw/pongo2echo"
 	"github.com/hobo-go/echo-mw/session"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/log"
@@ -22,7 +22,7 @@ import (
 )
 
 func Render() echo.MiddlewareFunc {
-	if conf.TMPL_TYPE == conf.PONGO2 {
+	if Conf.Tmpl.Type == PONGO2 {
 		return pongo2()
 	} else {
 		return render()
@@ -85,8 +85,8 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas := make(map[string]interface{})
 	commonDatas["_user"] = a.User.(*model.User)
 
-	commonDatas["DOMAIN_WWW"] = conf.DOMAIN_WWW
-	commonDatas["DOMAIN_API"] = conf.DOMAIN_API
+	commonDatas["DOMAIN_WEB"] = Conf.Server.DomainWeb
+	commonDatas["DOMAIN_API"] = Conf.Server.DomainApi
 
 	// CSRF
 	csrf := c.Get("_csrf")
@@ -111,8 +111,8 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	default:
 	}
 
-	log.Print("Path : %v \n", path)
-	log.Print("URI : %v \n", uri)
+	c.Logger().Debugf("Path : %v", path)
+	c.Logger().Debugf("URI : %v", uri)
 
 	commonDatas["requestUrl"] = uri
 
@@ -125,50 +125,48 @@ func getCommonContext(c echo.Context) map[string]interface{} {
  */
 
 func LoadTemplates() echo.Renderer {
-	switch conf.TMPL_TYPE {
-	case conf.PONGO2:
-		switch conf.TMPL_DATA {
-		case conf.BINDATA:
+	switch Conf.Tmpl.Type {
+	case PONGO2:
+		switch Conf.Tmpl.Data {
+		case BINDATA:
 			return pongo2echo.New(
 				pongo2echo.RenderOptions{
-					TmplLoader: BindataFileLoader{baseDir: conf.TMPL_DIR},
-					//TemplateDir: conf.TMPL_DIR,
+					TmplLoader: BindataFileLoader{baseDir: Conf.Tmpl.Dir},
 					ContentType: "text/html; charset=utf-8",
-					Debug:       !conf.RELEASE_MODE,
+					Debug:       !Conf.ReleaseMode,
 				})
-		case conf.TEMPLATE:
 		default:
 			return pongo2echo.New(
 				pongo2echo.RenderOptions{
-					TemplateDir: conf.TMPL_DIR,
+					TemplateDir: Conf.Tmpl.Dir,
 					ContentType: "text/html; charset=utf-8",
-					Debug:       !conf.RELEASE_MODE,
+					Debug:       !Conf.ReleaseMode,
 				})
 		}
-	case conf.TEMPLATE:
+	case TEMPLATE:
 	default:
-		switch conf.TMPL_DATA {
-		case conf.BINDATA:
-			return loadTemplatesBindata(conf.TMPL_DIR)
+		switch Conf.Tmpl.Data {
+		case BINDATA:
+			return loadTemplatesBindata(Conf.Tmpl.Dir)
 		default:
-			return loadTemplatesDefault(conf.TMPL_DIR)
+			return loadTemplatesDefault(Conf.Tmpl.Dir)
 		}
 	}
 
-	return loadTemplatesDefault(conf.TMPL_DIR)
+	return loadTemplatesDefault(Conf.Tmpl.Dir)
 }
 
 func loadTemplatesDefault(templateDir string) *multitemplate.Render {
 	r := multitemplate.New()
 
 	layoutDir := templateDir + "/layout/"
-	layouts, err := filepath.Glob(layoutDir + "*/*" + conf.TMPL_SUFFIX)
+	layouts, err := filepath.Glob(layoutDir + "*/*" + Conf.Tmpl.Suffix)
 	if err != nil {
 		panic(err.Error())
 	}
 
 	includeDir := templateDir + "/include/"
-	includes, err := filepath.Glob(includeDir + "*" + conf.TMPL_SUFFIX)
+	includes, err := filepath.Glob(includeDir + "*" + Conf.Tmpl.Suffix)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -178,8 +176,8 @@ func loadTemplatesDefault(templateDir string) *multitemplate.Render {
 		files := append(includes, layout)
 		tmpl := template.Must(template.ParseFiles(files...))
 		tmplName := strings.TrimPrefix(layout, layoutDir)
-		tmplName = strings.TrimSuffix(tmplName, conf.TMPL_SUFFIX)
-		log.DebugPrint("Tmpl add " + tmplName)
+		tmplName = strings.TrimSuffix(tmplName, Conf.Tmpl.Suffix)
+		log.Debugf("Tmpl add " + tmplName)
 		r.Add(tmplName, tmpl)
 	}
 	return &r
@@ -226,8 +224,8 @@ func loadTemplatesBindata(templateDir string) *multitemplate.Render {
 		files := append(includes, layout)
 		tmpl := template.Must(parseBindataFiles(files...))
 		tmplName := strings.TrimPrefix(layout, layoutDir+"/")
-		tmplName = strings.TrimSuffix(tmplName, conf.TMPL_SUFFIX)
-		log.DebugPrint("Tmpl add " + tmplName)
+		tmplName = strings.TrimSuffix(tmplName, Conf.Tmpl.Suffix)
+		log.Debugf("Tmpl add " + tmplName)
 		r.Add(tmplName, tmpl)
 	}
 	return &r
@@ -237,7 +235,7 @@ func loadTemplatesBindata(templateDir string) *multitemplate.Render {
 func tmplsFilter(files []string, dir string) ([]string, error) {
 	var tmpls []string
 	for _, file := range files {
-		if strings.HasSuffix(file, conf.TMPL_SUFFIX) {
+		if strings.HasSuffix(file, Conf.Tmpl.Suffix) {
 			tmpls = append(tmpls, dir+"/"+file)
 		}
 	}

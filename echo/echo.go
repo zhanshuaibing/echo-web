@@ -9,19 +9,28 @@ import (
 
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
+	"github.com/labstack/gommon/log"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/router"
 )
 
 // 子域名部署
 func RunSubdomains() {
-	hosts := router.InitRoutes()
+	// 配置初始化
+	if err := InitConfig(""); err != nil {
+		log.Panic(err)
+	}
+
+	// 全局日志级别
+	log.SetLevel(GetLogLvl())
 
 	// Server
 	e := echo.New()
 	e.Pre(mw.RemoveTrailingSlash())
-	e.Logger.SetLevel(conf.LOG_LEVEL)
+
+	// 日志级别
+	e.Logger.SetLevel(GetLogLvl())
 
 	// Secure, XSS/CSS HSTS
 	e.Use(mw.SecureWithConfig(mw.DefaultSecureConfig))
@@ -29,10 +38,11 @@ func RunSubdomains() {
 
 	// CORS
 	e.Use(mw.CORSWithConfig(mw.CORSConfig{
-		AllowOrigins: []string{"http://" + conf.DOMAIN_WWW, "http://" + conf.DOMAIN_API},
+		AllowOrigins: []string{"http://" + Conf.Server.DomainWeb, "http://" + Conf.Server.DomainApi},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAcceptEncoding, echo.HeaderAuthorization},
 	}))
 
+	hosts := router.InitRoutes()
 	e.Any("/*", func(c echo.Context) (err error) {
 		req := c.Request()
 		res := c.Response()
@@ -53,13 +63,13 @@ func RunSubdomains() {
 		return
 	})
 
-	if !conf.GRACEFUL {
-		e.Logger.Fatal(e.Start(conf.SERVER_ADDR))
+	if !Conf.Server.Graceful {
+		e.Logger.Fatal(e.Start(Conf.Server.Addr))
 	} else {
 		// Graceful Shutdown
 		// Start server
 		go func() {
-			if err := e.Start(conf.SERVER_ADDR); err != nil {
+			if err := e.Start(Conf.Server.Addr); err != nil {
 				e.Logger.Errorf("Shutting down the server with error:%v", err)
 			}
 		}()

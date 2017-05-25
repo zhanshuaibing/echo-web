@@ -18,12 +18,13 @@ $ glide install
 
 ##### 2.MySQL配置
 ```shell
-# ./conf/conf.go
-DB_NAME      = "goweb_db"
-DB_USER_NAME = "goweb_dba"
-DB_PASSWORD  = "123456"
-DB_HOST      = "127.0.0.1"
-DB_PORT      = "3306"
+# ./conf/conf.toml
+[database]
+name = "goweb_db"
+user_name = "goweb_dba"
+pwd  = "123456"
+host = "127.0.0.1"
+port = "3306"
 
 # 测试数据库SQL脚本
 ./echo-web/common/db_structure.sql
@@ -32,23 +33,27 @@ DB_PORT      = "3306"
 ##### 3.Redis、Memcached配置，可选
 
 > 可选需修改session、cache的store配置
-- SESSION_STORE: FILE或COOKIE
-- CACHE_STORE: IN_MEMORY
+- session_store = "FILE"或"COOKIE"
+- cache_store = "IN_MEMORY"
+
 
 ```shell
-# ./conf/conf.go
-REDIS_SERVER = "127.0.0.1:6379"
-REDIS_PWD    = "123456"
+# ./conf/conf.toml
+[redis]
+server = "127.0.0.1:6379"
+pwd = "123456"
 
-MEMCACHED_SERVER = "localhost:11211"
+[memcached]
+server = "localhost:11211"
 ```
 
 ##### 4.子域名
 ```shell
-# ./conf/conf.go
-SERVER_ADDR = ":8080"
-DOMAIN_API    = "echo.api.localhost.com"
-DOMAIN_WWW    = "echo.www.localhost.com"
+# ./conf/conf.toml
+[server]
+addr = ":8080"
+domain_api = "echo.api.localhost.com"
+domain_web = "echo.www.localhost.com"
 
 # 改host
 $ vi /etc/hosts
@@ -98,19 +103,19 @@ $ ./build.sh -l		    # 打包Linux平台
 
 功能 | 描述
 :--- | :---
+配置 | [toml](github.com/BurntSushi/toml)配置文件
 子域名部署 | 子域名区分模块
 缓存 | Redis、Memcached、Memory
 Session | Redis、File、Cookie，支持Flash
-ORM | Fork gorm，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
+ORM | Fork [gorm](github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
 缓存 | 支持`First`、`Last`、`Find`、`Count`的查询缓存
-模板 | 支持html/template、PONGO2，模板支持打包bindata
+模板 | 支持html/template、[pongo2](github.com/flosch/pongo2)，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
 安全 | CORS、CSRF、XSS、HSTS、验证码等
 其他 | JWT、Socket演示
 
 目标功能 | 描述
 :--- | :---
-配置 | 配置文件
 安全 | SQL注入等
 日志 | 分级
 多语言 | i18n
@@ -139,6 +144,7 @@ github.com/hobo-go/echo-mw
 	github.com/gorilla/sessions
 	github.com/boj/redistore
 github.com/dchest/captcha
+glide get github.com/BurntSushi/toml
 
 <!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
 github.com/gorilla/context

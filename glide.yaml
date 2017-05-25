@@ -27,3 +27,4 @@ import:
   - ocsp
 - package: github.com/dchest/captcha
 - package: github.com/hobo-go/gorm
+- package: github.com/BurntSushi/toml

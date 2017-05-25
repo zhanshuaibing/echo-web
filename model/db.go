@@ -7,7 +7,7 @@ import (
 	"github.com/hobo-go/echo-mw/cache"
 	"github.com/hobo-go/gorm"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/model/orm"
 	"echo-web/module/log"
 )
@@ -17,7 +17,8 @@ var dbCacheStore cache.CacheStore
 
 func DB() *gorm.DB {
 	if db == nil {
-		log.DebugPrint("Model NewDB")
+		log.Debugf("Model NewDB")
+
 		newDb, err := newDB()
 		if err != nil {
 			panic(err)
@@ -32,7 +33,7 @@ func DB() *gorm.DB {
 }
 
 func newDB() (*gorm.DB, error) {
-	sqlConnection := conf.DB_USER_NAME + ":" + conf.DB_PASSWORD + "@tcp(" + conf.DB_HOST + ":" + conf.DB_PORT + ")/" + conf.DB_NAME + "?charset=utf8mb4&parseTime=True&loc=Local"
+	sqlConnection := Conf.DB.UserName + ":" + Conf.DB.Pwd + "@tcp(" + Conf.DB.Host + ":" + Conf.DB.Port + ")/" + Conf.DB.Name + "?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open("mysql", sqlConnection)
 	if err != nil {
 		return nil, err
@@ -42,11 +43,11 @@ func newDB() (*gorm.DB, error) {
 
 func CacheStore() cache.CacheStore {
 	if dbCacheStore == nil {
-		switch conf.CACHE_STORE {
-		case conf.MEMCACHED:
-			dbCacheStore = cache.NewMemcachedStore([]string{conf.MEMCACHED_SERVER}, time.Hour)
-		case conf.REDIS:
-			dbCacheStore = cache.NewRedisCache(conf.REDIS_SERVER, conf.REDIS_PWD, time.Hour)
+		switch Conf.CacheStore {
+		case MEMCACHED:
+			dbCacheStore = cache.NewMemcachedStore([]string{Conf.Memcached.Server}, time.Hour)
+		case REDIS:
+			dbCacheStore = cache.NewRedisCache(Conf.Redis.Server, Conf.Redis.Pwd, time.Hour)
 		default:
 			dbCacheStore = cache.NewInMemoryStore(time.Hour)
 		}

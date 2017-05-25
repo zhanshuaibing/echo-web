@@ -1,4 +1,4 @@
-package www
+package web
 
 import (
 	"strconv"
@@ -16,7 +16,7 @@ func UserHandler(c *Context) error {
 	var User model.User
 	u := User.GetUserById(id)
 
-	c.Set("tmpl", "www/user")
+	c.Set("tmpl", "web/user")
 	c.Set("data", map[string]interface{}{
 		"title": "User",
 		"user":  u,

@@ -9,12 +9,12 @@ import (
 func (p *Post) GetPostById(id uint64) *Post {
 	post := Post{}
 	if err := DB().Where("id = ?", id).First(&post).Error; err != nil {
-		log.DebugPrint("Get post error: %v", err)
+		log.Debugf("Get post error: %v", err)
 		return nil
 	}
 
 	if err := DB().Model(&post).Related(&post.User).Error; err != nil {
-		log.DebugPrint("Post user related error: %v", err)
+		log.Debugf("Post user related error: %v", err)
 		return &post
 	}
 
@@ -24,13 +24,13 @@ func (p *Post) GetPostById(id uint64) *Post {
 func (p *Post) GetUserPostsByUserId(userId uint64, page int, size int) *[]Post {
 	posts := []Post{}
 	if err := DB().Where("user_id = ?", userId).Offset((page - 1) * size).Limit(size).Find(&posts).Error; err != nil {
-		log.DebugPrint("Get user posts error: %v", err)
+		log.Debugf("Get user posts error: %v", err)
 		return nil
 	}
 
 	for key, post := range posts {
 		if err := DB().Model(&post).Related(&post.User).Error; err != nil {
-			log.DebugPrint("Post user related error: %v", err)
+			log.Debugf("Post user related error: %v", err)
 		}
 		posts[key] = post
 	}

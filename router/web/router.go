@@ -1,4 +1,4 @@
-package www
+package web
 
 import (
 	"github.com/labstack/echo"
@@ -8,7 +8,7 @@ import (
 	"github.com/hobo-go/echo-mw/staticbin"
 
 	"echo-web/assets"
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/cache"
@@ -27,11 +27,11 @@ func Routers() *echo.Echo {
 	e.Use(NewContext())
 
 	// Customization
-	if conf.RELEASE_MODE {
+	if Conf.ReleaseMode {
 		e.Debug = false
 	}
-	e.Logger.SetPrefix("Echo")
-	e.Logger.SetLevel(conf.LOG_LEVEL)
+	e.Logger.SetPrefix("Web")
+	e.Logger.SetLevel(GetLogLvl())
 
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
@@ -50,8 +50,8 @@ func Routers() *echo.Echo {
 	}))
 
 	// 静态资源
-	switch conf.STATIC_TYPE {
-	case conf.BINDATA:
+	switch Conf.Static.Type {
+	case BINDATA:
 		e.Use(staticbin.Static(assets.Asset, staticbin.Options{
 			Dir:         "/",
 			SkipLogging: true,

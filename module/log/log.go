@@ -1,15 +1,13 @@
 package log
 
 import (
-	l "log"
+	l "github.com/labstack/gommon/log"
 )
 
-func Print(format string, values ...interface{}) {
-	l.Printf("[DEBUG] "+format, values...)
+func init() {
+	l.SetLevel(l.DEBUG)
 }
 
-func PrinError(err error) {
-	if err != nil {
-		Print("[ERROR] %v\n", err)
-	}
+func Debugf(format string, values ...interface{}) {
+	l.Debugf(format, values...)
 }

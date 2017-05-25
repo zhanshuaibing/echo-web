@@ -21,7 +21,7 @@ func ApiHandler(c *Context) error {
 
 	u := &model.User{}
 	if err != nil {
-		log.DebugPrint("Render Error: %v", err)
+		log.Debugf("Render Error: %v", err)
 	} else {
 		var User model.User
 		u = User.GetUserById(id)
@@ -36,7 +36,7 @@ func ApiHandler(c *Context) error {
 			cacheStore.Set("userId", 1, time.Minute)
 		} else {
 			if err := cacheStore.Get("userId", &value); err != nil {
-				log.DebugPrint("cache userId get err:%v", err)
+				log.Debugf("cache userId get err:%v", err)
 			}
 		}
 	}

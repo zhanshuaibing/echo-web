@@ -1,4 +1,4 @@
-package www
+package web
 
 import (
 	"net/http"
@@ -27,7 +27,7 @@ func LoginHandler(c *Context) error {
 		return nil
 	}
 
-	c.Set("tmpl", "www/login")
+	c.Set("tmpl", "web/login")
 	c.Set("data", map[string]interface{}{
 		"title":         "Login",
 		"redirectParam": auth.RedirectParam,
@@ -42,11 +42,11 @@ func LoginPostHandler(c *Context) error {
 	loginURL := c.Request().RequestURI
 
 	if !captcha.VerifyString(c.FormValue("captchaId"), c.FormValue("captchaSolution")) {
-		log.DebugPrint("Wrong captcha solution: %v! No robots allowed!\n", c.Param("captchaSolution"))
+		log.Debugf("Wrong captcha solution: %v! No robots allowed!\n", c.Param("captchaSolution"))
 		c.Redirect(http.StatusMovedPermanently, loginURL)
 		return nil
 	} else {
-		log.DebugPrint("Great job, human! You solved the captcha.\n")
+		log.Debugf("Great job, human! You solved the captcha.")
 	}
 
 	redirect := c.QueryParam(auth.RedirectParam)
@@ -79,8 +79,8 @@ func LoginPostHandler(c *Context) error {
 		}
 	} else {
 		params, _ := c.FormParams()
-		log.DebugPrint("Login form params: %v", params)
-		log.DebugPrint("Login form bind Error: %v", err)
+		log.Debugf("Login form params: %v", params)
+		log.Debugf("Login form bind Error: %v", err)
 		c.Redirect(http.StatusMovedPermanently, loginURL)
 		return nil
 	}
@@ -113,7 +113,7 @@ func RegisterHandler(c *Context) error {
 		return nil
 	}
 
-	c.Set("tmpl", "www/register")
+	c.Set("tmpl", "web/register")
 	c.Set("data", map[string]interface{}{
 		"title":         "Register",
 		"redirectParam": auth.RedirectParam,
@@ -148,14 +148,14 @@ func RegisterPostHandler(c *Context) error {
 			c.Redirect(http.StatusMovedPermanently, redirect)
 			return nil
 		} else {
-			log.DebugPrint("Register user add error")
+			log.Debugf("Register user add error")
 
 			s := c.Session()
 			s.AddFlash("Register user add error", "_error")
 
 			// registerURL := c.Request().URI()
 			// c.Redirect(http.StatusMovedPermanently, registerURL)
-			c.Set("tmpl", "www/register")
+			c.Set("tmpl", "web/register")
 			c.Set("data", map[string]interface{}{
 				"title":         "Register",
 				"redirectParam": auth.RedirectParam,
@@ -164,14 +164,14 @@ func RegisterPostHandler(c *Context) error {
 			return nil
 		}
 	} else {
-		log.DebugPrint("Register form bind Error: %v", err)
+		log.Debugf("Register form bind Error: %v", err)
 
 		s := c.Session()
 		s.AddFlash("Register form bind Error:"+err.Error(), "_error")
 
 		// registerURL := c.Request().URI()
 		// c.Redirect(http.StatusMovedPermanently, registerURL)
-		c.Set("tmpl", "www/register")
+		c.Set("tmpl", "web/register")
 		c.Set("data", map[string]interface{}{
 			"title":         "Register",
 			"redirectParam": auth.RedirectParam,

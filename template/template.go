@@ -13,14 +13,14 @@
 // template/layout.tmpl
 // template/pongo2/base.html
 // template/pongo2/socket/index.html
-// template/pongo2/www/about.html
-// template/pongo2/www/demo.html
-// template/pongo2/www/home.html
-// template/pongo2/www/index.html
-// template/pongo2/www/jwt_tester.html
-// template/pongo2/www/login.html
-// template/pongo2/www/register.html
-// template/pongo2/www/user.html
+// template/pongo2/web/about.html
+// template/pongo2/web/demo.html
+// template/pongo2/web/home.html
+// template/pongo2/web/index.html
+// template/pongo2/web/jwt_tester.html
+// template/pongo2/web/login.html
+// template/pongo2/web/register.html
+// template/pongo2/web/user.html
 // DO NOT EDIT!
 
 package template
@@ -281,10 +281,10 @@ func templatePongo2SocketIndexHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwAboutHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwAboutHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/about.html"
-	name := "template/pongo2/www/about.html"
+// templatePongo2WebAboutHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebAboutHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/about.html"
+	name := "template/pongo2/web/about.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -299,10 +299,10 @@ func templatePongo2WwwAboutHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwDemoHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwDemoHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/demo.html"
-	name := "template/pongo2/www/demo.html"
+// templatePongo2WebDemoHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebDemoHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/demo.html"
+	name := "template/pongo2/web/demo.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -317,10 +317,10 @@ func templatePongo2WwwDemoHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwHomeHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwHomeHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/home.html"
-	name := "template/pongo2/www/home.html"
+// templatePongo2WebHomeHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebHomeHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/home.html"
+	name := "template/pongo2/web/home.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -335,10 +335,10 @@ func templatePongo2WwwHomeHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwIndexHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwIndexHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/index.html"
-	name := "template/pongo2/www/index.html"
+// templatePongo2WebIndexHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebIndexHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/index.html"
+	name := "template/pongo2/web/index.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -353,10 +353,10 @@ func templatePongo2WwwIndexHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwJwt_testerHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwJwt_testerHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/jwt_tester.html"
-	name := "template/pongo2/www/jwt_tester.html"
+// templatePongo2WebJwt_testerHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebJwt_testerHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/jwt_tester.html"
+	name := "template/pongo2/web/jwt_tester.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -371,10 +371,10 @@ func templatePongo2WwwJwt_testerHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwLoginHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwLoginHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/login.html"
-	name := "template/pongo2/www/login.html"
+// templatePongo2WebLoginHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebLoginHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/login.html"
+	name := "template/pongo2/web/login.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -389,10 +389,10 @@ func templatePongo2WwwLoginHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwRegisterHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwRegisterHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/register.html"
-	name := "template/pongo2/www/register.html"
+// templatePongo2WebRegisterHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebRegisterHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/register.html"
+	name := "template/pongo2/web/register.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -407,10 +407,10 @@ func templatePongo2WwwRegisterHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2WwwUserHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WwwUserHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/www/user.html"
-	name := "template/pongo2/www/user.html"
+// templatePongo2WebUserHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebUserHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/user.html"
+	name := "template/pongo2/web/user.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -490,14 +490,14 @@ var _bindata = map[string]func() (*asset, error){
 	"template/layout.tmpl": templateLayoutTmpl,
 	"template/pongo2/base.html": templatePongo2BaseHtml,
 	"template/pongo2/socket/index.html": templatePongo2SocketIndexHtml,
-	"template/pongo2/www/about.html": templatePongo2WwwAboutHtml,
-	"template/pongo2/www/demo.html": templatePongo2WwwDemoHtml,
-	"template/pongo2/www/home.html": templatePongo2WwwHomeHtml,
-	"template/pongo2/www/index.html": templatePongo2WwwIndexHtml,
-	"template/pongo2/www/jwt_tester.html": templatePongo2WwwJwt_testerHtml,
-	"template/pongo2/www/login.html": templatePongo2WwwLoginHtml,
-	"template/pongo2/www/register.html": templatePongo2WwwRegisterHtml,
-	"template/pongo2/www/user.html": templatePongo2WwwUserHtml,
+	"template/pongo2/web/about.html": templatePongo2WebAboutHtml,
+	"template/pongo2/web/demo.html": templatePongo2WebDemoHtml,
+	"template/pongo2/web/home.html": templatePongo2WebHomeHtml,
+	"template/pongo2/web/index.html": templatePongo2WebIndexHtml,
+	"template/pongo2/web/jwt_tester.html": templatePongo2WebJwt_testerHtml,
+	"template/pongo2/web/login.html": templatePongo2WebLoginHtml,
+	"template/pongo2/web/register.html": templatePongo2WebRegisterHtml,
+	"template/pongo2/web/user.html": templatePongo2WebUserHtml,
 }
 
 // AssetDir returns the file names below a certain
@@ -563,15 +563,15 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"socket": &bintree{nil, map[string]*bintree{
 				"index.html": &bintree{templatePongo2SocketIndexHtml, map[string]*bintree{}},
 			}},
-			"www": &bintree{nil, map[string]*bintree{
-				"about.html": &bintree{templatePongo2WwwAboutHtml, map[string]*bintree{}},
-				"demo.html": &bintree{templatePongo2WwwDemoHtml, map[string]*bintree{}},
-				"home.html": &bintree{templatePongo2WwwHomeHtml, map[string]*bintree{}},
-				"index.html": &bintree{templatePongo2WwwIndexHtml, map[string]*bintree{}},
-				"jwt_tester.html": &bintree{templatePongo2WwwJwt_testerHtml, map[string]*bintree{}},
-				"login.html": &bintree{templatePongo2WwwLoginHtml, map[string]*bintree{}},
-				"register.html": &bintree{templatePongo2WwwRegisterHtml, map[string]*bintree{}},
-				"user.html": &bintree{templatePongo2WwwUserHtml, map[string]*bintree{}},
+			"web": &bintree{nil, map[string]*bintree{
+				"about.html": &bintree{templatePongo2WebAboutHtml, map[string]*bintree{}},
+				"demo.html": &bintree{templatePongo2WebDemoHtml, map[string]*bintree{}},
+				"home.html": &bintree{templatePongo2WebHomeHtml, map[string]*bintree{}},
+				"index.html": &bintree{templatePongo2WebIndexHtml, map[string]*bintree{}},
+				"jwt_tester.html": &bintree{templatePongo2WebJwt_testerHtml, map[string]*bintree{}},
+				"login.html": &bintree{templatePongo2WebLoginHtml, map[string]*bintree{}},
+				"register.html": &bintree{templatePongo2WebRegisterHtml, map[string]*bintree{}},
+				"user.html": &bintree{templatePongo2WebUserHtml, map[string]*bintree{}},
 			}},
 		}},
 	}},

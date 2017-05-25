@@ -8,7 +8,7 @@ import (
 
 	"github.com/labstack/echo"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/module/log"
 	bdTmpl "echo-web/template"
 )
@@ -22,9 +22,9 @@ func pongo2() echo.MiddlewareFunc {
 
 			tmpl, context, err := getContext(c)
 			if err == nil {
-				c.Render(http.StatusOK, tmpl+conf.TMPL_SUFFIX, context)
+				c.Render(http.StatusOK, tmpl+Conf.Tmpl.Suffix, context)
 			} else {
-				log.DebugPrint("Pongo2 render Error: %v", err)
+				log.Debugf("Pongo2 render Error: %v", err)
 			}
 
 			return nil
@@ -56,7 +56,7 @@ func (bf BindataFileLoader) Get(path string) (io.Reader, error) {
 
 	buf, err := bdTmpl.Asset(path)
 	if err != nil {
-		log.DebugPrint("Pongo2 bindata file load err: %v", err)
+		log.Debugf("Pongo2 bindata file load err: %v", err)
 		return nil, err
 	}
 

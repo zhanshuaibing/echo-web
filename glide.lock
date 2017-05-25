@@ -1,5 +1,5 @@
-hash: 558ff612e0be9001009d6d911fda57d2c97e04c37930ea9ad7d01b3f143de9c1
-updated: 2017-03-28T21:12:25.768456052+08:00
+hash: b5283170af3fcfdb08f674adb7a58920ef080e35ff808e1b854a81a7ab4446d4
+updated: 2017-05-25T11:51:34.39127874+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -7,6 +7,8 @@ imports:
   version: 2fafb84a66c4911e11a8f50955b01e74fe3ab9c5
   subpackages:
   - memcache
+- name: github.com/BurntSushi/toml
+  version: b26d9c308763d68093482582cea63d69be07a0f0
 - name: github.com/dchest/captcha
   version: 9e952142169c3cd6268c6482a3a61c121536aca2
 - name: github.com/dgrijalva/jwt-go
@@ -41,11 +43,11 @@ imports:
   - staticbin
   - captcha
 - name: github.com/hobo-go/gorm
-  version: 9cf98762e3211accfcbde0d8696e3cfd3f2f1134
+  version: df05d3ea3401cd038f943cad0af832034be16cdb
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/labstack/echo
-  version: 22012e0e9da962b1b6a67b9e009d8eabe35d2d7e
+  version: 3359eae3067d1f6dba4785ea0377796405a34429
   subpackages:
   - middleware
 - name: github.com/labstack/gommon
@@ -69,16 +71,18 @@ imports:
   version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
   subpackages:
   - ocsp
-  - acme/autocert
-  - acme
+- name: golang.org/x/crypto/acme
+  version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
+- name: golang.org/x/crypto/acme/autocert
+  version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
 - name: golang.org/x/net
   version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
   subpackages:
   - websocket
   - context
   - context/ctxhttp
-- name: golang.org/x/sys
+- name: golang.org/x/net/websocket
+  version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
+- name: golang.org/x/sys/unix
   version: 076b546753157f758b316e59bcb51e6807c04057
-  subpackages:
-  - unix
 devImports: []

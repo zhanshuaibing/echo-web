@@ -12,7 +12,7 @@ func (u *User) GetUserById(id uint64) *User {
 	var count int64
 	db := DB().Where("id = ?", id)
 	if err := Cache(db).First(&user).Count(&count).Error; err != nil {
-		log.DebugPrint("GetUserById error: %v", err)
+		log.Debugf("GetUserById error: %v", err)
 		return nil
 	}
 
@@ -22,7 +22,7 @@ func (u *User) GetUserById(id uint64) *User {
 func (u *User) GetUserByNicknamePwd(nickname string, pwd string) *User {
 	user := User{}
 	if err := DB().Where("nickname = ? AND password = ?", nickname, pwd).First(&user).Error; err != nil {
-		log.DebugPrint("GetUserByNicknamePwd error: %v", err)
+		log.Debugf("GetUserByNicknamePwd error: %v", err)
 		return nil
 	}
 	return &user

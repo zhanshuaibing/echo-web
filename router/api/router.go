@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 
-	"echo-web/conf"
+	. "echo-web/conf"
 	"echo-web/module/cache"
 	"echo-web/module/session"
 )
@@ -22,12 +22,11 @@ func Routers() *echo.Echo {
 	e.Use(NewContext())
 
 	// Customization
-	e.Logger.SetPrefix("Echo")
-	e.Logger.SetLevel(conf.LOG_LEVEL)
-
-	if conf.RELEASE_MODE {
-		// e.SetDebug(false)
+	if Conf.ReleaseMode {
+		e.Debug = false
 	}
+	e.Logger.SetPrefix("API")
+	e.Logger.SetLevel(GetLogLvl())
 
 	// CSRF
 	e.Use(mw.CSRFWithConfig(mw.CSRFConfig{
