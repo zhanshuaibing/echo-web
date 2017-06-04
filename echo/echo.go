@@ -12,6 +12,7 @@ import (
 	"github.com/labstack/gommon/log"
 
 	. "echo-web/conf"
+	"echo-web/middleware/opentracing"
 	"echo-web/router"
 )
 
@@ -28,6 +29,9 @@ func RunSubdomains() {
 	// Server
 	e := echo.New()
 	e.Pre(mw.RemoveTrailingSlash())
+
+	// OpenTracing
+	opentracing.InitGlobalTracer()
 
 	// 日志级别
 	e.Logger.SetLevel(GetLogLvl())

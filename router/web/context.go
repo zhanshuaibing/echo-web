@@ -5,7 +5,10 @@ import (
 
 	"github.com/hobo-go/echo-mw/session"
 
+	"github.com/opentracing/opentracing-go"
+
 	"echo-web/module/auth"
+	ot "echo-web/middleware/opentracing"
 )
 
 func NewContext() echo.MiddlewareFunc {
@@ -27,4 +30,8 @@ func (ctx *Context) Session() session.Session {
 
 func (ctx *Context) Auth() auth.Auth {
 	return auth.Default(ctx)
+}
+
+func (ctx *Context) OpenTracingSpan() opentracing.Span {
+	return ot.Default(ctx)
 }

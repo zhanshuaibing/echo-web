@@ -56,7 +56,7 @@ func ApiHandler(c *Context) error {
 		"CacheValue":   value,
 		"URL":          request.URL,
 		"Scheme":       request.URL.Scheme,
-		"Host":         request.URL.Host,
+		"Host":         request.Host,
 		"UserAgent":    request.UserAgent(),
 		"Method":       request.Method,
 		"URI":          request.RequestURI,

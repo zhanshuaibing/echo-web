@@ -87,8 +87,11 @@ $ go get -u github.com/jteeuwen/go-bindata/...
 $ ./run.sh [-a] [-t]        # -a -t 可选(须安装Bindata)，以debug方式更新assets、template的Bindata资源包
 
 # 浏览器访问
-echo.www.localhost.com      # Nginx代理
-echo.www.localhost.com:8080 # 无代理
+http://echo.www.localhost.com      # Nginx代理
+http://echo.www.localhost.com:8080 # 无代理
+
+# OpenTracing
+http://localhost:8700/traces
 ```
 
 ## 打包
@@ -112,6 +115,7 @@ ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`Fin
 模板 | 支持html/template、[pongo2](http://github.com/flosch/pongo2)，模板支持打包bindata
 静态 | 静态资源，支持打包bindata
 安全 | CORS、CSRF、XSS、HSTS、验证码等
+监控 | [OpenTracing](http://opentracing.io/)，如何在项目中更方便的使用还需要研究，如ORM层
 其他 | JWT、Socket演示
 
 目标功能 | 描述

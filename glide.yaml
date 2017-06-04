@@ -28,3 +28,10 @@ import:
 - package: github.com/dchest/captcha
 - package: github.com/hobo-go/gorm
 - package: github.com/BurntSushi/toml
+- package: github.com/opentracing/opentracing-go
+  subpackages:
+  - ext
+- package: sourcegraph.com/sourcegraph/appdash
+- package: github.com/gogo/protobuf
+  subpackages:
+  - io

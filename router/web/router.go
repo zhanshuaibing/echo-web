@@ -9,6 +9,7 @@ import (
 
 	"echo-web/assets"
 	. "echo-web/conf"
+	"echo-web/middleware/opentracing"
 	"echo-web/model"
 	"echo-web/module/auth"
 	"echo-web/module/cache"
@@ -23,6 +24,9 @@ func Routers() *echo.Echo {
 	// Echo instance
 	e := echo.New()
 
+	// OpenTracing
+	e.Use(opentracing.OpenTracing("web"))
+
 	// Context自定义
 	e.Use(NewContext())
 
@@ -30,7 +34,7 @@ func Routers() *echo.Echo {
 	if Conf.ReleaseMode {
 		e.Debug = false
 	}
-	e.Logger.SetPrefix("Web")
+	e.Logger.SetPrefix("web")
 	e.Logger.SetLevel(GetLogLvl())
 
 	// CSRF

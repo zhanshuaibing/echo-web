@@ -2,6 +2,9 @@ package api
 
 import (
 	"github.com/labstack/echo"
+	"github.com/opentracing/opentracing-go"
+
+	ot "echo-web/middleware/opentracing"
 )
 
 func NewContext() echo.MiddlewareFunc {
@@ -30,4 +33,8 @@ func (c *Context) AutoFMT(code int, i interface{}) (err error) {
 	} else {
 		return c.JSON(code, i)
 	}
+}
+
+func (ctx *Context) OpenTracingSpan() opentracing.Span {
+	return ot.Default(ctx)
 }

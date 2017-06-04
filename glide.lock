@@ -1,5 +1,5 @@
-hash: b5283170af3fcfdb08f674adb7a58920ef080e35ff808e1b854a81a7ab4446d4
-updated: 2017-05-25T11:51:34.39127874+08:00
+hash: 8f63bb2e80aac7f5af10168c41116617551e467e1bfb5c695aa29f248d7aaa41
+updated: 2017-06-02T22:14:07.737900829+08:00
 imports:
 - name: github.com/boj/redistore
   version: fc113767cd6b051980f260d6dbe84b2740c46ab0
@@ -26,8 +26,15 @@ imports:
   - internal
 - name: github.com/go-sql-driver/mysql
   version: 2e00b5cd70399450106cec6431c2e2ce3cae5034
+- name: github.com/gogo/protobuf
+  version: b79ae77db468f92c7ef48e12c9c5d70e6a20c3b8
+  subpackages:
+  - io
+  - proto
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/mux
+  version: 043ee6597c29786140136a5747b6a886364f5282
 - name: github.com/gorilla/securecookie
   version: fa5329f913702981df43dcb2a380bac429c810b5
 - name: github.com/gorilla/sessions
@@ -47,7 +54,7 @@ imports:
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
 - name: github.com/labstack/echo
-  version: 3359eae3067d1f6dba4785ea0377796405a34429
+  version: 466d509e34e07d1313fdb152a11243ae9df10b5c
   subpackages:
   - middleware
 - name: github.com/labstack/gommon
@@ -61,6 +68,15 @@ imports:
   version: d228849504861217f796da67fae4f6e347643f15
 - name: github.com/mattn/go-isatty
   version: 30a891c33c7cde7b02a981314b4228ec99380cca
+- name: github.com/opentracing/basictracer-go
+  version: 1b32af207119a14b1b231d451df3ed04a72efebf
+  subpackages:
+  - wire
+- name: github.com/opentracing/opentracing-go
+  version: eaaf4e1eeb7a5373b38e70901270c83577dc6fb9
+  subpackages:
+  - ext
+  - log
 - name: github.com/robfig/go-cache
   version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
 - name: github.com/valyala/bytebufferpool
@@ -71,18 +87,27 @@ imports:
   version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
   subpackages:
   - ocsp
-- name: golang.org/x/crypto/acme
-  version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
-- name: golang.org/x/crypto/acme/autocert
-  version: c367d6eeb7c6158125f2f47e049f7eb7e251c09a
+  - acme/autocert
+  - acme
 - name: golang.org/x/net
   version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
   subpackages:
   - websocket
   - context
   - context/ctxhttp
-- name: golang.org/x/net/websocket
-  version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
-- name: golang.org/x/sys/unix
+- name: golang.org/x/sys
   version: 076b546753157f758b316e59bcb51e6807c04057
+  subpackages:
+  - unix
+- name: sourcegraph.com/sourcegraph/appdash
+  version: 5b9b70908c0e32b53e17215ee6e9515b02ad08b2
+  subpackages:
+  - opentracing
+  - traceapp
+  - internal/wire
+  - httptrace
+  - sqltrace
+  - traceapp/tmpl
+- name: sourcegraph.com/sourcegraph/appdash-data
+  version: 73f23eafcf67cad684fba328dd545a116ac273ff
 devImports: []
