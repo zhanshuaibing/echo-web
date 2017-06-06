@@ -124,7 +124,7 @@ ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`Fin
 日志 | 分级
 多语言 | i18n
 
-## 依赖管理[Dep](https://github.com/golang/dep)
+## [Dep](https://github.com/golang/dep)依赖管理
 ```shell
 # 安装
 $ go get -u github.com/golang/dep/cmd/dep
