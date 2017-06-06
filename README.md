@@ -11,9 +11,10 @@ Go web framework Echo example.
 ## 环境配置
 
 ##### 1.依赖安装
+> [dep工具安装](#dep依赖管理)
 ```shell
 $ cd echo_web/
-$ dep ensure 
+$ dep ensure
 ```
 
 ##### 2.MySQL配置
