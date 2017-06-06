@@ -13,7 +13,7 @@ Go web framework Echo example.
 ##### 1.依赖安装
 ```shell
 $ cd echo_web/
-$ glide install
+$ dep ensure 
 ```
 
 ##### 2.MySQL配置
@@ -124,35 +124,28 @@ ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`Fin
 日志 | 分级
 多语言 | i18n
 
-## 依赖管理Glide
+## 依赖管理[Dep](https://github.com/golang/dep)
 ```shell
-https://github.com/Masterminds/glide
+# 安装
+$ go get -u github.com/golang/dep/cmd/dep
 
-$ glide create                            	# Start a new workspace
-$ open glide.yaml                         	# and edit away!
-$ glide get github.com/hobo-go/echo-md 		# Get a package and add to glide.yaml
-$ glide install                           	# Install packages and dependencies
+$ dep -h
+dep is a tool for managing dependencies for Go projects
 
-$ go build                                	# Go tools work normally
-$ glide up                                	# Update to newest versions of the package
-```
-### glide 包
-```shell
-github.com/labstack/echo
-github.com/go-sql-driver/mysql
-github.com/jinzhu/gorm
-	github.com/jinzhu/inflection
-github.com/labstack/gommon
-github.com/hobo-go/echo-mw
-	github.com/flosch/pongo2
-	github.com/gorilla/sessions
-	github.com/boj/redistore
-github.com/dchest/captcha
-glide get github.com/BurntSushi/toml
+Usage: dep <command>
 
-<!-- vendor/github.com/gorilla/sessions/sessions.go:13:2: cannot find package "github.com/gorilla/context" in any of: -->
-github.com/gorilla/context
+Commands:
 
-<!-- vendor/github.com/boj/redistore/redistore.go:19:2: cannot find package "github.com/gorilla/securecookie" in any of: -->
-github.com/gorilla/securecookie
+  init    Initialize a new project with manifest and lock files
+  status  Report the status of the project's dependencies
+  ensure  Ensure a dependency is safely vendored in the project
+  prune   Prune the vendor tree of unused packages
+
+Examples:
+  dep init                          set up a new project
+  dep ensure                        install the project's dependencies
+  dep ensure -update                update the locked versions of all dependencies
+  dep ensure github.com/pkg/errors  add a dependency to the project
+
+Use "dep help [command]" for more information about a command.
 ```
