@@ -11,7 +11,7 @@ Go web framework Echo example.
 ## 环境配置
 
 ##### 1.依赖安装
-> [dep工具安装](#dep依赖管理)
+> [dep工具安装](https://github.com/golang/dep#usage)
 ```shell
 $ cd echo_web/
 $ dep ensure
@@ -124,29 +124,3 @@ ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`Fin
 安全 | SQL注入等
 日志 | 分级
 多语言 | i18n
-
-## [Dep](https://github.com/golang/dep)依赖管理
-```shell
-# 安装
-$ go get -u github.com/golang/dep/cmd/dep
-
-$ dep -h
-dep is a tool for managing dependencies for Go projects
-
-Usage: dep <command>
-
-Commands:
-
-  init    Initialize a new project with manifest and lock files
-  status  Report the status of the project's dependencies
-  ensure  Ensure a dependency is safely vendored in the project
-  prune   Prune the vendor tree of unused packages
-
-Examples:
-  dep init                          set up a new project
-  dep ensure                        install the project's dependencies
-  dep ensure -update                update the locked versions of all dependencies
-  dep ensure github.com/pkg/errors  add a dependency to the project
-
-Use "dep help [command]" for more information about a command.
-```
