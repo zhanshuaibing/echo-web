@@ -77,11 +77,8 @@ server{
 }
 ```
 
-##### 5.Bindata打包工具，可选(运行可选，打包必选)
-```shell
-# https://github.com/jteeuwen/go-bindata
-$ go get -u github.com/jteeuwen/go-bindata/...
-```
+##### 5.打包工具，可选(运行可选，打包必选)
+> [Bindata安装](https://github.com/jteeuwen/go-bindata#installation)
 
 ## 运行
 ```shell
@@ -96,7 +93,7 @@ http://localhost:8700/traces
 ```
 
 ## 打包
-> 打包静态资源及模板文件须安装Bindata
+> 打包静态资源及模板文件须[安装Bindata](https://github.com/jteeuwen/go-bindata#installation)
 
 ```shell
 $ ./build.sh 		    # 默认本机
@@ -114,7 +111,7 @@ Session | Redis、File、Cookie，支持Flash
 ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
 缓存 | 支持`First`、`Last`、`Find`、`Count`的查询缓存
 模板 | 支持html/template、[pongo2](http://github.com/flosch/pongo2)，模板支持打包bindata
-静态 | 静态资源，支持打包bindata
+静态 | 静态资源，支持打包[bindata](https://github.com/jteeuwen/go-bindata#installation)
 安全 | CORS、CSRF、XSS、HSTS、验证码等
 监控 | [OpenTracing](http://opentracing.io/)，如何在项目中更方便的使用还需要研究，如ORM层
 其他 | JWT、Socket演示
