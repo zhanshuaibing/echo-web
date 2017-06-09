@@ -88,7 +88,7 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	// 配置
 	commonDatas["_conf"] = Conf
 
-	// @TODO
+	// @TODO i18n
 
 	// CSRF
 	csrf := c.Get("_csrf")

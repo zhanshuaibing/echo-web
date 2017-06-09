@@ -10,14 +10,20 @@ Go web framework Echo example.
 
 ## 环境配置
 
-##### 1.依赖安装
+##### 1.源码下载
+```shell
+$ cd $GOPATH/src
+$ git clone git@github.com:hobo-go/echo-web.git
+```
+
+##### 2.依赖安装
 > [dep工具安装](https://github.com/golang/dep#usage)
 ```shell
 $ cd echo_web/
 $ dep ensure
 ```
 
-##### 2.MySQL配置
+##### 3.MySQL配置
 ```shell
 # ./conf/conf.toml
 [database]
@@ -31,7 +37,7 @@ port = "3306"
 ./echo-web/common/db_structure.sql
 ```
 
-##### 3.Redis、Memcached配置，可选
+##### 4.Redis、Memcached配置，可选
 
 > 可选需修改session、cache的store配置
 - session_store = "FILE"或"COOKIE"
@@ -48,7 +54,7 @@ pwd = "123456"
 server = "localhost:11211"
 ```
 
-##### 4.子域名
+##### 5.子域名
 ```shell
 # ./conf/conf.toml
 [server]
@@ -77,7 +83,7 @@ server{
 }
 ```
 
-##### 5.Bindata打包工具，可选(运行可选，打包必选)
+##### 6.Bindata打包工具，可选(运行可选，打包必选)
 > [Bindata安装](https://github.com/jteeuwen/go-bindata#installation)
 
 ## 运行
