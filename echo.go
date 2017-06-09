@@ -1,10 +1,10 @@
 package main
 
 import (
-	"echo-web/echo"
+	"echo-web/router"
 )
 
 func main() {
 	// 子域名部署
-	echo.RunSubdomains()
+	router.RunSubdomains()
 }
