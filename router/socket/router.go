@@ -30,7 +30,6 @@ func Routers() *echo.Echo {
 	// Auth
 	e.Use(auth.New(model.GenerateAnonymousUser))
 
-	e.GET("/", indexHandler)
 	e.GET("/ws", socketHandler)
 
 	return e

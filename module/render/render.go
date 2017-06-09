@@ -85,8 +85,10 @@ func getCommonContext(c echo.Context) map[string]interface{} {
 	commonDatas := make(map[string]interface{})
 	commonDatas["_user"] = a.User.(*model.User)
 
-	commonDatas["DOMAIN_WEB"] = Conf.Server.DomainWeb
-	commonDatas["DOMAIN_API"] = Conf.Server.DomainApi
+	// 配置
+	commonDatas["_conf"] = Conf
+
+	// @TODO
 
 	// CSRF
 	csrf := c.Get("_csrf")

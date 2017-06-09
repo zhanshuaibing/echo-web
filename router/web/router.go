@@ -92,6 +92,7 @@ func Routers() *echo.Echo {
 	e.POST("/register", handler(RegisterPostHandler))
 
 	e.GET("/jwt/tester", handler(JWTTesterHandler))
+	e.GET("/ws", handler(WsHandler))
 
 	demo := e.Group("/demo")
 	demo.Use(auth.LoginRequired())

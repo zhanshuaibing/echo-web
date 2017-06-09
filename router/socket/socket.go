@@ -3,23 +3,32 @@ package socket
 import (
 	"github.com/labstack/echo"
 	"golang.org/x/net/websocket"
+
+	"echo-web/module/log"
 )
 
-func indexHandler(c echo.Context) error {
-	c.Set("tmpl", "socket/index")
-	c.Set("data", map[string]interface{}{
-		"title": "Index",
-	})
-	return nil
-}
-
-func socketHandler() echo.HandlerFunc {
-	return echo.WrapHandler(websocket.Handler(func(ws *websocket.Conn) {
+func socketHandler(c echo.Context) error {
+	websocket.Handler(func(ws *websocket.Conn) {
+		defer ws.Close()
 		for {
-			websocket.Message.Send(ws, "Hello, Client!")
+			// Write
+			err := websocket.Message.Send(ws, "Hello, Client!")
+			if err != nil {
+				c.Logger().Error(err)
+			}
+
+			// Read
 			msg := ""
-			websocket.Message.Receive(ws, &msg)
-			println(msg)
+			err = websocket.Message.Receive(ws, &msg)
+			if err != nil {
+				c.Logger().Error(err)
+			}
+			if len(msg) > 0 {
+				log.Debugf("socket msg:" + msg)
+			} else {
+				break
+			}
 		}
-	}))
+	}).ServeHTTP(c.Response(), c.Request())
+	return nil
 }

@@ -12,7 +12,6 @@
 // template/layout/www/user.html
 // template/layout.tmpl
 // template/pongo2/base.html
-// template/pongo2/socket/index.html
 // template/pongo2/web/about.html
 // template/pongo2/web/demo.html
 // template/pongo2/web/home.html
@@ -21,6 +20,7 @@
 // template/pongo2/web/login.html
 // template/pongo2/web/register.html
 // template/pongo2/web/user.html
+// template/pongo2/web/ws.html
 // DO NOT EDIT!
 
 package template
@@ -263,24 +263,6 @@ func templatePongo2BaseHtml() (*asset, error) {
 	return a, err
 }
 
-// templatePongo2SocketIndexHtml reads file data from disk. It returns an error on failure.
-func templatePongo2SocketIndexHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/socket/index.html"
-	name := "template/pongo2/socket/index.html"
-	bytes, err := bindataRead(path, name)
-	if err != nil {
-		return nil, err
-	}
-
-	fi, err := os.Stat(path)
-	if err != nil {
-		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
-	}
-
-	a := &asset{bytes: bytes, info: fi}
-	return a, err
-}
-
 // templatePongo2WebAboutHtml reads file data from disk. It returns an error on failure.
 func templatePongo2WebAboutHtml() (*asset, error) {
 	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/about.html"
@@ -425,6 +407,24 @@ func templatePongo2WebUserHtml() (*asset, error) {
 	return a, err
 }
 
+// templatePongo2WebWsHtml reads file data from disk. It returns an error on failure.
+func templatePongo2WebWsHtml() (*asset, error) {
+	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/ws.html"
+	name := "template/pongo2/web/ws.html"
+	bytes, err := bindataRead(path, name)
+	if err != nil {
+		return nil, err
+	}
+
+	fi, err := os.Stat(path)
+	if err != nil {
+		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
+	}
+
+	a := &asset{bytes: bytes, info: fi}
+	return a, err
+}
+
 // Asset loads and returns the asset for the given name.
 // It returns an error if the asset could not be found or
 // could not be loaded.
@@ -489,7 +489,6 @@ var _bindata = map[string]func() (*asset, error){
 	"template/layout/www/user.html": templateLayoutWwwUserHtml,
 	"template/layout.tmpl": templateLayoutTmpl,
 	"template/pongo2/base.html": templatePongo2BaseHtml,
-	"template/pongo2/socket/index.html": templatePongo2SocketIndexHtml,
 	"template/pongo2/web/about.html": templatePongo2WebAboutHtml,
 	"template/pongo2/web/demo.html": templatePongo2WebDemoHtml,
 	"template/pongo2/web/home.html": templatePongo2WebHomeHtml,
@@ -498,6 +497,7 @@ var _bindata = map[string]func() (*asset, error){
 	"template/pongo2/web/login.html": templatePongo2WebLoginHtml,
 	"template/pongo2/web/register.html": templatePongo2WebRegisterHtml,
 	"template/pongo2/web/user.html": templatePongo2WebUserHtml,
+	"template/pongo2/web/ws.html": templatePongo2WebWsHtml,
 }
 
 // AssetDir returns the file names below a certain
@@ -560,9 +560,6 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		"layout.tmpl": &bintree{templateLayoutTmpl, map[string]*bintree{}},
 		"pongo2": &bintree{nil, map[string]*bintree{
 			"base.html": &bintree{templatePongo2BaseHtml, map[string]*bintree{}},
-			"socket": &bintree{nil, map[string]*bintree{
-				"index.html": &bintree{templatePongo2SocketIndexHtml, map[string]*bintree{}},
-			}},
 			"web": &bintree{nil, map[string]*bintree{
 				"about.html": &bintree{templatePongo2WebAboutHtml, map[string]*bintree{}},
 				"demo.html": &bintree{templatePongo2WebDemoHtml, map[string]*bintree{}},
@@ -572,6 +569,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 				"login.html": &bintree{templatePongo2WebLoginHtml, map[string]*bintree{}},
 				"register.html": &bintree{templatePongo2WebRegisterHtml, map[string]*bintree{}},
 				"user.html": &bintree{templatePongo2WebUserHtml, map[string]*bintree{}},
+				"ws.html": &bintree{templatePongo2WebWsHtml, map[string]*bintree{}},
 			}},
 		}},
 	}},

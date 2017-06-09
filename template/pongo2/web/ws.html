@@ -1,23 +1,23 @@
-<!doctype html>
-<html lang="en">
+{% extends "../base.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>WebSocket</title>
-</head>
+{% block head_title %}
+{{title}}
+{% endblock %}
 
-<body>
-  <p id="output"></p>
+{% block head_scripts %}
+{% endblock %}
 
-  <script>
+{% block content %}
+<p id="output"></p>
+<script>
     var loc = window.location;
     var uri = 'ws:';
 
     if (loc.protocol === 'https:') {
       uri = 'wss:';
     }
-    uri += '//' + loc.host;
-    uri += loc.pathname + 'ws';
+    uri += '//{{_conf.Server.DomainSocket}}';
+    uri += ':8080/ws';
 
     ws = new WebSocket(uri)
 
@@ -32,8 +32,6 @@
 
     setInterval(function() {
       ws.send('Hello, Server!');
-    }, 1000);
+    }, 3000);
   </script>
-</body>
-
-</html>
+{% endblock %}
