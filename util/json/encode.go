@@ -179,6 +179,32 @@ func MarshalIndent(v interface{}, prefix, indent string) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
+// 基于`json`标签的filter:规则扩展JSON encode
+func MarshalFilter(v interface{}, filter string) ([]byte, error) {
+	e := &encodeState{}
+	opts := encOpts{escapeHTML: true}
+	opts.setFilter(filter)
+
+	err := e.marshal(v, opts)
+	if err != nil {
+		return nil, err
+	}
+	return e.Bytes(), nil
+}
+
+func MarshalFilterIndent(v interface{}, filter, prefix, indent string) ([]byte, error) {
+	b, err := MarshalFilter(v, filter)
+	if err != nil {
+		return nil, err
+	}
+	var buf bytes.Buffer
+	err = Indent(&buf, b, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
+}
+
 // HTMLEscape appends to dst the JSON-encoded src with <, >, &, U+2028 and U+2029
 // characters inside string literals changed to \u003c, \u003e, \u0026, \u2028, \u2029
 // so that the JSON will be safe to embed inside HTML <script> tags.
@@ -328,6 +354,19 @@ type encOpts struct {
 	quoted bool
 	// escapeHTML causes '<', '>', and '&' to be escaped in JSON strings.
 	escapeHTML bool
+
+	// filter条件
+	isFilter bool
+	filter   string
+}
+
+func (e *encOpts) setFilter(filter string) {
+	e.filter = filter
+	if len(filter) > 0 {
+		e.isFilter = true
+	} else {
+		e.isFilter = false
+	}
 }
 
 type encoderFunc func(e *encodeState, v reflect.Value, opts encOpts)
@@ -629,9 +668,12 @@ type structEncoder struct {
 func (se *structEncoder) encode(e *encodeState, v reflect.Value, opts encOpts) {
 	e.WriteByte('{')
 	first := true
+
+	filter := opts.filter
 	for i, f := range se.fields {
+		fmt.Printf("filter fields:%v filter:%v valid:%v \n", f.filters, filter, f.fieldValid(opts.filter))
 		fv := fieldByIndex(v, f.index)
-		if !fv.IsValid() || f.omitEmpty && isEmptyValue(fv) {
+		if !f.fieldValid(filter) || !fv.IsValid() || f.omitEmpty && isEmptyValue(fv) {
 			continue
 		}
 		if first {
@@ -642,6 +684,18 @@ func (se *structEncoder) encode(e *encodeState, v reflect.Value, opts encOpts) {
 		e.string(f.name, opts.escapeHTML)
 		e.WriteByte(':')
 		opts.quoted = f.quoted
+
+		if opts.isFilter {
+			opts.filter = "*" // 默认*
+			if len(f.filters) > 0 {
+				if value, ok := f.filters[filter]; ok {
+					opts.filter = value
+				} else if value, ok := f.filters["*"]; ok {
+					opts.filter = value
+				}
+			}
+		}
+
 		se.fieldEncs[i](e, fv, opts)
 	}
 	e.WriteByte('}')
@@ -687,6 +741,11 @@ func (me *mapEncoder) encode(e *encodeState, v reflect.Value, opts encOpts) {
 		}
 		e.string(kv.s, opts.escapeHTML)
 		e.WriteByte(':')
+
+		if opts.isFilter {
+			opts.filter = kv.s
+		}
+
 		me.elemEnc(e, v.MapIndex(kv.v), opts)
 	}
 	e.WriteByte('}')
@@ -817,9 +876,9 @@ func isValidTag(s string) bool {
 	for _, c := range s {
 		switch {
 		case strings.ContainsRune("!#$%&()*+-./:<=>?@[]^_{|}~ ", c):
-			// Backslash and quote chars are reserved, but
-			// otherwise any punctuation chars are allowed
-			// in a tag name.
+		// Backslash and quote chars are reserved, but
+		// otherwise any punctuation chars are allowed
+		// in a tag name.
 		default:
 			if !unicode.IsLetter(c) && !unicode.IsDigit(c) {
 				return false
@@ -1043,6 +1102,22 @@ type field struct {
 	typ       reflect.Type
 	omitEmpty bool
 	quoted    bool
+
+	filters map[string]string // 筛选规则
+}
+
+// 基于筛选规则判断字段是否有效
+func (f field) fieldValid(key string) bool {
+	if len(key) <= 0 || key == "*" {
+		return true
+	}
+	if _, ok := f.filters[key]; ok {
+		return true
+	} else if _, ok := f.filters["*"]; ok {
+		return true
+	} else {
+		return false
+	}
 }
 
 func fillField(f field) field {
@@ -1135,6 +1210,9 @@ func typeFields(t reflect.Type) []field {
 					}
 				}
 
+				// 从json tag的opts中解析筛选规则
+				filterOpts := parseFilterOpts(string(opts))
+
 				// Record found field and index sequence.
 				if name != "" || !sf.Anonymous || ft.Kind() != reflect.Struct {
 					tagged := name != ""
@@ -1148,6 +1226,7 @@ func typeFields(t reflect.Type) []field {
 						typ:       ft,
 						omitEmpty: opts.Contains("omitempty"),
 						quoted:    quoted,
+						filters:   filterOpts,
 					}))
 					if count[f.typ] > 1 {
 						// If there were multiple instances, add a second,
@@ -1162,7 +1241,7 @@ func typeFields(t reflect.Type) []field {
 				// Record new anonymous struct to explore in next round.
 				nextCount[ft]++
 				if nextCount[ft] == 1 {
-					next = append(next, fillField(field{name: ft.Name(), index: index, typ: ft}))
+					next = append(next, fillField(field{name: ft.Name(), index: index, typ: ft, filters: filterOpts}))
 				}
 			}
 		}

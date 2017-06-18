@@ -42,3 +42,52 @@ func (o tagOptions) Contains(optionName string) bool {
 	}
 	return false
 }
+
+const filterOptsKey = "filter:"
+type filterOpts map[string]string
+
+func parseFilterOpts(optsStr string) filterOpts {
+	opts := filterOpts{}
+
+	if len(optsStr) == 0 {
+		return opts
+	}
+
+	s, optsStr := optsStr, ""
+	for s != "" {
+		var next string
+		i := strings.Index(s, ",")
+		if i >= 0 {
+			s, next = s[:i], s[i+1:]
+		}
+
+		j := strings.Index(s, filterOptsKey)
+		if j >= 0 {
+			optsStr = s[j+len(filterOptsKey):]
+			break
+		} else {
+			s = next
+		}
+	}
+
+	s = optsStr
+	for s != "" {
+		var next string
+		i := strings.Index(s, ";")
+		if i >= 0 {
+			s, next = s[:i], s[i+1:]
+		}
+
+		j := strings.Index(s, ".")
+		if j >= 0 {
+			key, value := s[:j], s[j+1:]
+			opts[key] = value
+		} else if len(s) > 0 {
+			opts[s] = ""
+		}
+
+		s = next
+	}
+
+	return opts
+}
