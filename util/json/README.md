@@ -42,27 +42,27 @@ type C struct {
 }
 ```
 
-#### [""，不过滤](#""")
+#### [""，不过滤](#""json)
 ```go
 json.MarshalFilterIndent(i, "", "", "\t")
 ```
 
-#### ["*"，过滤，A全部](#"*")
+#### ["*"，过滤，A全部](#"*"json)
 ```go
 json.MarshalFilterIndent(i, "*", "", "\t")
 ```
 
-#### ["a1"，过滤，只要a1](#"a1")
+#### ["a1"，过滤，只要a1](#"a1"json)
 ```go
 json.MarshalFilterIndent(i, "a1", "", "\t")
 ```
 
-#### ["a1"，过滤，只要a1](#"a2")
+#### ["a1"，过滤，只要a1](#"a2"json)
 ```go
 json.MarshalFilterIndent(i, "a1", "", "\t")
 ```
 
-##### ""
+##### ""json
 ```json
 {
 	"f": "",
@@ -150,7 +150,7 @@ json.MarshalFilterIndent(i, "a1", "", "\t")
 	}
 }
 ```
-##### "*"
+##### "*"json
 ```json
 {
 	"f": "",
@@ -233,7 +233,7 @@ json.MarshalFilterIndent(i, "a1", "", "\t")
 	}
 }
 ```
-##### "a1"
+##### "a1"json
 ```json
 {
 	"f": "",
@@ -296,7 +296,7 @@ json.MarshalFilterIndent(i, "a1", "", "\t")
 	}
 }
 ```
-##### "a2"
+##### "a2"json
 ```json
 {
 	"f": "",
