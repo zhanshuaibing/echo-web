@@ -36,9 +36,9 @@ func InitRoutes() map[string]*Host {
 }
 
 // 子域名部署
-func RunSubdomains() {
+func RunSubdomains(confFilePath string) {
 	// 配置初始化
-	if err := InitConfig(""); err != nil {
+	if err := InitConfig(confFilePath); err != nil {
 		log.Panic(err)
 	}
 
