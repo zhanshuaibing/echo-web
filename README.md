@@ -105,6 +105,34 @@ http://localhost:8700/traces
 $ ./build.sh 		    # 默认本机
 $ ./build.sh -l		    # 打包Linux平台
 ```
+## 目录结构
+
+目录 | 说明
+:--- | :---
+assets | Web服务静态资源
+conf | 项目配置
+middleware | 中间件
+model | 模型，数据库连接&ORM
+  └ orm | ORM扩展
+module | 模块封装
+  ├ auth | Auth授权
+  ├ cache | 缓存
+  ├ log | 日志
+  ├ render | 渲染
+  ├ session | Session
+  └ tmpl | Web模板
+res | 项目资源
+  └ db | 数据
+router | 路由
+  ├ api |
+  ├ socket |
+  └ web |
+template | 模板
+  ├ pongo2 | pongo2模板
+util | 公共工具
+  ├ conv | 类型转换
+  ├ crypt | 加密
+  └ sql | SQL
 
 ## 框架功能
 
