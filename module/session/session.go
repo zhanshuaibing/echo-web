@@ -3,7 +3,7 @@ package session
 import (
 	"github.com/labstack/echo"
 
-	es "github.com/hobo-go/echo-mw/session"
+	es "github.com/hb-go/echo-mw/session"
 
 	. "echo-web/conf"
 )

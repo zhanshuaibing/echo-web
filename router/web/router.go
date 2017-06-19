@@ -4,8 +4,8 @@ import (
 	"github.com/labstack/echo"
 	mw "github.com/labstack/echo/middleware"
 
-	"github.com/hobo-go/echo-mw/captcha"
-	"github.com/hobo-go/echo-mw/staticbin"
+	"github.com/hb-go/echo-mw/captcha"
+	"github.com/hb-go/echo-mw/staticbin"
 
 	"echo-web/assets"
 	. "echo-web/conf"
@@ -93,12 +93,6 @@ func Routers() *echo.Echo {
 
 	e.GET("/jwt/tester", handler(JWTTesterHandler))
 	e.GET("/ws", handler(WsHandler))
-
-	demo := e.Group("/demo")
-	demo.Use(auth.LoginRequired())
-	{
-		demo.GET("", handler(DemoHandler))
-	}
 
 	user := e.Group("/user")
 	user.Use(auth.LoginRequired())

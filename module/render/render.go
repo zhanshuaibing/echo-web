@@ -10,9 +10,9 @@ import (
 
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-mw/multitemplate"
-	"github.com/hobo-go/echo-mw/pongo2echo"
-	"github.com/hobo-go/echo-mw/session"
+	"github.com/hb-go/echo-mw/multitemplate"
+	"github.com/hb-go/echo-mw/pongo2echo"
+	"github.com/hb-go/echo-mw/session"
 
 	. "echo-web/conf"
 	"echo-web/model"

@@ -3,7 +3,7 @@ package cache
 import (
 	"time"
 
-	ec "github.com/hobo-go/echo-mw/cache"
+	ec "github.com/hb-go/echo-mw/cache"
 	"github.com/labstack/echo"
 
 	. "echo-web/conf"
@@ -13,7 +13,7 @@ const (
 	DefaultExpiration = 3600
 	DEFAULT           = time.Duration(0)
 	FOREVER           = time.Duration(-1)
-	DefaultKey        = "github.com/hobo-go/echo-web/modules/cache"
+	DefaultKey        = "github.com/hb-go/echo-web/modules/cache"
 )
 
 func Cache() echo.MiddlewareFunc {

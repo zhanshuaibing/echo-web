@@ -88,11 +88,11 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/hobo-go/echo-mw"
+  name = "github.com/hb-go/echo-mw"
 
 [[constraint]]
   branch = "master"
-  name = "github.com/hobo-go/gorm"
+  name = "github.com/hb-go/gorm"
 
 [[constraint]]
   branch = "master"

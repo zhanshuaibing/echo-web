@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo"
 	// "github.com/jinzhu/gorm"
 
-	"github.com/hobo-go/echo-mw/session"
+	"github.com/hb-go/echo-mw/session"
 
 	"echo-web/model"
 	"echo-web/module/cache"

@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hobo-go/echo-mw/session"
+	"github.com/hb-go/echo-mw/session"
 	"github.com/labstack/echo"
 )
 
 const (
-	DefaultKey  = "github.com/hobo-go/echo-web/modules/auth"
+	DefaultKey  = "github.com/hb-go/echo-web/modules/auth"
 	errorFormat = "[modules] ERROR! %s\n"
 )
 

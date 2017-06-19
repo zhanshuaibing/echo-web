@@ -81,13 +81,13 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/hobo-go/echo-mw"
+  name = "github.com/hb-go/echo-mw"
   packages = ["cache","captcha","multitemplate","pongo2echo","session","staticbin"]
   revision = "a3c62f25136a12c6a6f4d596ba5029fb103d49ff"
 
 [[projects]]
   branch = "master"
-  name = "github.com/hobo-go/gorm"
+  name = "github.com/hb-go/gorm"
   packages = ["."]
   revision = "df05d3ea3401cd038f943cad0af832034be16cdb"
 
@@ -208,6 +208,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0dc7c1b4f29c69ab390dbb33a849fcd1704400f7f5cff01a939d1251da8abcb5"
+  inputs-digest = "6155d6fece7006f42d22a3c26a1bf7b104916e7fe9579d2483ad4d5cea3d468f"
   solver-name = "gps-cdcl"
   solver-version = 1

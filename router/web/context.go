@@ -3,7 +3,7 @@ package web
 import (
 	"github.com/labstack/echo"
 
-	"github.com/hobo-go/echo-mw/session"
+	"github.com/hb-go/echo-mw/session"
 
 	"github.com/opentracing/opentracing-go"
 

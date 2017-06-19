@@ -4,7 +4,6 @@
 // template/50x.tmpl
 // template/include/base.html
 // template/layout/www/about.html
-// template/layout/www/demo.html
 // template/layout/www/home.html
 // template/layout/www/index.html
 // template/layout/www/login.html
@@ -13,7 +12,6 @@
 // template/layout.tmpl
 // template/pongo2/base.html
 // template/pongo2/web/about.html
-// template/pongo2/web/demo.html
 // template/pongo2/web/home.html
 // template/pongo2/web/index.html
 // template/pongo2/web/jwt_tester.html
@@ -105,24 +103,6 @@ func templateIncludeBaseHtml() (*asset, error) {
 func templateLayoutWwwAboutHtml() (*asset, error) {
 	path := "/Users/Steven/Develop/Go/src/echo-web/template/layout/www/about.html"
 	name := "template/layout/www/about.html"
-	bytes, err := bindataRead(path, name)
-	if err != nil {
-		return nil, err
-	}
-
-	fi, err := os.Stat(path)
-	if err != nil {
-		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
-	}
-
-	a := &asset{bytes: bytes, info: fi}
-	return a, err
-}
-
-// templateLayoutWwwDemoHtml reads file data from disk. It returns an error on failure.
-func templateLayoutWwwDemoHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/layout/www/demo.html"
-	name := "template/layout/www/demo.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -267,24 +247,6 @@ func templatePongo2BaseHtml() (*asset, error) {
 func templatePongo2WebAboutHtml() (*asset, error) {
 	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/about.html"
 	name := "template/pongo2/web/about.html"
-	bytes, err := bindataRead(path, name)
-	if err != nil {
-		return nil, err
-	}
-
-	fi, err := os.Stat(path)
-	if err != nil {
-		err = fmt.Errorf("Error reading asset info %s at %s: %v", name, path, err)
-	}
-
-	a := &asset{bytes: bytes, info: fi}
-	return a, err
-}
-
-// templatePongo2WebDemoHtml reads file data from disk. It returns an error on failure.
-func templatePongo2WebDemoHtml() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/template/pongo2/web/demo.html"
-	name := "template/pongo2/web/demo.html"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
 		return nil, err
@@ -481,7 +443,6 @@ var _bindata = map[string]func() (*asset, error){
 	"template/50x.tmpl": template50xTmpl,
 	"template/include/base.html": templateIncludeBaseHtml,
 	"template/layout/www/about.html": templateLayoutWwwAboutHtml,
-	"template/layout/www/demo.html": templateLayoutWwwDemoHtml,
 	"template/layout/www/home.html": templateLayoutWwwHomeHtml,
 	"template/layout/www/index.html": templateLayoutWwwIndexHtml,
 	"template/layout/www/login.html": templateLayoutWwwLoginHtml,
@@ -490,7 +451,6 @@ var _bindata = map[string]func() (*asset, error){
 	"template/layout.tmpl": templateLayoutTmpl,
 	"template/pongo2/base.html": templatePongo2BaseHtml,
 	"template/pongo2/web/about.html": templatePongo2WebAboutHtml,
-	"template/pongo2/web/demo.html": templatePongo2WebDemoHtml,
 	"template/pongo2/web/home.html": templatePongo2WebHomeHtml,
 	"template/pongo2/web/index.html": templatePongo2WebIndexHtml,
 	"template/pongo2/web/jwt_tester.html": templatePongo2WebJwt_testerHtml,
@@ -549,7 +509,6 @@ var _bintree = &bintree{nil, map[string]*bintree{
 		"layout": &bintree{nil, map[string]*bintree{
 			"www": &bintree{nil, map[string]*bintree{
 				"about.html": &bintree{templateLayoutWwwAboutHtml, map[string]*bintree{}},
-				"demo.html": &bintree{templateLayoutWwwDemoHtml, map[string]*bintree{}},
 				"home.html": &bintree{templateLayoutWwwHomeHtml, map[string]*bintree{}},
 				"index.html": &bintree{templateLayoutWwwIndexHtml, map[string]*bintree{}},
 				"login.html": &bintree{templateLayoutWwwLoginHtml, map[string]*bintree{}},
@@ -562,7 +521,6 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			"base.html": &bintree{templatePongo2BaseHtml, map[string]*bintree{}},
 			"web": &bintree{nil, map[string]*bintree{
 				"about.html": &bintree{templatePongo2WebAboutHtml, map[string]*bintree{}},
-				"demo.html": &bintree{templatePongo2WebDemoHtml, map[string]*bintree{}},
 				"home.html": &bintree{templatePongo2WebHomeHtml, map[string]*bintree{}},
 				"index.html": &bintree{templatePongo2WebIndexHtml, map[string]*bintree{}},
 				"jwt_tester.html": &bintree{templatePongo2WebJwt_testerHtml, map[string]*bintree{}},

@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/hobo-go/echo-mw/cache"
-	"github.com/hobo-go/gorm"
+	"github.com/hb-go/echo-mw/cache"
+	"github.com/hb-go/gorm"
 
 	"echo-web/util/conv"
 	"echo-web/util/sql"

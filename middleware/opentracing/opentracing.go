@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	DefaultKey = "github.com/hobo-go/echo-web/middleware/opentracing"
+	DefaultKey = "github.com/hb-go/echo-web/middleware/opentracing"
 )
 
 func InitGlobalTracer() {

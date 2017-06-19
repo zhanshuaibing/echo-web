@@ -4,8 +4,8 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/hobo-go/echo-mw/cache"
-	"github.com/hobo-go/gorm"
+	"github.com/hb-go/echo-mw/cache"
+	"github.com/hb-go/gorm"
 
 	. "echo-web/conf"
 	"echo-web/model/orm"
