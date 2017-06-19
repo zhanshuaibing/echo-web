@@ -1,6 +1,6 @@
 # Echo Web
 Go web framework Echo example. 
-> Echo middleware [echo-mw](https://github.com/hobo-go/echo-mw)
+> Echo middleware [echo-mw](https://github.com/hb-go/echo-mw)
 
 > Echo中文文档 [go-echo.org](http://go-echo.org/)
 
@@ -13,7 +13,7 @@ Go web framework Echo example.
 ##### 1.源码下载
 ```shell
 $ cd $GOPATH/src
-$ git clone git@github.com:hobo-go/echo-web.git
+$ git clone git@github.com:hb-go/echo-web.git
 ```
 
 ##### 2.依赖安装
@@ -34,7 +34,7 @@ host = "127.0.0.1"
 port = "3306"
 
 # 测试数据库SQL脚本
-./echo-web/common/db_structure.sql
+./echo-web/res/db_structure.sql
 ```
 
 ##### 4.Redis、Memcached配置，可选
