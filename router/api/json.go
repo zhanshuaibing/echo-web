@@ -34,6 +34,6 @@ type C struct {
 func JsonEncodeHandler(c *Context) error {
 	filter := c.QueryParam("filter")
 	a := A{}
-	c.JSONF(http.StatusOK, a, filter)
+	c.CustomJSON(http.StatusOK, a, filter)
 	return nil
 }

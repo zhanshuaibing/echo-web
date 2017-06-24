@@ -122,9 +122,13 @@ module          模块封装
 res             项目资源
   └ db          数据
 router          路由
-  ├ api         接口路由
+  └ api         接口路由
+    ├context    自定义Context，便于扩展API层扩展
+    └router     路由
   ├ socket      socket示范
   └ web         Web鲈鱼
+    ├context    自定义Context，便于扩展Webb层扩展
+    └router     路由        
 template        模板
   └ pongo2      pongo2模板
 util            公共工具

@@ -36,7 +36,8 @@ func (c *Context) AutoFMT(code int, i interface{}) (err error) {
 	}
 }
 
-func (c *Context) JSONF(code int, i interface{}, f string) (err error) {
+// 自定义JSON解析
+func (c *Context) CustomJSON(code int, i interface{}, f string) (err error) {
 	if c.Context.Echo().Debug {
 		return c.JSONPretty(code, i, "  ")
 	}
