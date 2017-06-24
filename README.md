@@ -106,7 +106,7 @@ $ ./build.sh 		    # 默认本机
 $ ./build.sh -l		    # 打包Linux平台
 ```
 ## 目录结构
-```bash
+```sh
 assets          Web服务静态资源
 conf            项目配置
 middleware      中间件
@@ -126,7 +126,7 @@ router          路由
   ├ socket      socket示范
   └ web         Web鲈鱼
 template        模板
-  ├ pongo2      pongo2模板
+  └ pongo2      pongo2模板
 util            公共工具
   ├ conv        类型转换
   ├ crypt       加/解密

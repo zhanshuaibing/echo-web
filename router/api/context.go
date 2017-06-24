@@ -1,6 +1,7 @@
 package api
 
 import (
+	"github.com/hb-go/json"
 	"github.com/labstack/echo"
 	"github.com/opentracing/opentracing-go"
 
@@ -33,6 +34,17 @@ func (c *Context) AutoFMT(code int, i interface{}) (err error) {
 	} else {
 		return c.JSON(code, i)
 	}
+}
+
+func (c *Context) JSONF(code int, i interface{}, f string) (err error) {
+	if c.Context.Echo().Debug {
+		return c.JSONPretty(code, i, "  ")
+	}
+	b, err := json.MarshalFilter(i, f)
+	if err != nil {
+		return
+	}
+	return c.JSONBlob(code, b)
 }
 
 func (ctx *Context) OpenTracingSpan() opentracing.Span {

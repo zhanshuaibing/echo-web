@@ -2,10 +2,10 @@
 
 
 [[projects]]
+  branch = "master"
   name = "github.com/BurntSushi/toml"
   packages = ["."]
-  revision = "b26d9c308763d68093482582cea63d69be07a0f0"
-  version = "v0.3.0"
+  revision = "8b58b6030fce084b58a61e2bc3fdf183d5881ab4"
 
 [[projects]]
   name = "github.com/boj/redistore"
@@ -90,6 +90,12 @@
   name = "github.com/hb-go/gorm"
   packages = ["."]
   revision = "df05d3ea3401cd038f943cad0af832034be16cdb"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/hb-go/json"
+  packages = ["."]
+  revision = "a62535c6a1e8234a54e921a8bd4e60643fee0691"
 
 [[projects]]
   branch = "master"
@@ -208,6 +214,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6155d6fece7006f42d22a3c26a1bf7b104916e7fe9579d2483ad4d5cea3d468f"
+  inputs-digest = "769e83396909296337c71fccf708d32ffdb48c72391d4a1a70089802dd55ff92"
   solver-name = "gps-cdcl"
   solver-version = 1

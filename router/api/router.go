@@ -7,9 +7,9 @@ import (
 	mw "github.com/labstack/echo/middleware"
 
 	. "echo-web/conf"
+	"echo-web/middleware/opentracing"
 	"echo-web/module/cache"
 	"echo-web/module/session"
-	"echo-web/middleware/opentracing"
 )
 
 //-----
@@ -60,6 +60,9 @@ func Routers() *echo.Echo {
 	// Routers
 	e.GET("/login", UserLoginHandler)
 	e.GET("/register", UserRegisterHandler)
+
+	// 示范github.com/hb-go/json
+	e.GET("/json/encode", handler(JsonEncodeHandler))
 
 	// JWT
 	r := e.Group("")
