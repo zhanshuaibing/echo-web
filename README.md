@@ -141,16 +141,16 @@ util            公共工具
 
 功能 | 描述
 :--- | :---
-配置 | [toml](http://github.com/BurntSushi/toml)配置文件
-子域名部署 | 子域名区分模块
-缓存 | Redis、Memcached、Memory
-Session | Redis、File、Cookie，支持Flash
-ORM | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
-缓存 | 支持`First`、`Last`、`Find`、`Count`的查询缓存
-模板 | 支持html/template、[pongo2](http://github.com/flosch/pongo2)，模板支持打包[bindata](https://github.com/jteeuwen/go-bindata#installation)
+[配置](https://github.com/hb-go/echo-web/tree/master/conf) | [toml](http://github.com/BurntSushi/toml)配置文件
+[子域名部署](https://github.com/hb-go/echo-web/blob/master/router/router.go) | 子域名区分模块
+[缓存](https://github.com/hb-go/echo-web/blob/master/module/cache) | Redis、Memcached、Memory
+[Session](https://github.com/hb-go/echo-web/blob/master/module/session) | Redis、File、Cookie，支持Flash
+[ORM](https://github.com/hb-go/echo-web/tree/master/model) | Fork [gorm](http://github.com/jinzhu/gorm)，`FirstSQL`、`LastSQL`、`FindSQL`、`CountSQL`支持构造查询SQL
+[查询缓存](https://github.com/hb-go/echo-web/tree/master/model/orm) | 支持`First`、`Last`、`Find`、`Count`的查询缓存
+[模板](https://github.com/hb-go/echo-web/tree/master/module/render) | 支持html/template、[pongo2](http://github.com/flosch/pongo2)，模板支持打包[bindata](https://github.com/jteeuwen/go-bindata#installation)
 静态 | 静态资源，支持打包[bindata](https://github.com/jteeuwen/go-bindata#installation)
 安全 | CORS、CSRF、XSS、HSTS、验证码等
-监控 | [OpenTracing](http://opentracing.io/)，如何在项目中更方便的使用还需要研究，如ORM层
+[监控](https://github.com/hb-go/echo-web/blob/master/middleware/opentracing/opentracing.go) | [OpenTracing](http://opentracing.io/)，如何在项目中更方便的使用还需要研究，如ORM层
 其他 | JWT、Socket演示
 
 目标功能 | 描述
