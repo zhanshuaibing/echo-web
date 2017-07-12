@@ -164,7 +164,7 @@ func assetsCssBootstrapCssMap() (*asset, error) {
 
 // assetsCssBootstrapMinCss reads file data from disk. It returns an error on failure.
 func assetsCssBootstrapMinCss() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/css/bootstrap.min.css"
+	path := "assets/css/bootstrap.min.css"
 	name := "assets/css/bootstrap.min.css"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -182,7 +182,7 @@ func assetsCssBootstrapMinCss() (*asset, error) {
 
 // assetsCssJqueryTreetableCss reads file data from disk. It returns an error on failure.
 func assetsCssJqueryTreetableCss() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/css/jquery.treetable.css"
+	path := "assets/css/jquery.treetable.css"
 	name := "assets/css/jquery.treetable.css"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -200,7 +200,7 @@ func assetsCssJqueryTreetableCss() (*asset, error) {
 
 // assetsCssJqueryTreetableThemeDefaultCss reads file data from disk. It returns an error on failure.
 func assetsCssJqueryTreetableThemeDefaultCss() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/css/jquery.treetable.theme.default.css"
+	path := "assets/css/jquery.treetable.theme.default.css"
 	name := "assets/css/jquery.treetable.theme.default.css"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -218,7 +218,7 @@ func assetsCssJqueryTreetableThemeDefaultCss() (*asset, error) {
 
 // assetsFontsGlyphiconsHalflingsRegularEot reads file data from disk. It returns an error on failure.
 func assetsFontsGlyphiconsHalflingsRegularEot() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/fonts/glyphicons-halflings-regular.eot"
+	path := "assets/fonts/glyphicons-halflings-regular.eot"
 	name := "assets/fonts/glyphicons-halflings-regular.eot"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -236,7 +236,7 @@ func assetsFontsGlyphiconsHalflingsRegularEot() (*asset, error) {
 
 // assetsFontsGlyphiconsHalflingsRegularSvg reads file data from disk. It returns an error on failure.
 func assetsFontsGlyphiconsHalflingsRegularSvg() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/fonts/glyphicons-halflings-regular.svg"
+	path := "assets/fonts/glyphicons-halflings-regular.svg"
 	name := "assets/fonts/glyphicons-halflings-regular.svg"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -254,7 +254,7 @@ func assetsFontsGlyphiconsHalflingsRegularSvg() (*asset, error) {
 
 // assetsFontsGlyphiconsHalflingsRegularTtf reads file data from disk. It returns an error on failure.
 func assetsFontsGlyphiconsHalflingsRegularTtf() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/fonts/glyphicons-halflings-regular.ttf"
+	path := "assets/fonts/glyphicons-halflings-regular.ttf"
 	name := "assets/fonts/glyphicons-halflings-regular.ttf"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -272,7 +272,7 @@ func assetsFontsGlyphiconsHalflingsRegularTtf() (*asset, error) {
 
 // assetsFontsGlyphiconsHalflingsRegularWoff reads file data from disk. It returns an error on failure.
 func assetsFontsGlyphiconsHalflingsRegularWoff() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/fonts/glyphicons-halflings-regular.woff"
+	path := "assets/fonts/glyphicons-halflings-regular.woff"
 	name := "assets/fonts/glyphicons-halflings-regular.woff"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -290,7 +290,7 @@ func assetsFontsGlyphiconsHalflingsRegularWoff() (*asset, error) {
 
 // assetsFontsGlyphiconsHalflingsRegularWoff2 reads file data from disk. It returns an error on failure.
 func assetsFontsGlyphiconsHalflingsRegularWoff2() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/fonts/glyphicons-halflings-regular.woff2"
+	path := "assets/fonts/glyphicons-halflings-regular.woff2"
 	name := "assets/fonts/glyphicons-halflings-regular.woff2"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -308,7 +308,7 @@ func assetsFontsGlyphiconsHalflingsRegularWoff2() (*asset, error) {
 
 // assetsImgFaviconIco reads file data from disk. It returns an error on failure.
 func assetsImgFaviconIco() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/img/favicon.ico"
+	path := "assets/img/favicon.ico"
 	name := "assets/img/favicon.ico"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -326,7 +326,7 @@ func assetsImgFaviconIco() (*asset, error) {
 
 // assetsImgIcon_brandPng reads file data from disk. It returns an error on failure.
 func assetsImgIcon_brandPng() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/img/icon_brand.png"
+	path := "assets/img/icon_brand.png"
 	name := "assets/img/icon_brand.png"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -344,7 +344,7 @@ func assetsImgIcon_brandPng() (*asset, error) {
 
 // assetsJsAppJwtJwtJs reads file data from disk. It returns an error on failure.
 func assetsJsAppJwtJwtJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/app/jwt/jwt.js"
+	path := "assets/js/app/jwt/jwt.js"
 	name := "assets/js/app/jwt/jwt.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -362,7 +362,7 @@ func assetsJsAppJwtJwtJs() (*asset, error) {
 
 // assetsJsAppTreetableTreetablePageJs reads file data from disk. It returns an error on failure.
 func assetsJsAppTreetableTreetablePageJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/app/treetable/treetable-page.js"
+	path := "assets/js/app/treetable/treetable-page.js"
 	name := "assets/js/app/treetable/treetable-page.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -380,7 +380,7 @@ func assetsJsAppTreetableTreetablePageJs() (*asset, error) {
 
 // assetsJsLibBootstrapBootstrapJs reads file data from disk. It returns an error on failure.
 func assetsJsLibBootstrapBootstrapJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/bootstrap/bootstrap.js"
+	path := "assets/js/lib/bootstrap/bootstrap.js"
 	name := "assets/js/lib/bootstrap/bootstrap.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -398,7 +398,7 @@ func assetsJsLibBootstrapBootstrapJs() (*asset, error) {
 
 // assetsJsLibBootstrapBootstrapMinJs reads file data from disk. It returns an error on failure.
 func assetsJsLibBootstrapBootstrapMinJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/bootstrap/bootstrap.min.js"
+	path := "assets/js/lib/bootstrap/bootstrap.min.js"
 	name := "assets/js/lib/bootstrap/bootstrap.min.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -416,7 +416,7 @@ func assetsJsLibBootstrapBootstrapMinJs() (*asset, error) {
 
 // assetsJsLibBootstrapNpmJs reads file data from disk. It returns an error on failure.
 func assetsJsLibBootstrapNpmJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/bootstrap/npm.js"
+	path := "assets/js/lib/bootstrap/npm.js"
 	name := "assets/js/lib/bootstrap/npm.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -434,7 +434,7 @@ func assetsJsLibBootstrapNpmJs() (*asset, error) {
 
 // assetsJsLibJqueryJquery213Js reads file data from disk. It returns an error on failure.
 func assetsJsLibJqueryJquery213Js() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/jquery/jquery-2.1.3.js"
+	path := "assets/js/lib/jquery/jquery-2.1.3.js"
 	name := "assets/js/lib/jquery/jquery-2.1.3.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -452,7 +452,7 @@ func assetsJsLibJqueryJquery213Js() (*asset, error) {
 
 // assetsJsLibJqueryJquery213MinJs reads file data from disk. It returns an error on failure.
 func assetsJsLibJqueryJquery213MinJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/jquery/jquery-2.1.3.min.js"
+	path := "assets/js/lib/jquery/jquery-2.1.3.min.js"
 	name := "assets/js/lib/jquery/jquery-2.1.3.min.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -470,7 +470,7 @@ func assetsJsLibJqueryJquery213MinJs() (*asset, error) {
 
 // assetsJsLibJqueryFormJqueryForm351Js reads file data from disk. It returns an error on failure.
 func assetsJsLibJqueryFormJqueryForm351Js() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/jquery-form/jquery.form.3.51.js"
+	path := "assets/js/lib/jquery-form/jquery.form.3.51.js"
 	name := "assets/js/lib/jquery-form/jquery.form.3.51.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -488,7 +488,7 @@ func assetsJsLibJqueryFormJqueryForm351Js() (*asset, error) {
 
 // assetsJsLibJqueryTreetableJqueryTreetableJs reads file data from disk. It returns an error on failure.
 func assetsJsLibJqueryTreetableJqueryTreetableJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/jquery-treetable/jquery.treetable.js"
+	path := "assets/js/lib/jquery-treetable/jquery.treetable.js"
 	name := "assets/js/lib/jquery-treetable/jquery.treetable.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -506,7 +506,7 @@ func assetsJsLibJqueryTreetableJqueryTreetableJs() (*asset, error) {
 
 // assetsJsLibRequireSetupJs reads file data from disk. It returns an error on failure.
 func assetsJsLibRequireSetupJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/require-setup.js"
+	path := "assets/js/lib/require-setup.js"
 	name := "assets/js/lib/require-setup.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -524,7 +524,7 @@ func assetsJsLibRequireSetupJs() (*asset, error) {
 
 // assetsJsLibRequireJs reads file data from disk. It returns an error on failure.
 func assetsJsLibRequireJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/lib/require.js"
+	path := "assets/js/lib/require.js"
 	name := "assets/js/lib/require.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -542,7 +542,7 @@ func assetsJsLibRequireJs() (*asset, error) {
 
 // assetsJsToolsRJs reads file data from disk. It returns an error on failure.
 func assetsJsToolsRJs() (*asset, error) {
-	path := "/Users/Steven/Develop/Go/src/echo-web/assets/js/tools/r.js"
+	path := "assets/js/tools/r.js"
 	name := "assets/js/tools/r.js"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -610,34 +610,34 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"assets/css/bootstrap-combined.min.css": assetsCssBootstrapCombinedMinCss,
-	"assets/css/bootstrap-theme.css": assetsCssBootstrapThemeCss,
-	"assets/css/bootstrap-theme.css.map": assetsCssBootstrapThemeCssMap,
-	"assets/css/bootstrap-theme.min.css": assetsCssBootstrapThemeMinCss,
-	"assets/css/bootstrap.css": assetsCssBootstrapCss,
-	"assets/css/bootstrap.css.map": assetsCssBootstrapCssMap,
-	"assets/css/bootstrap.min.css": assetsCssBootstrapMinCss,
-	"assets/css/jquery.treetable.css": assetsCssJqueryTreetableCss,
-	"assets/css/jquery.treetable.theme.default.css": assetsCssJqueryTreetableThemeDefaultCss,
-	"assets/fonts/glyphicons-halflings-regular.eot": assetsFontsGlyphiconsHalflingsRegularEot,
-	"assets/fonts/glyphicons-halflings-regular.svg": assetsFontsGlyphiconsHalflingsRegularSvg,
-	"assets/fonts/glyphicons-halflings-regular.ttf": assetsFontsGlyphiconsHalflingsRegularTtf,
-	"assets/fonts/glyphicons-halflings-regular.woff": assetsFontsGlyphiconsHalflingsRegularWoff,
-	"assets/fonts/glyphicons-halflings-regular.woff2": assetsFontsGlyphiconsHalflingsRegularWoff2,
-	"assets/img/favicon.ico": assetsImgFaviconIco,
-	"assets/img/icon_brand.png": assetsImgIcon_brandPng,
-	"assets/js/app/jwt/jwt.js": assetsJsAppJwtJwtJs,
-	"assets/js/app/treetable/treetable-page.js": assetsJsAppTreetableTreetablePageJs,
-	"assets/js/lib/bootstrap/bootstrap.js": assetsJsLibBootstrapBootstrapJs,
-	"assets/js/lib/bootstrap/bootstrap.min.js": assetsJsLibBootstrapBootstrapMinJs,
-	"assets/js/lib/bootstrap/npm.js": assetsJsLibBootstrapNpmJs,
-	"assets/js/lib/jquery/jquery-2.1.3.js": assetsJsLibJqueryJquery213Js,
-	"assets/js/lib/jquery/jquery-2.1.3.min.js": assetsJsLibJqueryJquery213MinJs,
-	"assets/js/lib/jquery-form/jquery.form.3.51.js": assetsJsLibJqueryFormJqueryForm351Js,
+	"assets/css/bootstrap-combined.min.css":              assetsCssBootstrapCombinedMinCss,
+	"assets/css/bootstrap-theme.css":                     assetsCssBootstrapThemeCss,
+	"assets/css/bootstrap-theme.css.map":                 assetsCssBootstrapThemeCssMap,
+	"assets/css/bootstrap-theme.min.css":                 assetsCssBootstrapThemeMinCss,
+	"assets/css/bootstrap.css":                           assetsCssBootstrapCss,
+	"assets/css/bootstrap.css.map":                       assetsCssBootstrapCssMap,
+	"assets/css/bootstrap.min.css":                       assetsCssBootstrapMinCss,
+	"assets/css/jquery.treetable.css":                    assetsCssJqueryTreetableCss,
+	"assets/css/jquery.treetable.theme.default.css":      assetsCssJqueryTreetableThemeDefaultCss,
+	"assets/fonts/glyphicons-halflings-regular.eot":      assetsFontsGlyphiconsHalflingsRegularEot,
+	"assets/fonts/glyphicons-halflings-regular.svg":      assetsFontsGlyphiconsHalflingsRegularSvg,
+	"assets/fonts/glyphicons-halflings-regular.ttf":      assetsFontsGlyphiconsHalflingsRegularTtf,
+	"assets/fonts/glyphicons-halflings-regular.woff":     assetsFontsGlyphiconsHalflingsRegularWoff,
+	"assets/fonts/glyphicons-halflings-regular.woff2":    assetsFontsGlyphiconsHalflingsRegularWoff2,
+	"assets/img/favicon.ico":                             assetsImgFaviconIco,
+	"assets/img/icon_brand.png":                          assetsImgIcon_brandPng,
+	"assets/js/app/jwt/jwt.js":                           assetsJsAppJwtJwtJs,
+	"assets/js/app/treetable/treetable-page.js":          assetsJsAppTreetableTreetablePageJs,
+	"assets/js/lib/bootstrap/bootstrap.js":               assetsJsLibBootstrapBootstrapJs,
+	"assets/js/lib/bootstrap/bootstrap.min.js":           assetsJsLibBootstrapBootstrapMinJs,
+	"assets/js/lib/bootstrap/npm.js":                     assetsJsLibBootstrapNpmJs,
+	"assets/js/lib/jquery/jquery-2.1.3.js":               assetsJsLibJqueryJquery213Js,
+	"assets/js/lib/jquery/jquery-2.1.3.min.js":           assetsJsLibJqueryJquery213MinJs,
+	"assets/js/lib/jquery-form/jquery.form.3.51.js":      assetsJsLibJqueryFormJqueryForm351Js,
 	"assets/js/lib/jquery-treetable/jquery.treetable.js": assetsJsLibJqueryTreetableJqueryTreetableJs,
-	"assets/js/lib/require-setup.js": assetsJsLibRequireSetupJs,
-	"assets/js/lib/require.js": assetsJsLibRequireJs,
-	"assets/js/tools/r.js": assetsJsToolsRJs,
+	"assets/js/lib/require-setup.js":                     assetsJsLibRequireSetupJs,
+	"assets/js/lib/require.js":                           assetsJsLibRequireJs,
+	"assets/js/tools/r.js":                               assetsJsToolsRJs,
 }
 
 // AssetDir returns the file names below a certain
@@ -679,28 +679,29 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
+
 var _bintree = &bintree{nil, map[string]*bintree{
 	"assets": &bintree{nil, map[string]*bintree{
 		"css": &bintree{nil, map[string]*bintree{
-			"bootstrap-combined.min.css": &bintree{assetsCssBootstrapCombinedMinCss, map[string]*bintree{}},
-			"bootstrap-theme.css": &bintree{assetsCssBootstrapThemeCss, map[string]*bintree{}},
-			"bootstrap-theme.css.map": &bintree{assetsCssBootstrapThemeCssMap, map[string]*bintree{}},
-			"bootstrap-theme.min.css": &bintree{assetsCssBootstrapThemeMinCss, map[string]*bintree{}},
-			"bootstrap.css": &bintree{assetsCssBootstrapCss, map[string]*bintree{}},
-			"bootstrap.css.map": &bintree{assetsCssBootstrapCssMap, map[string]*bintree{}},
-			"bootstrap.min.css": &bintree{assetsCssBootstrapMinCss, map[string]*bintree{}},
-			"jquery.treetable.css": &bintree{assetsCssJqueryTreetableCss, map[string]*bintree{}},
+			"bootstrap-combined.min.css":         &bintree{assetsCssBootstrapCombinedMinCss, map[string]*bintree{}},
+			"bootstrap-theme.css":                &bintree{assetsCssBootstrapThemeCss, map[string]*bintree{}},
+			"bootstrap-theme.css.map":            &bintree{assetsCssBootstrapThemeCssMap, map[string]*bintree{}},
+			"bootstrap-theme.min.css":            &bintree{assetsCssBootstrapThemeMinCss, map[string]*bintree{}},
+			"bootstrap.css":                      &bintree{assetsCssBootstrapCss, map[string]*bintree{}},
+			"bootstrap.css.map":                  &bintree{assetsCssBootstrapCssMap, map[string]*bintree{}},
+			"bootstrap.min.css":                  &bintree{assetsCssBootstrapMinCss, map[string]*bintree{}},
+			"jquery.treetable.css":               &bintree{assetsCssJqueryTreetableCss, map[string]*bintree{}},
 			"jquery.treetable.theme.default.css": &bintree{assetsCssJqueryTreetableThemeDefaultCss, map[string]*bintree{}},
 		}},
 		"fonts": &bintree{nil, map[string]*bintree{
-			"glyphicons-halflings-regular.eot": &bintree{assetsFontsGlyphiconsHalflingsRegularEot, map[string]*bintree{}},
-			"glyphicons-halflings-regular.svg": &bintree{assetsFontsGlyphiconsHalflingsRegularSvg, map[string]*bintree{}},
-			"glyphicons-halflings-regular.ttf": &bintree{assetsFontsGlyphiconsHalflingsRegularTtf, map[string]*bintree{}},
-			"glyphicons-halflings-regular.woff": &bintree{assetsFontsGlyphiconsHalflingsRegularWoff, map[string]*bintree{}},
+			"glyphicons-halflings-regular.eot":   &bintree{assetsFontsGlyphiconsHalflingsRegularEot, map[string]*bintree{}},
+			"glyphicons-halflings-regular.svg":   &bintree{assetsFontsGlyphiconsHalflingsRegularSvg, map[string]*bintree{}},
+			"glyphicons-halflings-regular.ttf":   &bintree{assetsFontsGlyphiconsHalflingsRegularTtf, map[string]*bintree{}},
+			"glyphicons-halflings-regular.woff":  &bintree{assetsFontsGlyphiconsHalflingsRegularWoff, map[string]*bintree{}},
 			"glyphicons-halflings-regular.woff2": &bintree{assetsFontsGlyphiconsHalflingsRegularWoff2, map[string]*bintree{}},
 		}},
 		"img": &bintree{nil, map[string]*bintree{
-			"favicon.ico": &bintree{assetsImgFaviconIco, map[string]*bintree{}},
+			"favicon.ico":    &bintree{assetsImgFaviconIco, map[string]*bintree{}},
 			"icon_brand.png": &bintree{assetsImgIcon_brandPng, map[string]*bintree{}},
 		}},
 		"js": &bintree{nil, map[string]*bintree{
@@ -714,12 +715,12 @@ var _bintree = &bintree{nil, map[string]*bintree{
 			}},
 			"lib": &bintree{nil, map[string]*bintree{
 				"bootstrap": &bintree{nil, map[string]*bintree{
-					"bootstrap.js": &bintree{assetsJsLibBootstrapBootstrapJs, map[string]*bintree{}},
+					"bootstrap.js":     &bintree{assetsJsLibBootstrapBootstrapJs, map[string]*bintree{}},
 					"bootstrap.min.js": &bintree{assetsJsLibBootstrapBootstrapMinJs, map[string]*bintree{}},
-					"npm.js": &bintree{assetsJsLibBootstrapNpmJs, map[string]*bintree{}},
+					"npm.js":           &bintree{assetsJsLibBootstrapNpmJs, map[string]*bintree{}},
 				}},
 				"jquery": &bintree{nil, map[string]*bintree{
-					"jquery-2.1.3.js": &bintree{assetsJsLibJqueryJquery213Js, map[string]*bintree{}},
+					"jquery-2.1.3.js":     &bintree{assetsJsLibJqueryJquery213Js, map[string]*bintree{}},
 					"jquery-2.1.3.min.js": &bintree{assetsJsLibJqueryJquery213MinJs, map[string]*bintree{}},
 				}},
 				"jquery-form": &bintree{nil, map[string]*bintree{
@@ -729,7 +730,7 @@ var _bintree = &bintree{nil, map[string]*bintree{
 					"jquery.treetable.js": &bintree{assetsJsLibJqueryTreetableJqueryTreetableJs, map[string]*bintree{}},
 				}},
 				"require-setup.js": &bintree{assetsJsLibRequireSetupJs, map[string]*bintree{}},
-				"require.js": &bintree{assetsJsLibRequireJs, map[string]*bintree{}},
+				"require.js":       &bintree{assetsJsLibRequireJs, map[string]*bintree{}},
 			}},
 			"tools": &bintree{nil, map[string]*bintree{
 				"r.js": &bintree{assetsJsToolsRJs, map[string]*bintree{}},
@@ -784,4 +785,3 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
-
