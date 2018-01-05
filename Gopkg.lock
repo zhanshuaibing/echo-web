@@ -118,8 +118,8 @@
 [[projects]]
   name = "github.com/labstack/gommon"
   packages = ["bytes","color","log","random"]
-  revision = "1121fd3e243c202482226a7afe4dcd07ffc4139a"
-  version = "v0.2.1"
+  revision = "57409ada9da0f2afad6664c49502f8c50fbd8476"
+  version = "0.2.3"
 
 [[projects]]
   name = "github.com/mattn/go-colorable"
@@ -214,6 +214,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "769e83396909296337c71fccf708d32ffdb48c72391d4a1a70089802dd55ff92"
+  inputs-digest = "73966bd24dfd0cc1c0da58fca5119dd2e26d3e4c02be02994a7e6345c4532e8f"
   solver-name = "gps-cdcl"
   solver-version = 1
